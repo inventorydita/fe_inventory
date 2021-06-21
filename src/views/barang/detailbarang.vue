@@ -1,10 +1,18 @@
 <template>
     <div>
     <CRow>
-      <CCol lg="6">
+      <CCol lg="12">
         <CTableWrapper :items="getShuffledUsersData()">
           <template #header>
-            <CIcon name="cil-grid"/> Simple Table
+            <CIcon name=""/> 
+            <h4>
+            <b>Detail Barang</b>
+            </h4>
+            <div class="form-group form-actions">
+                <CButton type="submit" size="" color="primary">
+                  Submit
+                </CButton>
+              </div>
             <div class="card-header-actions">
               <a 
                 href="https://coreui.io/vue/docs/components/nav" 
@@ -12,7 +20,7 @@
                 rel="noreferrer noopener" 
                 target="_blank"
               >
-                <small class="text-muted">docs</small>
+                <small class="text-muted"></small>
               </a>
             </div>
           </template>
@@ -24,7 +32,7 @@
 
 <script>
 import CTableWrapper from '/src/components/table.vue'
-import usersData from '../data/usersdata'
+
 
 export default {
   name: 'detailbarang',
@@ -41,7 +49,8 @@ export default {
     },
 
     getShuffledUsersData () {
-      return this.shuffleArray(usersData.slice(0))
+      return []
+
     }
   }
 }

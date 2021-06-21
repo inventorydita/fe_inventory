@@ -2,7 +2,7 @@
   <CCard>
     <CCardHeader>
       <slot name="header">
-        <CIcon name="cil-grid"/> {{caption}}
+        <CIcon name=""/> {{caption}}
       </slot>
     </CCardHeader>
     <CCardBody>
@@ -10,11 +10,11 @@
         :hover="hover"
         :striped="striped"
         :border="border"
-        :small="small"
+        :large="large"
         :fixed="fixed"
         :items="items"
         :fields="fields"
-        :items-per-page="small ? 10 : 5"
+        :items-per-page="small ? 15 : 10"
         :dark="dark"
         pagination
       >
@@ -36,7 +36,7 @@ export default {
     fields: {
       type: Array,
       default () {
-        return ['username', 'registered', 'role', 'status']
+        return ['No','ID Barang', 'Nama Barang', 'Nama Pemasok', 'Satuan', 'Kuantitas', 'Status']
       }
     },
     caption: {
