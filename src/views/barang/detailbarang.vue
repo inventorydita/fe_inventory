@@ -9,10 +9,24 @@
             <b>Detail Barang</b>
             </h4>
             <div class="form-group form-actions">
-                <CButton type="submit" size="" color="primary">
-                  Submit
+                <CButton   color="primary">
+                  Tambah Data
                 </CButton>
               </div>
+
+          <CForm inline>
+            <CInput
+              class="mr-sm-2"
+              placeholder="Search"
+              size="sm"
+            />
+            
+            <CButton color="outline-success" class="my-2 my-sm-0" type="submit">Search</CButton>
+          </CForm>
+        
+      
+    
+    
             <div class="card-header-actions">
               <a 
                 href="https://coreui.io/vue/docs/components/nav" 
@@ -25,8 +39,15 @@
             </div>
           </template>
         </CTableWrapper>
+        
+        <CPagination
+          align="center"
+          :pages="10"
+          :active-page.sync="currentPage"
+        />
       </CCol>
     </CRow>
+    
     </div>
 </template>
 
