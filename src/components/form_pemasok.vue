@@ -11,7 +11,7 @@
                 description=""
                 label="ID Pemasok"
                 horizontal
-                autocomplete="ID"
+                autocomplete="ID Pemasok"
               />
               <CInput
                 description=""
