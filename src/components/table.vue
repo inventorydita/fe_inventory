@@ -10,7 +10,6 @@
         :hover="hover"
         :striped="striped"
         :border="border"
-        :large="large"
         :fixed="fixed"
         :items="items"
         :fields="fields"

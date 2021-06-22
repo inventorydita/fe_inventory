@@ -1,7 +1,7 @@
 <template>
+  <div>
     <div>
-    <div>
-    <CCol sm="14">
+      <CCol sm="14">
         <CCard>
           <CCardHeader>
             <b>Tambah Satuan</b>
@@ -30,5 +30,5 @@
         </CCard>
       </CCol>
     </div>
-    </div>
+  </div>
 </template>

@@ -1,14 +1,14 @@
 <template>
+  <div>
     <div>
-    <div>
-    <CCol sm="14">
+      <CCol sm="14">
         <CCard>
           <CCardHeader>
-            <b>Tambah Pemasok</b>
+            <b>Tambah Pembelian</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
-            <CInput
+              <CInput
                 description=""
                 label="Nomor Nota"
                 horizontal
@@ -44,11 +44,7 @@
                 horizontal
                 autocomplete="Kuantitas"
               />
-              <CInput
-                label="Tanggal"
-                type="date"
-                horizontal
-              />
+              <CInput label="Tanggal" type="date" horizontal />
               <div class="form-group form-actions">
                 <CButton type="submit" size="sm" color="primary">
                   Submit
@@ -59,5 +55,5 @@
         </CCard>
       </CCol>
     </div>
-    </div>
+  </div>
 </template>
