@@ -11,36 +11,42 @@
               <CInput
                 description=""
                 label="Nomor Nota"
+                type="text"
                 horizontal
                 autocomplete="Nomor Nota"
               />
               <CInput
                 description=""
                 label="ID Pembelian"
+                type="text"
                 horizontal
                 autocomplete="ID Pembelian"
               />
               <CInput
                 description=""
                 label="ID Pemasok"
+                type="text"
                 horizontal
                 autocomplete="ID Pemasok"
               />
               <CInput
                 description=""
                 label="ID Barang"
+                type="text"
                 horizontal
                 autocomplete="ID Barang"
               />
               <CInput
                 description=""
                 label="Harga Modal"
+                type="text"
                 horizontal
                 autocomplete="Harga Jual"
               />
               <CInput
                 description=""
                 label="Kuantitas"
+                type="text"
                 horizontal
                 autocomplete="Kuantitas"
               />

@@ -5,7 +5,7 @@
         <CTableWrapper :items="getShuffledUsersData()">
           <template #header>
             <CIcon name="" />
-            <h4>
+            <h4 class="ml-3">
               <b>Pemasok</b>
             </h4>
 
@@ -14,6 +14,7 @@
                 <div class="col-sm">
                   <div class="form-group form-actions">
                     <CButton
+                      class="ml-0"
                       @click="$router.push({ path: '/master/addpemasok' })"
                       color="primary"
                     >
@@ -26,7 +27,7 @@
                   <CForm inline>
                     <CInput class="ml-12 sm-6" placeholder="Search" size="sm" />
 
-                    <CButton color="outline-success" class="" type="submit"
+                    <CButton color="outline-success" class="ml-2" type="submit"
                       >Search</CButton
                     >
                   </CForm>
