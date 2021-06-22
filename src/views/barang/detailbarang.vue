@@ -1,37 +1,44 @@
 <template>
-    <div>
+  <div>
     <CRow>
       <CCol lg="12">
         <CTableWrapper :items="getShuffledUsersData()">
           <template #header>
-            <CIcon name=""/> 
+            <CIcon name="" />
             <h4>
-            <b>Detail Barang</b>
+              <b>Detail Barang</b>
             </h4>
-            <div class="form-group form-actions">
-                <CButton   color="primary">
-                  Tambah Data
-                </CButton>
-              </div>
 
-          <CForm inline>
-            <CInput
-              class="mr-sm-2"
-              placeholder="Search"
-              size="sm"
-            />
-            
-            <CButton color="outline-success" class="my-2 my-sm-0" type="submit">Search</CButton>
-          </CForm>
-        
-      
-    
-    
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <div class="form-group form-actions">
+                    <CButton
+                      @click="$router.push({ path: '/master/adddetailbarang' })"
+                      color="primary"
+                    >
+                      Tambah Data
+                    </CButton>
+                  </div>
+                </div>
+
+                <div class="col-sm d-flex justify-content-end">
+                  <CForm inline>
+                    <CInput class="ml-12 sm-6" placeholder="Search" size="sm" />
+
+                    <CButton color="outline-success" class="" type="submit"
+                      >Search</CButton
+                    >
+                  </CForm>
+                </div>
+              </div>
+            </div>
+
             <div class="card-header-actions">
-              <a 
-                href="https://coreui.io/vue/docs/components/nav" 
-                class="card-header-action" 
-                rel="noreferrer noopener" 
+              <a
+                href="https://coreui.io/vue/docs/components/nav"
+                class="card-header-action"
+                rel="noreferrer noopener"
                 target="_blank"
               >
                 <small class="text-muted"></small>
@@ -39,41 +46,34 @@
             </div>
           </template>
         </CTableWrapper>
-        
-        <CPagination
-          align="center"
-          :pages="10"
-          :active-page.sync="currentPage"
-        />
+
+        <CPagination align="center" :pages="10" />
       </CCol>
     </CRow>
-    
-    </div>
+  </div>
 </template>
 
 <script>
-import CTableWrapper from '/src/components/table.vue'
-
+import CTableWrapper from "/src/components/table.vue";
 
 export default {
-  name: 'detailbarang',
+  name: "detailbarang",
   components: { CTableWrapper },
   methods: {
-    shuffleArray (array) {
+    shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1))
-        let temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
       }
-      return array
+      return array;
     },
 
-    getShuffledUsersData () {
-      return []
-
-    }
-  }
-}
+    getShuffledUsersData() {
+      return [];
+    },
+  },
+};
 </script>
 
