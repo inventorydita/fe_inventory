@@ -2,10 +2,10 @@
   <div>
     <CRow>
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Barang">
+        <data-table :items="items" :headers="header" title="Satuan Barang">
           <template #tambah>
             <CButton
-              @click="$router.push({ path: '/master/addpemasok' })"
+              @click="$router.push({ path: '/master/addsatuanbarang' })"
               color="primary"
             >
               Tambah Data
@@ -27,15 +27,30 @@
 </template>
 
 <script>
-export default {
-  name: "Pemasok",
+import API from "../../services/api.service";
 
+export default {
+  name: "Satuan Barang",
   data: () => {
     return {
-      header: [{ key: "tes", label: "No" }],
-      items: [{ tes: "Hai" }],
+      header: [{ key: "nama", label: "No" }],
+      items: [{ nama: "Hai" }],
     };
   },
-  methods: {},
+  created() {
+    this.getDataSatuanBarang();
+  },
+  methods: {
+    getDataSatuanBarang() {
+      API.get("").then((result) => {
+        console.log(result);
+      });
+    },
+    deleteSatuanBarang() {
+      API.delete("", { id_satuan: "" }).then((result) => {
+        console.log(result);
+      });
+    },
+  },
 };
 </script>

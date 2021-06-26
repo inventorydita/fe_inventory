@@ -5,7 +5,7 @@
         <data-table :items="items" :headers="header" title="Penjualan">
           <template #tambah>
             <CButton
-              @click="$router.push({ path: '/master/addpemasok' })"
+              @click="$router.push({ path: '/master/addpenjualan' })"
               color="primary"
             >
               Tambah Data
@@ -27,15 +27,30 @@
 </template>
 
 <script>
-export default {
-  name: "Pemasok",
+import API from "../../services/api.service";
 
+export default {
+  name: "Penjualan",
   data: () => {
     return {
-      header: [{ key: "tes", label: "No" }],
-      items: [{ tes: "Hai" }],
+      header: [{ key: "nama", label: "No" }],
+      items: [{ nama: "Hai" }],
     };
   },
-  methods: {},
+  created() {
+    this.getDataPenjualan();
+  },
+  methods: {
+    getDataPenjualan() {
+      API.get("").then((result) => {
+        console.log(result);
+      });
+    },
+    deletePenjualan() {
+      API.delete("", { id_penjualan: "" }).then((result) => {
+        console.log(result);
+      });
+    },
+  },
 };
 </script>

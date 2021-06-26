@@ -5,6 +5,7 @@ import router from "./router";
 import CoreuiVue from "@coreui/vue";
 import { iconsSet as icons } from "./assets/icons/icons.js";
 import store from "./store";
+import API from "./services/api.service"
 
 import form_barang from "@/components/form_barang.vue";
 import form_pemasok from "@/components/form_pemasok";
@@ -23,6 +24,7 @@ Vue.component("data-table", table);
 Vue.config.performance = true;
 Vue.use(CoreuiVue);
 Vue.prototype.$log = console.log.bind(console);
+API.init();
 
 new Vue({
   el: "#app",
