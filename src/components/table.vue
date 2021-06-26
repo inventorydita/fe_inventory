@@ -1,9 +1,22 @@
 <template>
   <CCard>
     <CCardHeader>
-      <slot name="header">
-        <CIcon name=""/> {{caption}}
-      </slot>
+      <h4>
+        <b>{{ title }}</b>
+      </h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div class="form-group form-actions">
+              <slot name="tambah"> </slot>
+            </div>
+          </div>
+
+          <div class="col-sm d-flex justify-content-end">
+            <slot name="search"> </slot>
+          </div>
+        </div>
+      </div>
     </CCardHeader>
     <CCardBody>
       <CDataTable
@@ -12,14 +25,14 @@
         :border="border"
         :fixed="fixed"
         :items="items"
-        :fields="fields"
+        :fields="headers"
         :items-per-page="small ? 15 : 10"
         :dark="dark"
         pagination
       >
         <template #status="{item}">
           <td>
-            <CBadge :color="getBadge(item.status)">{{item.status}}</CBadge>
+            <CBadge>{{ item.status }}</CBadge>
           </td>
         </template>
       </CDataTable>
@@ -29,33 +42,17 @@
 
 <script>
 export default {
-  name: 'Table',
+  name: "Table",
   props: {
     items: Array,
-    fields: {
-      type: Array,
-      default () {
-        return ['No','ID Barang', 'Nama Barang', 'Nama Pemasok', 'Satuan', 'Kuantitas', 'Status']
-      }
-    },
-    caption: {
-      type: String,
-      default: 'Table'
-    },
+    headers: Array,
     hover: Boolean,
     striped: Boolean,
     border: Boolean,
     small: Boolean,
     fixed: Boolean,
-    dark: Boolean
+    dark: Boolean,
+    title: String,
   },
-  methods: {
-    getBadge (status) {
-      return status === 'Active' ? 'success'
-        : status === 'Inactive' ? 'secondary'
-          : status === 'Pending' ? 'warning'
-            : status === 'Banned' ? 'danger' : 'primary'
-    }
-  }
-}
+};
 </script>
