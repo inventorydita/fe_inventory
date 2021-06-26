@@ -10,28 +10,26 @@
             <CInput
               description=""
               label="ID Penjualan"
+              type="text"
               horizontal
               autocomplete="ID Penjualan"
             />
             <CInput
               description=""
               label="Harga Jual"
+              type="text"
               horizontal
               autocomplete="Harga Jual"
             />
             <CInput
               description=""
               label="Kuantitas"
+              type="text"
               horizontal
               autocomplete="Kuantitas"
             />
             <CInput label="Tanggal" type="date" horizontal />
-            <CInput
-              description=""
-              label="Sub Total"
-              horizontal
-              autocomplete="Sub Total"
-            />
+
             <div class="form-group form-actions">
               <CButton type="submit" size="sm" color="primary">
                 Submit

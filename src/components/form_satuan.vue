@@ -11,12 +11,14 @@
               <CInput
                 description=""
                 label="ID Satuan"
+                type="text"
                 horizontal
                 autocomplete="ID"
               />
               <CInput
                 description=""
                 label="Nama Satuan"
+                type="text"
                 horizontal
                 autocomplete="Nama Satuan"
               />

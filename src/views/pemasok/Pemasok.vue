@@ -2,6 +2,7 @@
   <div>
     <CRow>
       <CCol lg="12">
+
         <data-table :items="items" :headers="header" title="Pemasok">
           <template #tambah>
             <CButton
