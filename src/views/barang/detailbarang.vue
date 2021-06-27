@@ -33,8 +33,18 @@ export default {
   name: "Detail barang",
   data: () => {
     return {
-      header: [{ key: "nama", label: "No" }],
-      items: [{ nama: "Hai" }],
+      header: [
+        { key: "nomer", label: "No" },
+        { key: "id_barang", label: "ID" },
+        { key: "nama_barang", label: "Nama Barang" },
+        { key: "nama_pemasok", label: "Pemasok" },
+        { key: "nama_satuan", label: "Satuan" },
+        { key: "kuantitas", label: "Qty" },
+        { key: "harga_modal", label: "Harga Modal" },
+        { key: "harga_jual", label: "Harga Jual" },
+        { key: "aksi", label: "Aksi" },
+      ],
+      items: [{ nomer: "1" }],
     };
   },
   created() {

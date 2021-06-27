@@ -33,8 +33,16 @@ export default {
   name: "Pembelian",
   data: () => {
     return {
-      header: [{ key: "nama", label: "No" }],
-      items: [{ nama: "Hai" }],
+      header: [
+        { key: "nomer", label: "No" },
+        { key: "id_barang", label: "ID" },
+        { key: "nama_barang", label: "Nama Barang" },
+        { key: "harga_modal", label: "Harga Modal" },
+        { key: "harga_jual", label: "Harga Jual" },
+        { key: "Kuantitas", label: "Qty" },
+        { key: "Aksi", label: "Aksi" },
+      ],
+      items: [{ nomer: "Hai" }],
     };
   },
   created() {
