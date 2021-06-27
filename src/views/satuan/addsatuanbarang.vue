@@ -5,11 +5,13 @@
 </template>
 
 <script>
-import form_satuan from "../../components/form_satuan.vue";
-
 export default {
-  components: {
-    form_satuan,
+  methods: {
+    addSatuanBarang() {
+      API.post("", {}).then((result) => {
+        console.log(result);
+      });
+    },
   },
 };
 </script>

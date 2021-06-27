@@ -2,7 +2,6 @@
   <div>
     <CRow>
       <CCol lg="12">
-
         <data-table :items="items" :headers="header" title="Pemasok">
           <template #tambah>
             <CButton
@@ -28,14 +27,37 @@
 </template>
 
 <script>
+import API from "../../services/api.service";
+
 export default {
   name: "Pemasok",
   data: () => {
     return {
-      header: [{ key: "tes", label: "No" }],
-      items: [{ tes: "Hai" }],
+      header: [
+        { key: "nomer", label: "No" },
+        { key: "id_pemasok", label: "ID" },
+        { key: "nama_pemasok", label: "Nama Pemasok" },
+        { key: "alamat", label: "Alamat" },
+        { key: "telepon", label: "Nomor Telepon" },
+        { key: "aksi", label: "Aksi" },
+      ],
+      items: [{ nomer: "Hai" }],
     };
   },
-  methods: {},
+  created() {
+    this.getDataPemasok();
+  },
+  methods: {
+    getDataPemasok() {
+      API.get("").then((result) => {
+        console.log(result);
+      });
+    },
+    deletePemasok() {
+      API.delete("", { id_pemasok: "" }).then((result) => {
+        console.log(result);
+      });
+    },
+  },
 };
 </script>

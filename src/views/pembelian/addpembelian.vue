@@ -5,11 +5,13 @@
 </template>
 
 <script>
-import form_pembelian from "../../components/form_pembelian.vue";
-
 export default {
-  components: {
-    form_pembelian,
+  methods: {
+    addPembelian() {
+      API.post("", {}).then((result) => {
+        console.log(result);
+      });
+    },
   },
 };
 </script>

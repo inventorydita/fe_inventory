@@ -5,11 +5,13 @@
 </template>
 
 <script>
-import form_penjualan from "../../components/form_penjualan.vue";
-
 export default {
-  components: {
-    form_penjualan,
+  methods: {
+    addPenjualan() {
+      API.post("", {}).then((result) => {
+        console.log(result);
+      });
+    },
   },
 };
 </script>

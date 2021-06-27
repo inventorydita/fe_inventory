@@ -19,7 +19,7 @@ const ApiService = {
    *
    */
   setHeader() {
-    Vue.axios.defaults.baseURL = "http://localhost:8000";
+    Vue.axios.defaults.baseURL = "http://localhost/be_inventory";
     Vue.axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${JwtService.getToken()}`;
