@@ -11,6 +11,7 @@
               description=""
               label="ID Pemasok"
               type="text"
+              :value="form.id_pemasok"
               horizontal
               autocomplete="ID Pemasok"
             />
@@ -18,6 +19,7 @@
               description=""
               label="Nama Pemasok"
               type="text"
+              :value="form.nama_pemasok"
               horizontal
               autocomplete="Nama Pemasok"
             />
@@ -25,6 +27,7 @@
               description=""
               label="Email"
               type="email"
+              :value="form.email"
               horizontal
               autocomplete="Email"
             />
@@ -32,6 +35,7 @@
               description=""
               label="Alamat"
               type="text"
+              :value="form.alamat"
               horizontal
               autocomplete="Alamat"
             />
@@ -39,6 +43,7 @@
               description=""
               label="Kota"
               type="text"
+              :value="form.kota"
               horizontal
               autocomplete="Kota"
             />
@@ -46,6 +51,7 @@
               description=""
               label="Nomor Telepon"
               type="text"
+              :value="form.no_telp"
               horizontal
               autocomplete="Nomor"
             />
@@ -60,3 +66,14 @@
     </CCol>
   </div>
 </template>
+
+export default({
+  setup() {
+    data: () => {
+      
+
+
+    }
+  },
+})
+</script>

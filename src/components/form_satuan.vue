@@ -12,6 +12,7 @@
                 description=""
                 label="ID Satuan"
                 type="text"
+                :value="form.id_satuan"
                 horizontal
                 autocomplete="ID"
               />
@@ -19,6 +20,7 @@
                 description=""
                 label="Nama Satuan"
                 type="text"
+                :value="form.nama_satuan"
                 horizontal
                 autocomplete="Nama Satuan"
               />
@@ -34,3 +36,14 @@
     </div>
   </div>
 </template>
+
+export default({
+  setup() {
+    data: () => {
+      
+
+
+    }
+  },
+})
+</script>
