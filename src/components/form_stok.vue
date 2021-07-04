@@ -4,26 +4,39 @@
       <CCol sm="14">
         <CCard>
           <CCardHeader>
-            <b>Tambah Satuan</b>
+            <b>Tambah Stok Barang</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
               <CInput
                 description=""
-                label="ID Satuan"
+                label="ID Barang"
                 type="text"
-                :value="form.id_satuan"
                 horizontal
-                autocomplete="ID"
+                autocomplete="ID Barang"
               />
               <CInput
                 description=""
-                label="Nama Satuan"
+                label="Nama Barang"
                 type="text"
-                :value="form.nama_satuan"
                 horizontal
-                autocomplete="Nama Satuan"
+                autocomplete="Nama Barang"
               />
+              <CInput
+                description=""
+                label="ID Satuan"
+                type="text"
+                horizontal
+                autocomplete="ID Satuan"
+              />
+              <CInput
+                description=""
+                label="Kuantitas"
+                type="text"
+                horizontal
+                autocomplete="ID Pemasok"
+              />
+
               <div class="form-group form-actions">
                 <CButton type="submit" size="sm" color="primary">
                   Submit
@@ -37,14 +50,12 @@
   </div>
 </template>
 
-export default({
+<script>
+export default {
   setup() {
     data: () => {
-    form:{},
-      
-
-
-    }
+      return {};
+    };
   },
-})
+};
 </script>

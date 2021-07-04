@@ -70,7 +70,7 @@
 export default({
   setup() {
     data: () => {
-      
+      form:{},
 
 
     }
