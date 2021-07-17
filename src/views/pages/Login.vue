@@ -9,7 +9,7 @@
                 <CForm>
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>
-                  <CInput placeholder="Username" autocomplete="username email">
+                  <CInput placeholder="Username" autocomplete="username email"  @update:value="updateUsername" :value="username">
                     <template #prepend-content
                       ><CIcon name="cil-user"
                     /></template>
@@ -18,6 +18,8 @@
                     placeholder="Password"
                     type="password"
                     autocomplete="curent-password"
+                    @update:value="updatepassword"
+                    :value="password"
                   >
                     <template #prepend-content
                       ><CIcon name="cil-lock-locked"
@@ -25,7 +27,7 @@
                   </CInput>
                   <CRow>
                     <CCol col="6" class="text-left">
-                      <CButton color="primary" class="px-4">Login</CButton>
+                      <CButton color="primary" class="px-4" @click="onSubmit">Login</CButton>
                     </CCol>
                     <CCol col="6" class="text-right">
                       <CButton color="link" class="px-0"
@@ -51,9 +53,9 @@
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <CButton color="light" variant="outline" size="lg">
-                  Register Now!
-                </CButton>
+<!--                <CButton color="light" variant="outline" size="lg">-->
+<!--                  Register Now!-->
+<!--                </CButton>-->
               </CCardBody>
             </CCard>
           </CCardGroup>
@@ -64,7 +66,61 @@
 </template>
 
 <script>
+import API from "../../services/api.service"
+import {setUser} from "../../services/jwt.service"
 export default {
   name: "Login",
+  data:()=>{
+    return{username:"",password:""}
+  },
+  methods:{
+    updateUsername(e){
+      this.username = e;
+    },
+    updatepassword(e){
+      this.password = e;
+    },
+    onSubmit(){
+      API.post('/logincontroller',{username:this.username,password:this.password}).then(({status,data})=>{
+        //cek dari status backend
+        if(status === 200 || status === 201){
+          //cek dari bella berhasil/tidak
+          if(data.status){
+            setUser(data.data[0])
+            this.$notify({
+              group: 'notif',
+              title: 'Important message',
+              text: 'Berhasil masuk!'
+            });
+            this.$router.push({path:'/dashboard'})
+          }else {
+            //gagal
+            this.$notify({
+              group: 'notif',
+              type:'error',
+              title: 'Important message',
+              text: 'Hello user! This is a notification!'
+            });
+          }
+        }else {
+          //gagal
+          this.$notify({
+            group: 'notif',
+            type:'error',
+            title: 'Important message',
+            text: 'Hello user! This is a notification!'
+          });
+        }
+      }).catch(e=>{
+        console.log(e.response.data.message)
+        this.$notify({
+          group: 'notif',
+          type:'error',
+          title: 'Important message',
+          text: 'Hello user! This is a notification!'
+        });
+      })
+    }
+  }
 };
 </script>

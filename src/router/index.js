@@ -39,7 +39,7 @@ const laporanpenjualan = () => import("@/views/penjualan/laporanpenjualan");
 Vue.use(Router);
 
 export default new Router({
-  mode: "hash", // https://router.vuejs.org/api/#mode
+  mode: "history", // https://router.vuejs.org/api/#mode
   linkActiveClass: "active",
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes()
@@ -52,16 +52,25 @@ function configRoutes() {
       redirect: "/dashboard",
       name: "Home",
       component: TheContainer,
+      meta:{
+        requiresAuth:true
+      },
       children: [
         {
           path: "dashboard",
           name: "Dashboard",
-          component: Dashboard
+          component: Dashboard,
+          meta:{
+            requiresAuth:true
+          },
         },
         {
           path: "master",
           redirect: "/base/cards",
           name: "base",
+          meta:{
+            requiresAuth:true
+          },
           component: {
             render(c) {
               return c("router-view");
@@ -71,97 +80,154 @@ function configRoutes() {
             {
               path: "pemasok",
               name: "pemasok",
-              component: Datapemasok
+              component: Datapemasok,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "addpemasok",
               name: "addpemasok",
-              component: addpemasok
+              component: addpemasok,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "editpemasok",
               name: "editpemasok",
-              component: editPemasok
+              component: editPemasok,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "detailbarang",
               name: "detailbarang",
-              component: detailbarang
+              component: detailbarang,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "adddetailbarang",
               name: "adddetailbarang",
-              component: adddetailbarang
+              component: adddetailbarang,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "editdetailbarang",
               name: "editdetailbarang",
-              component: editdetailbarang
+              component: editdetailbarang,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "satuanbarang",
               name: "satuanbarang",
-              component: satuanbarang
+              component: satuanbarang,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "addsatuanbarang",
               name: "addsatuanbarang",
-              component: addsatuanbarang
+              component: addsatuanbarang,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "editsatuanbarang",
               name: "editsatuanbarang",
-              component: editsatuanbarang
+              component: editsatuanbarang,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "pembelian",
               name: "pembelian",
-              component: pembelian
+              component: pembelian,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "addpembelian",
               name: "addpembelian",
-              component: addpembelian
+              component: addpembelian,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "editpembelian",
               name: "editpembelian",
-              component: editpembelian
+              component: editpembelian,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "stok",
               name: "stok",
-              component: stok
+              component: stok,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "addstok",
               name: "addstok",
-              component: addstok
+              component: addstok,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "editstok",
               name: "editstok",
-              component: editstok
+              component: editstok,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "penjualan",
               name: "penjualan",
-              component: penjualan
+              component: penjualan,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "addpenjualan",
               name: "addpenjualan",
-              component: addpenjualan
+              component: addpenjualan,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "editpenjualan",
               name: "editpenjualan",
-              component: editpenjualan
+              component: editpenjualan,
+              meta:{
+                requiresAuth:true
+              },
             },
             {
               path: "laporanpenjualan",
               name: "laporanpenjualan",
-              component: laporanpenjualan
+              component: laporanpenjualan,
+              meta:{
+                requiresAuth:true
+              },
             },
 
           ]
@@ -169,7 +235,7 @@ function configRoutes() {
       ]
     },
     {
-      path: "/pages",
+      path: "/auth",
       redirect: "/pages/login",
       name: "Pages",
       component: {
@@ -178,6 +244,10 @@ function configRoutes() {
         }
       },
       children: [
+        {
+          path: "",
+          redirect: 'login'
+        },
         {
           path: "login",
           name: "Login",

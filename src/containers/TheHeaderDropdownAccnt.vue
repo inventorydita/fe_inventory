@@ -59,18 +59,26 @@
 <!--    <CDropdownItem>-->
 <!--      <CIcon name="cil-shield-alt" /> Lock Account-->
 <!--    </CDropdownItem>-->
-    <CDropdownItem>
+    <CDropdownItem @click="logOut">
       <CIcon name="cil-lock-locked" /> Logout
     </CDropdownItem>
   </CDropdown>
 </template>
 
 <script>
+import {dropUser,destroyToken} from "../services/jwt.service"
 export default {
   name: 'TheHeaderDropdownAccnt',
   data () {
     return { 
       itemsCount: 42
+    }
+  },
+  methods:{
+    logOut(){
+      dropUser()
+      destroyToken();
+      this.$router.replace({path:'/auth/login'})
     }
   }
 }

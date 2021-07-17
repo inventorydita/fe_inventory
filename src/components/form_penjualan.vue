@@ -1,7 +1,7 @@
 <template>
   <div>
     <CRow>
-      <CCol sm="12" md="6" lg="6" xl="6">
+      <CCol lg="6" md="6" sm="12" xl="6">
         <CCard>
           <CCardHeader>
             <b>Tambah Penjualan</b>
@@ -9,77 +9,81 @@
           <CCardBody>
             <CForm>
               <CInput
+                  autocomplete="ID Penjualan"
                   description=""
+                  horizontal
                   label="ID Penjualan"
                   type="text"
-                  horizontal
-                  autocomplete="ID Penjualan"
               />
               <CInput
+                  autocomplete="Harga Jual"
                   description=""
+                  horizontal
                   label="Harga Jual"
                   type="text"
-                  horizontal
-                  autocomplete="Harga Jual"
               />
               <CInput
+                  autocomplete="Kuantitas"
                   description=""
+                  horizontal
                   label="Kuantitas"
                   type="text"
-                  horizontal
-                  autocomplete="Kuantitas"
               />
-              <CInput label="Tanggal" type="date" horizontal />
+              <CInput horizontal label="Tanggal" type="date"/>
 
-            <div class="form-group form-actions">
-              <CButton type="submit" size="sm" color="primary">
-                Submit
-              </CButton>
-            </div>
-          </CForm>
-        </CCardBody>
-      </CCard>
-      <CCard>
-        <CCardHeader>
-          <b>Detail Penjualan</b>
-        </CCardHeader>
-        <CCardBody>
-          <CForm>
-            <CInput
-              description=""
-              label="Sub Total"
-              type="number"
-              :value="form.sub_total"
-              horizontal
-              autocomplete="Sub Total"
-            />
-            <CInput
-              description=""
-              label="Nomor Nota"
-              type="text"
-              :value="form.nomor_nota"
-              horizontal
-              autocomplete="Nomor Nota"
-            />
-            <div class="form-group form-actions">
-              <CButton type="submit" size="sm" color="primary">
-                Tambah
-              </CButton>
-            </div>
-            <div>
-              <CRow>
-                <CCol lg="12">
-                  <data-table :items="items" :headers="header" title="">
-                    <template></template
-                    ><template #search><CForm inline> </CForm></template>
-                  </data-table>
-                </CCol>
-              </CRow>
-            </div>
-          </CForm>
-        </CCardBody>
-      </CCard>
-    </CCol>
+              <div class="form-group form-actions">
+                <CButton color="primary" size="sm" type="submit">
+                  Submit
+                </CButton>
+              </div>
+            </CForm>
+          </CCardBody>
+        </CCard>
+        <CCard>
+          <CCardHeader>
+            <b>Detail Penjualan</b>
+          </CCardHeader>
+          <CCardBody>
+            <CForm>
+              <CInput
+                  :value="form.sub_total"
+                  autocomplete="Sub Total"
+                  description=""
+                  horizontal
+                  label="Sub Total"
+                  type="number"
+              />
+              <CInput
+                  :value="form.nomor_nota"
+                  autocomplete="Nomor Nota"
+                  description=""
+                  horizontal
+                  label="Nomor Nota"
+                  type="text"
+              />
+              <div class="form-group form-actions">
+                <CButton color="primary" size="sm" type="submit">
+                  Tambah
+                </CButton>
+              </div>
+              <div>
+                <CRow>
+                  <CCol lg="12">
+                    <data-table :headers="header" :items="items" title="">
+                      <template></template
+                      >
+                      <template #search>
+                        <CForm inline></CForm>
+                      </template>
+                    </data-table>
+                  </CCol>
+                </CRow>
+              </div>
+            </CForm>
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
   </div>
 </template>
 <script>
@@ -90,23 +94,24 @@ export default {
 
     return {
       header: [],
-      items:[],
-      modal:false
+      items: [],
+      modal: false
     }
   },
-  watch:{
-    data:function (newVal) {
+  watch: {
+    data: function (newVal) {
       this.items = newVal
     }
   },
-  methods:{
-    onPickBarang(){
-     this.modal = true
+  methods: {
+    onPickBarang() {
+      this.modal = true
     },
-    action(val){
+    action(val) {
       this.modal = val
     },
-    barangSelected(){}
+    barangSelected() {
+    }
   }
 }
 </script>

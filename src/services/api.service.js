@@ -1,7 +1,6 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
-import JwtService from "@/services/jwt.service";
 
 /**
  * Service to call HTTP request via Axios
@@ -19,10 +18,11 @@ const ApiService = {
    *
    */
   setHeader() {
-    Vue.axios.defaults.baseURL = "http://localhost/be_inventory";
-    Vue.axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${JwtService.getToken()}`;
+    Vue.axios.defaults.baseURL = "http://localhost/be_inventory/index.php";
+    //TODO:: because back end doesnt need auth header it will ignored and cause CORS issue
+    // Vue.axios.defaults.headers.common[
+    //   "Authorization"
+    // ] = `Bearer ${JwtService.getToken()}`;
   },
   query(resource, params) {
     return Vue.axios.get(resource, params);

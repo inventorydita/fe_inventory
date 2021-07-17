@@ -52,6 +52,9 @@ export default {
     getDataPembelian() {
       API.get("").then((result) => {
         console.log(result);
+
+      }).catch(()=>{
+
       });
     },
     deletePembelian() {

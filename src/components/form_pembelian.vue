@@ -1,7 +1,7 @@
 <template>
 
   <CRow>
-    <CCol sm="12" md="6" lg="6" xl="6">
+    <CCol lg="6" md="6" sm="12" xl="6">
       <CCard>
         <CCardHeader>
           <b>Tambah Pembelian</b>
@@ -9,113 +9,116 @@
         <CCardBody>
           <CForm>
             <CInput
+                :value="form.no_nota"
+                autocomplete="Nomor Nota"
                 description=""
+                horizontal
                 label="Nomor Nota"
                 type="text"
-                :value="form.no_nota"
-                horizontal
-                autocomplete="Nomor Nota"
             />
             <CInput
+                :value="form.id_pembelian"
+                autocomplete="ID Pembelian"
                 description=""
+                horizontal
                 label="ID Pembelian"
                 type="text"
-                :value="form.id_pembelian"
-                horizontal
-                autocomplete="ID Pembelian"
             />
             <CInput
+                :value="form.id_pemasok"
+                autocomplete="ID Pemasok"
                 description=""
+                horizontal
                 label="ID Pemasok"
                 type="text"
-                :value="form.id_pemasok"
-                horizontal
-                autocomplete="ID Pemasok"
             />
             <CInput
+                :value="form.sub_total"
+                autocomplete="Sub Total"
                 description=""
+                horizontal
                 label="Sub Total"
                 type="number"
-                :value="form.sub_total"
-                horizontal
-                autocomplete="Sub Total"
-              />
-              <div class="form-group form-actions">
-                <CButton type="submit" size="sm" color="primary">
-                  Submit
-                </CButton>
-              </div>
-            </CForm>
-          </CCardBody>
-        </CCard>
-        <CCard>
-          <CCardHeader>
-            <b>Detail Pembelian</b>
-          </CCardHeader>
-          <CCardBody>
-            <CForm>
-              <CInput
+            />
+            <div class="form-group form-actions">
+              <CButton color="primary" size="sm" type="submit">
+                Submit
+              </CButton>
+            </div>
+          </CForm>
+        </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardHeader>
+          <b>Detail Pembelian</b>
+        </CCardHeader>
+        <CCardBody>
+          <CForm>
+            <CInput
+                :value="form.id_barang"
+                autocomplete="ID Barang"
                 description=""
+                horizontal
                 label="Id Barang"
                 type="text"
-                :value="form.id_barang"
-                horizontal
-                autocomplete="ID Barang"
-              />
-              <CInput
+            />
+            <CInput
+                :value="form.nama_barang"
+                autocomplete="Nama Barang"
                 description=""
+                horizontal
                 label="Nama Barang"
                 type="text"
-                :value="form.nama_barang"
-                horizontal
-                autocomplete="Nama Barang"
-              />
-              <div class="form-group form-actions">
-                <CButton type="submit" size="sm" color="primary">
-                  Tambah
-                </CButton>
-              </div>
-              <div>
-                <CRow>
-                  <CCol lg="12">
-                    <data-table :items="items" :headers="header" title="">
-                      <template></template
-                      ><template #search><CForm inline> </CForm></template>
-                    </data-table>
-                  </CCol>
-                </CRow>
-              </div>
-            </CForm>
-          </CCardBody>
-        </CCard>
-      </CCol>
-    </div>
-  </div>
+            />
+            <div class="form-group form-actions">
+              <CButton color="primary" size="sm" type="submit">
+                Tambah
+              </CButton>
+            </div>
+            <div>
+              <CRow>
+                <CCol lg="12">
+                  <data-table :headers="header" :items="items" title="">
+                    <template></template
+                    >
+                    <template #search>
+                      <CForm inline></CForm>
+                    </template>
+                  </data-table>
+                </CCol>
+              </CRow>
+            </div>
+          </CForm>
+        </CCardBody>
+      </CCard>
+    </CCol>
+  </CRow>
 </template>
-
+<script>
 
 export default {
   name: "DetailPembelian",
   data: () => {
     return {
       header: [],
-      items:[],
-      modal:false
+      items: [],
+      modal: false
     }
   },
-  watch:{
-    data:function (newVal) {
+  watch: {
+    data: function (newVal) {
       this.items = newVal
     }
   },
-  methods:{
-    onPickBarang(){
+  methods: {
+    onPickBarang() {
       this.modal = true
     },
-    action(val){
+    action(val) {
       this.modal = val
     },
-    barangSelected(){}
+    barangSelected() {
+    }
   }
 }
 </script>
