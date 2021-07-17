@@ -10,14 +10,6 @@
             <CForm>
               <CInput
                 description=""
-                label="ID Satuan"
-                type="text"
-                :value="form.id_satuan"
-                horizontal
-                autocomplete="ID"
-              />
-              <CInput
-                description=""
                 label="Nama Satuan"
                 type="text"
                 :value="form.nama_satuan"
@@ -37,14 +29,12 @@
   </div>
 </template>
 
-export default({
-  setup() {
-    data: () => {
-    form:{},
-      
-
-
-    }
+<script>
+export default {
+  data: () => {
+    return {
+      form: {},
+    };
   },
-})
+};
 </script>

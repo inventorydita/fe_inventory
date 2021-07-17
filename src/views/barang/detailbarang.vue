@@ -5,7 +5,7 @@
         <data-table :items="items" :headers="header" title="Detail Barang">
           <template #tambah>
             <CButton
-              @click="$router.push({ path: '/master/addpdetailbarang' })"
+              @click="$router.push({ path: '/master/adddetailbarang' })"
               color="primary"
             >
               Tambah Data

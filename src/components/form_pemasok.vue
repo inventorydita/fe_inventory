@@ -9,27 +9,11 @@
           <CForm>
             <CInput
               description=""
-              label="ID Pemasok"
-              type="text"
-              :value="form.id_pemasok"
-              horizontal
-              autocomplete="ID Pemasok"
-            />
-            <CInput
-              description=""
               label="Nama Pemasok"
               type="text"
               :value="form.nama_pemasok"
               horizontal
               autocomplete="Nama Pemasok"
-            />
-            <CInput
-              description=""
-              label="Email"
-              type="email"
-              :value="form.email"
-              horizontal
-              autocomplete="Email"
             />
             <CInput
               description=""
@@ -67,13 +51,12 @@
   </div>
 </template>
 
-export default({
-  setup() {
-    data: () => {
-      form:{},
-
-
-    }
+<script>
+export default {
+  data: () => {
+    return {
+      form: {},
+    };
   },
-})
+};
 </script>

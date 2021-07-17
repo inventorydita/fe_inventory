@@ -10,14 +10,6 @@
             <CForm>
               <CInput
                 description=""
-                label="ID Barang"
-                type="text"
-                :value="form.id_barang"
-                horizontal
-                autocomplete="ID Barang"
-              />
-              <CInput
-                description=""
                 label="Nama Barang"
                 type="text"
                 :value="form.nama_barang"
@@ -31,14 +23,6 @@
                 :value="form.satuan_barang"
                 horizontal
                 autocomplete="ID Satuan"
-              />
-              <CInput
-                description=""
-                label="ID Pemasok"
-                type="text"
-                :value="form.id_pemasok"
-                horizontal
-                autocomplete="ID Pemasok"
               />
               <CInput
                 description=""
@@ -73,19 +57,12 @@
 
 
 export default{
-
     data: () => {
       return {
         form:{},
+    };
+  },
+};
 
-
-
-      }
-
-
-
-    }
-
-}
 </script>
 
