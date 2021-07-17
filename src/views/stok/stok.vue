@@ -30,7 +30,7 @@
 import API from "../../services/api.service";
 
 export default {
-  name: "Stok Barang",
+  name: "StokBarang",
   data: () => {
     return {
       header: [

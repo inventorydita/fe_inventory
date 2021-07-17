@@ -18,14 +18,6 @@
               />
               <CInput
                 description=""
-                label="ID Pembelian"
-                type="text"
-                :value="form.id_pembelian"
-                horizontal
-                autocomplete="ID Pembelian"
-              />
-              <CInput
-                description=""
                 label="ID Pemasok"
                 type="text"
                 :value="form.id_pemasok"
@@ -34,29 +26,12 @@
               />
               <CInput
                 description=""
-                label="ID Barang"
-                type="text"
-                :value="form.id_barang"
+                label="Sub Total"
+                type="number"
+                :value="form.sub_total"
                 horizontal
-                autocomplete="ID Barang"
+                autocomplete="Sub Total"
               />
-              <CInput
-                description=""
-                label="Harga Modal"
-                type="text"
-                :value="form.harga_modal"
-                horizontal
-                autocomplete="Harga Jual"
-              />
-              <CInput
-                description=""
-                label="Kuantitas"
-                type="text"
-                :value="form.kuantitas"
-                horizontal
-                autocomplete="Kuantitas"
-              />
-              <CInput label="Tanggal" type="date" horizontal />
               <div class="form-group form-actions">
                 <CButton type="submit" size="sm" color="primary">
                   Submit
@@ -71,7 +46,7 @@
           </CCardHeader>
           <CCardBody>
             <CForm>
-            <CInput
+              <CInput
                 description=""
                 label="Id Barang"
                 type="text"
@@ -95,15 +70,9 @@
               <div>
                 <CRow>
                   <CCol lg="12">
-                    <data-table
-                      :items="items"
-                      :headers="header"
-                      title=""
-                    >
+                    <data-table :items="items" :headers="header" title="">
                       <template></template
-                      ><template #search
-                        ><CForm inline>
-                        </CForm></template>
+                      ><template #search><CForm inline> </CForm></template>
                     </data-table>
                   </CCol>
                 </CRow>
@@ -117,10 +86,10 @@
 </template>
 
 <script>
-import API from "../services/api.service";
+
 
 export default {
-  name: "Detail Pembelian",
+  name: "DetailPembelian",
   data: () => {
     return {
       form: {},

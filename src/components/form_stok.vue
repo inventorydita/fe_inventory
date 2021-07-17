@@ -10,33 +10,28 @@
             <CForm>
               <CInput
                 description=""
-                label="ID Barang"
+                label="ID Pemasok"
                 type="text"
-                horizontal
-                autocomplete="ID Barang"
-              />
-              <CInput
-                description=""
-                label="Nama Barang"
-                type="text"
-                horizontal
-                autocomplete="Nama Barang"
-              />
-              <CInput
-                description=""
-                label="ID Satuan"
-                type="text"
-                horizontal
-                autocomplete="ID Satuan"
-              />
-              <CInput
-                description=""
-                label="Kuantitas"
-                type="text"
+                :value="form.id_pemasok"
                 horizontal
                 autocomplete="ID Pemasok"
               />
-
+              <CInput
+                description=""
+                label="Sub Total"
+                type="number"
+                :value="form.sub_total"
+                horizontal
+                autocomplete="Sub Total"
+              />
+              <CInput
+                description=""
+                label="Nomor Nota"
+                type="text"
+                :value="form.nomor_nota"
+                horizontal
+                autocomplete="Nomor Nota"
+              />
               <div class="form-group form-actions">
                 <CButton type="submit" size="sm" color="primary">
                   Submit
@@ -52,9 +47,9 @@
 
 <script>
 export default {
-  setup() {
-    data: () => {
-      return {};
+  data: () => {
+    return {
+      form: {},
     };
   },
 };

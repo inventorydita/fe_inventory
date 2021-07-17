@@ -49,19 +49,19 @@
           <CForm>
             <CInput
               description=""
-              label="Id Barang"
-              type="text"
-              :value="form.id_barang"
+              label="Sub Total"
+              type="number"
+              :value="form.sub_total"
               horizontal
-              autocomplete="ID Barang"
+              autocomplete="Sub Total"
             />
             <CInput
               description=""
-              label="Nama Barang"
+              label="Nomor Nota"
               type="text"
-              :value="form.nama_barang"
+              :value="form.nomor_nota"
               horizontal
-              autocomplete="Nama Barang"
+              autocomplete="Nomor Nota"
             />
             <div class="form-group form-actions">
               <CButton type="submit" size="sm" color="primary">
@@ -89,7 +89,7 @@
 import API from "../services/api.service";
 
 export default {
-  name: "Detail Penjualan",
+  name: "DetailPenjualan",
   data: () => {
     return {
       form: {},
