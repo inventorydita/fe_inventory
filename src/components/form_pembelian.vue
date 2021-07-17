@@ -1,30 +1,38 @@
 <template>
-  <div>
-    <div>
-      <CCol sm="14">
-        <CCard>
-          <CCardHeader>
-            <b>Tambah Pembelian</b>
-          </CCardHeader>
-          <CCardBody>
-            <CForm>
-              <CInput
+
+  <CRow>
+    <CCol sm="12" md="6" lg="6" xl="6">
+      <CCard>
+        <CCardHeader>
+          <b>Tambah Pembelian</b>
+        </CCardHeader>
+        <CCardBody>
+          <CForm>
+            <CInput
                 description=""
                 label="Nomor Nota"
                 type="text"
                 :value="form.no_nota"
                 horizontal
                 autocomplete="Nomor Nota"
-              />
-              <CInput
+            />
+            <CInput
+                description=""
+                label="ID Pembelian"
+                type="text"
+                :value="form.id_pembelian"
+                horizontal
+                autocomplete="ID Pembelian"
+            />
+            <CInput
                 description=""
                 label="ID Pemasok"
                 type="text"
                 :value="form.id_pemasok"
                 horizontal
                 autocomplete="ID Pemasok"
-              />
-              <CInput
+            />
+            <CInput
                 description=""
                 label="Sub Total"
                 type="number"
@@ -85,21 +93,29 @@
   </div>
 </template>
 
-<script>
-
 
 export default {
   name: "DetailPembelian",
   data: () => {
     return {
-      form: {},
-      header: [
-        { key: "nomer", label: "No" },
-        { key: "id_barang", label: "ID" },
-        { key: "nama_barang", label: "Nama Barang" },
-      ],
-      items: [{ nomer: "Hai" }],
-    };
+      header: [],
+      items:[],
+      modal:false
+    }
   },
-};
+  watch:{
+    data:function (newVal) {
+      this.items = newVal
+    }
+  },
+  methods:{
+    onPickBarang(){
+      this.modal = true
+    },
+    action(val){
+      this.modal = val
+    },
+    barangSelected(){}
+  }
+}
 </script>

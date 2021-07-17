@@ -5,13 +5,20 @@
 </template>
 
 <script>
+import API from "../../services/api.service"
 export default {
+  data:()=>{
+    return{data:[]}
+  },
   methods: {
-    editPembelian() {
-      API.put("", {}).then((result) => {
+    addPembelian() {
+      API.post("", {}).then((result) => {
         console.log(result);
       });
     },
+    pickBarang(){
+
+    }
   },
 };
 </script>
