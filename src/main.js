@@ -12,6 +12,7 @@ import form_pemasok from "@/components/form_pemasok";
 import form_pembelian from "@/components/form_pembelian";
 import form_penjualan from "@/components/form_penjualan";
 import form_satuan from "@/components/form_satuan";
+import form_stok from "@/components/form_stok";
 import table from "@/components/table";
 
 Vue.component("form_barang", form_barang);
@@ -19,6 +20,7 @@ Vue.component("form_pemasok", form_pemasok);
 Vue.component("form_pembelian", form_pembelian);
 Vue.component("form_penjualan", form_penjualan);
 Vue.component("form_satuan", form_satuan);
+Vue.component("form_stok", form_stok);
 Vue.component("data-table", table);
 
 Vue.config.performance = true;

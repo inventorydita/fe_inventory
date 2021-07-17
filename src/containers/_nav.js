@@ -44,6 +44,12 @@ export default [
         icon: "cil-basket",
       },
       {
+        _name: "CSidebarNavItem",
+        name: "Stok Barang",
+        to: "/master/stok",
+        icon: "cil-basket",
+      },
+      {
         _name: "CSidebarNavDropdown",
         name: "Penjualan Barang",
         route: "/master/penjualan",
