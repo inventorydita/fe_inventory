@@ -25,6 +25,10 @@ const pembelian = () => import("@/views/pembelian/pembelian");
 const addpembelian = () => import("@/views/pembelian/addpembelian");
 const editpembelian = () => import("@/views/pembelian/editpembelian");
 
+const stok = () => import("@/views/stok/stok");
+const addstok = () => import("@/views/stok/addstok");
+const editstok = () => import("@/views/stok/editstok");
+
 const penjualan = () => import("@/views/penjualan/penjualan");
 const addpenjualan = () => import("@/views/penjualan/addpenjualan");
 const editpenjualan = () => import("@/views/penjualan/editpenjualan");
@@ -125,6 +129,21 @@ function configRoutes() {
               component: editpembelian
             },
             {
+              path: "stok",
+              name: "stok",
+              component: stok
+            },
+            {
+              path: "addstok",
+              name: "addstok",
+              component: addstok
+            },
+            {
+              path: "editstok",
+              name: "editstok",
+              component: editstok
+            },
+            {
               path: "penjualan",
               name: "penjualan",
               component: penjualan
@@ -144,7 +163,7 @@ function configRoutes() {
               name: "laporanpenjualan",
               component: laporanpenjualan
             },
-            
+
           ]
         }
       ]

@@ -12,6 +12,7 @@
                 description=""
                 label="Nomor Nota"
                 type="text"
+                :value="form.no_nota"
                 horizontal
                 autocomplete="Nomor Nota"
             />
@@ -19,6 +20,7 @@
                 description=""
                 label="ID Pembelian"
                 type="text"
+                :value="form.id_pembelian"
                 horizontal
                 autocomplete="ID Pembelian"
             />
@@ -26,6 +28,7 @@
                 description=""
                 label="ID Pemasok"
                 type="text"
+                :value="form.id_pemasok"
                 horizontal
                 autocomplete="ID Pemasok"
             />
@@ -33,6 +36,7 @@
                 description=""
                 label="ID Barang"
                 type="text"
+                :value="form.id_barang"
                 horizontal
                 autocomplete="ID Barang"
             />
@@ -40,6 +44,7 @@
                 description=""
                 label="Harga Modal"
                 type="text"
+                :value="form.harga_modal"
                 horizontal
                 autocomplete="Harga Jual"
             />
@@ -47,6 +52,7 @@
                 description=""
                 label="Kuantitas"
                 type="text"
+                :value="form.kuantitas"
                 horizontal
                 autocomplete="Kuantitas"
             />
