@@ -13,6 +13,7 @@ import form_pembelian from "@/components/form_pembelian";
 import form_penjualan from "@/components/form_penjualan";
 import form_satuan from "@/components/form_satuan";
 import table from "@/components/table";
+import dialog_pick_barang from "@/components/dialog_pick_barang";
 
 Vue.component("form_barang", form_barang);
 Vue.component("form_pemasok", form_pemasok);
@@ -20,6 +21,7 @@ Vue.component("form_pembelian", form_pembelian);
 Vue.component("form_penjualan", form_penjualan);
 Vue.component("form_satuan", form_satuan);
 Vue.component("data-table", table);
+Vue.component("dialog-pick-barang", dialog_pick_barang);
 
 Vue.config.performance = true;
 Vue.use(CoreuiVue);

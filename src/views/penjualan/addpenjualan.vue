@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form_penjualan></form_penjualan>
+    <form_penjualan ></form_penjualan>
   </div>
 </template>
 
