@@ -36,7 +36,7 @@ API.init();
 router.beforeEach((to,from,next)=>{
 
   const user = getUser();
-  if(to.meta.requiresAuth){
+  /*if(to.meta.requiresAuth){
     if(user){
       next()
     }else {
@@ -44,7 +44,8 @@ router.beforeEach((to,from,next)=>{
     }
   }else {
     next()
-  }
+  }*/
+  next()
 })
 /*
 or for SSR:
