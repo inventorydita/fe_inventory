@@ -38,16 +38,20 @@ export default [
         ]
       },
       {
-        _name: "CSidebarNavItem",
+        _name: "CSidebarNavDropdown",
         name: "Pembelian Barang",
-        to: "/master/pembelian",
-        icon: "cil-basket",
-      },
-      {
-        _name: "CSidebarNavItem",
-        name: "Stok Barang",
-        to: "/master/stok",
-        icon: "cil-basket",
+        route: "/master/pembelian",
+        icon: "cib-cashapp",
+        items: [
+          {
+            name: "Pembelian",
+            to: "/master/pembelian"
+          },
+          {
+            name: "Detail Pembelian",
+            to: "/master/detailpembelian"
+          },
+        ]
       },
       {
         _name: "CSidebarNavDropdown",
@@ -63,9 +67,19 @@ export default [
             name: "Laporan Penjualan",
             to: "/master/laporanpenjualan"
           },
+          {
+            name: "Detail Penjualan",
+            to: "/master/detailpenjualan"
+          },
 
 
         ]
+      },
+      {
+        _name: "CSidebarNavItem",
+        name: "Stok Barang",
+        to: "/master/stok",
+        icon: "cil-basket",
       },
     ]
   }

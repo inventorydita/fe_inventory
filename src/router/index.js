@@ -34,7 +34,13 @@ const addpenjualan = () => import("@/views/penjualan/addpenjualan");
 const editpenjualan = () => import("@/views/penjualan/editpenjualan");
 const laporanpenjualan = () => import("@/views/penjualan/laporanpenjualan");
 
+const detailpenjualan = () => import("@/views/detailpenjualan/detailpenjualan");
+const adddetailpenjualan = () => import("@/views/detailpenjualan/adddetailpenjualan");
+const editdetailpenjualan = () => import("@/views/detailpenjualan/editdetailpenjualan");
 
+const detailpembelian = () => import("@/views/detailpembelian/detailpembelian");
+const adddetailpembelian = () => import("@/views/detailpembelian/adddetailpembelian");
+const editdetailpembelian = () => import("@/views/detailpembelian/editdetailpembelian");
 
 Vue.use(Router);
 
@@ -225,6 +231,54 @@ function configRoutes() {
               path: "laporanpenjualan",
               name: "laporanpenjualan",
               component: laporanpenjualan,
+              meta:{
+                requiresAuth:true
+              },
+            },
+            {
+              path: "detailpenjualan",
+              name: "detailpenjualan",
+              component: detailpenjualan,
+              meta:{
+                requiresAuth:true
+              },
+            },
+            {
+              path: "adddetailpenjualan",
+              name: "adddetailpenjualan",
+              component: adddetailpenjualan,
+              meta:{
+                requiresAuth:true
+              },
+            },
+            {
+              path: "editdetailpenjualan",
+              name: "editdetailpenjualan",
+              component: editdetailpenjualan,
+              meta:{
+                requiresAuth:true
+              },
+            },
+            {
+              path: "detailpembelian",
+              name: "detailpembelian",
+              component: detailpembelian,
+              meta:{
+                requiresAuth:true
+              },
+            },
+            {
+              path: "adddetailpembelian",
+              name: "adddetailpembelian",
+              component: adddetailpembelian,
+              meta:{
+                requiresAuth:true
+              },
+            },
+            {
+              path: "editdetailpembelian",
+              name: "editdetailpembelian",
+              component: editdetailpembelian,
               meta:{
                 requiresAuth:true
               },
