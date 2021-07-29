@@ -94,16 +94,20 @@
 </template>
 <script>
 export default {
+  props: ["body", "isEdit"],
   name: "RincianPembelian",
   data: () => {
     return {
       header: [],
       items: [],
       modal: false,
-      form:{}
+      form: {},
     };
   },
   watch: {
+    body: function (newData) {
+      this.form = newData;
+    },
     data: function (newVal) {
       this.items = newVal;
     },
@@ -116,6 +120,9 @@ export default {
       this.modal = val;
     },
     barangSelected() {},
-  },
+    },
+    submit(){
+      this.$emit("submit",this.form)
+    },
 };
 </script>

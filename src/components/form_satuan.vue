@@ -31,10 +31,24 @@
 
 <script>
 export default {
+  props: ["body", "isEdit"],
   data: () => {
     return {
       form: {},
     };
   },
+
+  watch:{
+    //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
+    body:function (newData){
+      this.form = newData
+    }
+  },
+
+  methods:{
+    submit(){
+      this.$emit("submit",this.form)
+    }
+  }
 };
 </script>

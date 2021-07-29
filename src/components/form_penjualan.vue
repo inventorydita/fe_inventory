@@ -87,6 +87,7 @@
 </template>
 <script>
 export default {
+  props: ["body", "isEdit"],
   name: "RincianPenjualan",
   data: () => {
     return {
@@ -97,6 +98,9 @@ export default {
     };
   },
   watch: {
+    body: function (newData) {
+      this.form = newData;
+    },
     data: function (newVal) {
       this.items = newVal;
     },
@@ -109,6 +113,9 @@ export default {
       this.modal = val;
     },
     barangSelected() {},
-  },
+    },
+    submit(){
+      this.$emit("submit",this.form)
+    },
 };
 </script>
