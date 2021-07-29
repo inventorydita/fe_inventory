@@ -8,16 +8,30 @@
 import API from "../../services/api.service";
 
 export default {
+  props: ["body", "isEdit"],
   data:()=>{
     return{
       body:{}
     }
   },
+
+  watch: {
+    //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
+    body: function (newData) {
+      this.form = newData;
+    },
+  },
+
   created() {
   //ambil data by id
     this.getData()
     },
+    
   methods: {
+    submit() {
+      this.$emit("submit", this.form);
+    },
+
     //get data by id
     getData(){
 

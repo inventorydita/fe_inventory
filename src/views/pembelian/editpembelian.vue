@@ -6,20 +6,38 @@
 
 <script>
 import API from "../../services/api.service"
+
 export default {
+  props: ["body", "isEdit"],
   data:()=>{
     return{data:[]}
   },
+
+  watch: {
+    //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
+    body: function (newData) {
+      this.form = newData;
+    },
+  },
+
   methods: {
+    submit() {
+      this.$emit("submit", this.form);
+    },
+
     addPembelian() {
       API.post("pembeliancontroller", {}).then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
-            this.items = data.data
+            //notifikasi ketika berhasil
+          }else {
+            //gagal
           }
-        
-        
+        }else{
+          //gagal
         }
+      }).catch(()=>{
+        //errpr
       });
     },
     pickBarang(){
