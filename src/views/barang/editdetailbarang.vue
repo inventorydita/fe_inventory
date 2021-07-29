@@ -8,8 +8,14 @@
 export default {
   methods: {
     editDetailBarang() {
-      API.put("", {}).then((result) => {
-        console.log(result);
+      API.put("masterbarangcontroller", {}).then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
   },

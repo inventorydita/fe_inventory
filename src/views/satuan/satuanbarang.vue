@@ -34,7 +34,6 @@ export default {
   data: () => {
     return {
       header: [
-        { key: "nomer", label: "No" },
         { key: "nama_satuan", label: "Nama Satuan" },
         { key: "aksi", label: "Aksi" },
       ],
@@ -46,13 +45,25 @@ export default {
   },
   methods: {
     getDataSatuanBarang() {
-      API.get("").then((result) => {
-        console.log(result);
+      API.get("satuancontroller").then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
     deleteSatuanBarang() {
-      API.delete("", { id_satuan: "" }).then((result) => {
-        console.log(result);
+      API.delete("satuancontroller", { id_satuan: "" }).then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
   },

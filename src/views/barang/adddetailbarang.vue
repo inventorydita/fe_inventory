@@ -8,8 +8,14 @@
 export default {
   methods: {
     addDetailBarang() {
-      API.post("", {}).then((result) => {
-        console.log(result);
+      API.post("masterbarangcontroller", {}).then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
   },

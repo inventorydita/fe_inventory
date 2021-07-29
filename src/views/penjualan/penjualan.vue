@@ -34,11 +34,8 @@ export default {
   data: () => {
     return {
       header: [
-        { key: "nomer", label: "No" },
-        { key: "nama_barang", label: "Nama Barang" },
-        { key: "nama_satuan", label: "Satuan" },
-        { key: "harga_jual", label: "Harga Jual" },
-        { key: "kuantitas", label: "Qty" },
+        { key: "nomor_nota", label: "Nomor Nota" },
+        { key: "tanggal", label: "Tanggal" },
         { key: "sub_total", label: "Sub Total" },
         { key: "aksi", label: "Aksi" },
       ],
@@ -50,13 +47,25 @@ export default {
   },
   methods: {
     getDataPenjualan() {
-      API.get("").then((result) => {
-        console.log(result);
+      API.get("penjualancontroller").then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
     deletePenjualan() {
-      API.delete("", { id_penjualan: "" }).then((result) => {
-        console.log(result);
+      API.delete("penjualancontroller", { id_penjualan: "" }).then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
   },

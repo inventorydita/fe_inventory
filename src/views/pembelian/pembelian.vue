@@ -34,12 +34,10 @@ export default {
   data: () => {
     return {
       header: [
-        { key: "nomer", label: "No" },
-        { key: "id_barang", label: "ID" },
+        { key: "nomor_nota", label: "Nomor Nota" },
         { key: "nama_barang", label: "Nama Barang" },
-        { key: "harga_modal", label: "Harga Modal" },
-        { key: "harga_jual", label: "Harga Jual" },
-        { key: "Kuantitas", label: "Qty" },
+        { key: "nama_pemasok", label: "Nama Pemasok" },
+        { key: "kota", label: "Kota" },
         { key: "Aksi", label: "Aksi" },
       ],
       items: [{ nomer: "Hai" }],
@@ -50,16 +48,28 @@ export default {
   },
   methods: {
     getDataPembelian() {
-      API.get("").then((result) => {
-        console.log(result);
+      API.get("pembeliancontroller").then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
 
       }).catch(()=>{
 
       });
     },
     deletePembelian() {
-      API.delete("", { id_pembelian: "" }).then((result) => {
-        console.log(result);
+      API.delete("pembeliancontroller", { id_pembelian: "" }).then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
   },

@@ -34,10 +34,9 @@ export default {
   data: () => {
     return {
       header: [
-        { key: "nomer", label: "No" },
         { key: "nama_barang", label: "Nama Barang" },
         { key: "nama_satuan", label: "Satuan" },
-        { key: "kuantitas", label: "Qty" },
+        { key: "stok", label: "Kuantitas" },
         { key: "aksi", label: "Aksi" },
       ],
       items: [{ nomer: "Hai" }],
@@ -48,14 +47,24 @@ export default {
   },
   methods: {
     getDataStok() {
-      API.get("").then((result) => {
-        console.log(result);
+      API.get("stokbarangcontroller").then(({ status, data }) => {
+        if (status == 200 || status == 201) {
+          if (data.status) {
+            this.items = data.data;
+          }
+        }
       });
     },
     deleteStok() {
-      API.delete("", { id_Stok: "" }).then((result) => {
-        console.log(result);
-      });
+      API.delete("stokbarangcontroller", { id_Stok: "" }).then(
+        ({ status, data }) => {
+          if (status == 200 || status == 201) {
+            if (data.status) {
+              this.items = data.data;
+            }
+          }
+        }
+      );
     },
   },
 };

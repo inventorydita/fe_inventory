@@ -34,10 +34,9 @@ export default {
   data: () => {
     return {
       header: [
-        { key: "nomer", label: "No" },
-        { key: "id_pemasok", label: "ID" },
         { key: "nama_pemasok", label: "Nama Pemasok" },
         { key: "alamat", label: "Alamat" },
+        { key: "kota", label: "Kota" },
         { key: "telepon", label: "Nomor Telepon" },
         { key: "aksi", label: "Aksi" },
       ],
@@ -49,13 +48,25 @@ export default {
   },
   methods: {
     getDataPemasok() {
-      API.get("").then((result) => {
-        console.log(result);
+      API.get("pemasokcontroller").then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
     deletePemasok() {
-      API.delete("", { id_pemasok: "" }).then((result) => {
-        console.log(result);
+      API.delete("pemasokcontroller", { id_pemasok: "" }).then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
   },

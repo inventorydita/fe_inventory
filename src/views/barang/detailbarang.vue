@@ -34,17 +34,13 @@ export default {
   data: () => {
     return {
       header: [
-        { key: "nomer", label: "No" },
-        { key: "id_barang", label: "ID" },
         { key: "nama_barang", label: "Nama Barang" },
-        { key: "nama_pemasok", label: "Pemasok" },
         { key: "nama_satuan", label: "Satuan" },
-        { key: "kuantitas", label: "Qty" },
         { key: "harga_modal", label: "Harga Modal" },
         { key: "harga_jual", label: "Harga Jual" },
         { key: "aksi", label: "Aksi" },
       ],
-      items: [{ nomer: "1" }],
+      items: [{ nama_barang: "" }],
     };
   },
   created() {
@@ -52,13 +48,25 @@ export default {
   },
   methods: {
     getDataDetailBarang() {
-      API.get("").then((result) => {
-        console.log(result);
+      API.get("masterbarangcontroller").then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
     deleteDetailBarang() {
-      API.delete("", { id_barang: "" }).then((result) => {
-        console.log(result);
+      API.delete("masterbarangcontroller", { id_barang: "" }).then(({status,data}) => {
+        if(status == 200 || status == 201){
+          if(data.status){
+            this.items = data.data
+          }
+        
+        
+        }
       });
     },
   },
