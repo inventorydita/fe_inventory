@@ -14,18 +14,23 @@ export default {
     }
   },
   methods: {
-    onSimpan(){
+    onSimpan(data){
       //proses simpan ke back end
-    },
-    addDetailBarang() {
-      API.post("masterbarangcontroller", {}).then(({status,data}) => {
+      API.post("masterbarangcontroller", data).then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
-            this.items = data.data
+           //notifikasi ketika berhasil
+          }else {
+            //gagal
           }
+        }else{
+          //gagal
         }
+      }).catch(()=>{
+        //errpr
       });
     },
+
   },
 };
 </script>
