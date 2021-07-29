@@ -48,29 +48,26 @@ export default {
   },
   methods: {
     getDataPembelian() {
-      API.get("pembeliancontroller").then(({status,data}) => {
-        if(status == 200 || status == 201){
-          if(data.status){
-            this.items = data.data
+      API.get("pembeliancontroller")
+        .then(({ status, data }) => {
+          if (status == 200 || status == 201) {
+            if (data.status) {
+              this.items = data.data;
+            }
           }
-        
-        
-        }
-
-      }).catch(()=>{
-
-      });
+        })
+        .catch(() => {});
     },
     deletePembelian() {
-      API.delete("pembeliancontroller", { id_pembelian: "" }).then(({status,data}) => {
-        if(status == 200 || status == 201){
-          if(data.status){
-            this.items = data.data
+      API.delete("pembeliancontroller", { id_pembelian: "" }).then(
+        ({ status, data }) => {
+          if (status == 200 || status == 201) {
+            if (data.status) {
+              this.items = data.data;
+            }
           }
-        
-        
         }
-      });
+      );
     },
   },
 };
