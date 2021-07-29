@@ -9,27 +9,27 @@
           <CCardBody>
             <CForm>
               <CInput
-                  autocomplete="ID Penjualan"
-                  description=""
-                  horizontal
-                  label="ID Penjualan"
-                  type="text"
+                autocomplete="ID Penjualan"
+                description=""
+                horizontal
+                label="ID Penjualan"
+                type="text"
               />
               <CInput
-                  autocomplete="Harga Jual"
-                  description=""
-                  horizontal
-                  label="Harga Jual"
-                  type="text"
+                autocomplete="Harga Jual"
+                description=""
+                horizontal
+                label="Harga Jual"
+                type="text"
               />
               <CInput
-                  autocomplete="Kuantitas"
-                  description=""
-                  horizontal
-                  label="Kuantitas"
-                  type="text"
+                autocomplete="Kuantitas"
+                description=""
+                horizontal
+                label="Kuantitas"
+                type="text"
               />
-              <CInput horizontal label="Tanggal" type="date"/>
+              <CInput horizontal label="Tanggal" type="date" />
 
               <div class="form-group form-actions">
                 <CButton color="primary" size="sm" type="submit">
@@ -46,20 +46,20 @@
           <CCardBody>
             <CForm>
               <CInput
-                  :value="form.sub_total"
-                  autocomplete="Sub Total"
-                  description=""
-                  horizontal
-                  label="Sub Total"
-                  type="number"
+                :value="form.sub_total"
+                autocomplete="Sub Total"
+                description=""
+                horizontal
+                label="Sub Total"
+                type="number"
               />
               <CInput
-                  :value="form.nomor_nota"
-                  autocomplete="Nomor Nota"
-                  description=""
-                  horizontal
-                  label="Nomor Nota"
-                  type="text"
+                :value="form.nomor_nota"
+                autocomplete="Nomor Nota"
+                description=""
+                horizontal
+                label="Nomor Nota"
+                type="text"
               />
               <div class="form-group form-actions">
                 <CButton color="primary" size="sm" type="submit">
@@ -70,8 +70,7 @@
                 <CRow>
                   <CCol lg="12">
                     <data-table :headers="header" :items="items" title="">
-                      <template></template
-                      >
+                      <template></template>
                       <template #search>
                         <CForm inline></CForm>
                       </template>
@@ -88,30 +87,27 @@
 </template>
 <script>
 export default {
-
-  name: "DetailPenjualan",
+  name: "RincianPenjualan",
   data: () => {
-
     return {
       header: [],
       items: [],
-      modal: false
-    }
+      modal: false,
+    };
   },
   watch: {
     data: function (newVal) {
-      this.items = newVal
-    }
+      this.items = newVal;
+    },
   },
   methods: {
     onPickBarang() {
-      this.modal = true
+      this.modal = true;
     },
     action(val) {
-      this.modal = val
+      this.modal = val;
     },
-    barangSelected() {
-    }
-  }
-}
+    barangSelected() {},
+  },
+};
 </script>

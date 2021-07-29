@@ -1,5 +1,4 @@
 <template>
-
   <CRow>
     <CCol lg="6" md="6" sm="12" xl="6">
       <CCard>
@@ -9,36 +8,36 @@
         <CCardBody>
           <CForm>
             <CInput
-                :value="form.no_nota"
-                autocomplete="Nomor Nota"
-                description=""
-                horizontal
-                label="Nomor Nota"
-                type="text"
+              :value="form.no_nota"
+              autocomplete="Nomor Nota"
+              description=""
+              horizontal
+              label="Nomor Nota"
+              type="text"
             />
             <CInput
-                :value="form.id_pembelian"
-                autocomplete="ID Pembelian"
-                description=""
-                horizontal
-                label="ID Pembelian"
-                type="text"
+              :value="form.id_pembelian"
+              autocomplete="ID Pembelian"
+              description=""
+              horizontal
+              label="ID Pembelian"
+              type="text"
             />
             <CInput
-                :value="form.id_pemasok"
-                autocomplete="ID Pemasok"
-                description=""
-                horizontal
-                label="ID Pemasok"
-                type="text"
+              :value="form.id_pemasok"
+              autocomplete="ID Pemasok"
+              description=""
+              horizontal
+              label="ID Pemasok"
+              type="text"
             />
             <CInput
-                :value="form.sub_total"
-                autocomplete="Sub Total"
-                description=""
-                horizontal
-                label="Sub Total"
-                type="number"
+              :value="form.sub_total"
+              autocomplete="Sub Total"
+              description=""
+              horizontal
+              label="Sub Total"
+              type="number"
             />
             <div class="form-group form-actions">
               <CButton color="primary" size="sm" type="submit">
@@ -55,20 +54,20 @@
         <CCardBody>
           <CForm>
             <CInput
-                :value="form.id_barang"
-                autocomplete="ID Barang"
-                description=""
-                horizontal
-                label="Id Barang"
-                type="text"
+              :value="form.id_barang"
+              autocomplete="ID Barang"
+              description=""
+              horizontal
+              label="Id Barang"
+              type="text"
             />
             <CInput
-                :value="form.nama_barang"
-                autocomplete="Nama Barang"
-                description=""
-                horizontal
-                label="Nama Barang"
-                type="text"
+              :value="form.nama_barang"
+              autocomplete="Nama Barang"
+              description=""
+              horizontal
+              label="Nama Barang"
+              type="text"
             />
             <div class="form-group form-actions">
               <CButton color="primary" size="sm" type="submit">
@@ -79,8 +78,7 @@
               <CRow>
                 <CCol lg="12">
                   <data-table :headers="header" :items="items" title="">
-                    <template></template
-                    >
+                    <template></template>
                     <template #search>
                       <CForm inline></CForm>
                     </template>
@@ -95,30 +93,28 @@
   </CRow>
 </template>
 <script>
-
 export default {
-  name: "DetailPembelian",
+  name: "RincianPembelian",
   data: () => {
     return {
       header: [],
       items: [],
-      modal: false
-    }
+      modal: false,
+    };
   },
   watch: {
     data: function (newVal) {
-      this.items = newVal
-    }
+      this.items = newVal;
+    },
   },
   methods: {
     onPickBarang() {
-      this.modal = true
+      this.modal = true;
     },
     action(val) {
-      this.modal = val
+      this.modal = val;
     },
-    barangSelected() {
-    }
-  }
-}
+    barangSelected() {},
+  },
+};
 </script>
