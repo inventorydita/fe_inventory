@@ -93,6 +93,7 @@ export default {
       header: [],
       items: [],
       modal: false,
+      form:{}
     };
   },
   watch: {

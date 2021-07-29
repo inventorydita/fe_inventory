@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CRow>
+    <CRow >
       <CCol lg="12">
         <data-table :items="items" :headers="header" title="Pemasok">
           <template #tambah>
@@ -17,8 +17,7 @@
               <CButton color="outline-success" class="" type="submit"
                 >Search</CButton
               >
-            </CForm></template
-          >
+            </CForm></template>
         </data-table>
         <CPagination align="center" :pages="10" />
       </CCol>
@@ -40,7 +39,8 @@ export default {
         { key: "telepon", label: "Nomor Telepon" },
         { key: "aksi", label: "Aksi" },
       ],
-      items: [{ nomer: "Hai" }],
+      hidden:false,
+      items: [],
     };
   },
   created() {
@@ -53,8 +53,6 @@ export default {
           if(data.status){
             this.items = data.data
           }
-        
-        
         }
       });
     },

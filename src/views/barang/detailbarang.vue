@@ -30,7 +30,7 @@
 import API from "../../services/api.service";
 
 export default {
-  name: "Detail barang",
+  name: "Detailbarang",
   data: () => {
     return {
       header: [
@@ -53,8 +53,6 @@ export default {
           if(data.status){
             this.items = data.data
           }
-        
-        
         }
       });
     },
