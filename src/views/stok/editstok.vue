@@ -1,31 +1,21 @@
 <template>
   <div>
-    <form_stok></form_stok>
+    <form_stok :isEdit="false" :body="body" @submit="editStok"></form_stok>
   </div>
 </template>
 
 <script>
+import API from "../../services/api.service"
 export default {
-  props: ["body", "isEdit"],
   data:()=>{
-    return{data:[]}
-  },
-
-  watch: {
-    //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body: function (newData) {
-      this.form = newData;
-    },
+    return{body:{}}
   },
 
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
 
-    editStok() {
-      API.put("stokbarangcontroller", {}).then(({status,data}) => {
-        if(status == 200 || status == 201){
+    editStok(data) {
+      API.put("stokbarangcontroller", data).then(({status,data}) => {
+        if(status === 200 || status === 201){
           if(data.status){
             //notifikasi ketika berhasil
           }else {

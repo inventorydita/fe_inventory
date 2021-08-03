@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form_pembelian></form_pembelian>
+    <form_pembelian :isEdit="true" :body="body" @submit="addPembelian"></form_pembelian>
   </div>
 </template>
 
@@ -8,26 +8,13 @@
 import API from "../../services/api.service"
 
 export default {
-  props: ["body", "isEdit"],
   data:()=>{
-    return{data:[]}
+    return{body:{}}
   },
-
-  watch: {
-    //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body: function (newData) {
-      this.form = newData;
-    },
-  },
-
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
-
-    addPembelian() {
-      API.post("pembeliancontroller", {}).then(({status,data}) => {
-        if(status == 200 || status == 201){
+    addPembelian(data) {
+      API.post("pembeliancontroller", data).then(({status,data}) => {
+        if(status === 200 || status === 201){
           if(data.status){
             //notifikasi ketika berhasil
           }else {

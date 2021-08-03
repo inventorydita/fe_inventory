@@ -48,7 +48,7 @@ export default {
   methods: {
     getDataPenjualan() {
       API.get("penjualancontroller").then(({status,data}) => {
-        if(status == 200 || status == 201){
+        if(status === 200 || status === 201){
           if(data.status){
             this.items = data.data
           }
@@ -59,7 +59,7 @@ export default {
     },
     deletePenjualan() {
       API.delete("penjualancontroller", { id_penjualan: "" }).then(({status,data}) => {
-        if(status == 200 || status == 201){
+        if(status === 200 || status === 201){
           if(data.status){
             this.items = data.data
           }

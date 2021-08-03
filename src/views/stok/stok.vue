@@ -48,7 +48,7 @@ export default {
   methods: {
     getDataStok() {
       API.get("stokbarangcontroller").then(({ status, data }) => {
-        if (status == 200 || status == 201) {
+        if (status === 200 || status === 201) {
           if (data.status) {
             this.items = data.data;
           }
@@ -58,7 +58,7 @@ export default {
     deleteStok() {
       API.delete("stokbarangcontroller", { id_Stok: "" }).then(
         ({ status, data }) => {
-          if (status == 200 || status == 201) {
+          if (status === 200 || status === 201) {
             if (data.status) {
               this.items = data.data;
             }

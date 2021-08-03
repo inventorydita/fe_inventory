@@ -1,31 +1,19 @@
 <template>
   <div>
-    <form_penjualan></form_penjualan>
+    <form_penjualan :isEdit="true" :body="body" @submit="editPenjualan"></form_penjualan>
   </div>
 </template>
 
 <script>
+import API from "../../services/api.service"
 export default {
-  props: ["body", "isEdit"],
   data:()=>{
-    return{data:[]}
+    return{body:{}}
   },
-
-  watch: {
-    //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body: function (newData) {
-      this.form = newData;
-    },
-  },
-
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
-
-    editPenjualan() {
-      API.put("penjualancontroller", {}).then(({status,data}) => {
-        if(status == 200 || status == 201){
+    editPenjualan(data) {
+      API.put("penjualancontroller", data).then(({status,data}) => {
+        if(status === 200 || status === 201){
           if(data.status){
             //notifikasi ketika berhasil
           }else {
