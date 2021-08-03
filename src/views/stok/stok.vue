@@ -68,17 +68,27 @@ export default {
     deleteStok(dataStok) {
       API.delete("stokbarangcontroller", {
         id_stok_barang: dataStok.id_stok_barang,
-      }).then(({ status, data }) => {
-        if (status === 200 || status === 201) {
-          if (data.status) {
-            this.$notify({
-              // ketika data berhasil dihapus maka muncul notif
-              group: "notif",
-              type: "success",
-              title: "Informasi",
-              text: "Data telah berhasil dihapus",
-            });
-            this.getDataStok(); // untuk me reload data ke back end
+      })
+        .then(({ status, data }) => {
+          if (status === 200 || status === 201) {
+            if (data.status) {
+              this.$notify({
+                // ketika data berhasil dihapus maka muncul notif
+                group: "notif",
+                type: "success",
+                title: "Informasi",
+                text: "Data telah berhasil dihapus",
+              });
+              this.getDataStok(); // untuk me reload data ke back end
+            } else {
+              // ketika data gagal dihapus maka muncul notif
+              this.$notify({
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Data gagal untuk dihapus",
+              });
+            }
           } else {
             // ketika data gagal dihapus maka muncul notif
             this.$notify({
@@ -88,16 +98,17 @@ export default {
               text: "Data gagal untuk dihapus",
             });
           }
-        } else {
-          // ketika data gagal dihapus maka muncul notif
+
+          //tambahin ini buat notif ketika error 500 dll dari back end
+        })
+        .catch(() => {
           this.$notify({
             group: "notif",
             type: "error",
             title: "Perhatian",
             text: "Data gagal untuk dihapus",
           });
-        }
-      });
+        });
     },
   },
 };
