@@ -35,16 +35,25 @@
             <CBadge>{{ item.status }}</CBadge>
           </td>
         </template>
-        <template #actions="{item, index}">
+        <template #actions="{item}">
           <td class="py-2">
             <CButton
                 color="primary"
                 variant="outline"
                 square
                 size="sm"
-
+                @click="$emit('edit',item)"
             >
-             Ini {{item}}{{index}}
+            Edit
+            </CButton>
+            <CButton
+                color="primary"
+                variant="outline"
+                square
+                size="sm"
+                @click="$emit('delete',item)"
+            >
+              Hapus
             </CButton>
           </td>
         </template>

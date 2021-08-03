@@ -2,7 +2,7 @@
   <div>
     <CRow >
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Pemasok">
+        <data-table :items="items" :headers="header" title="Pemasok" @edit="editPemasok" @delete="deletePemasok">
           <template #tambah>
             <CButton
               @click="$router.push({ path: '/master/addpemasok' })"
@@ -37,7 +37,7 @@ export default {
         { key: "alamat", label: "Alamat" },
         { key: "kota", label: "Kota" },
         { key: "telepon", label: "Nomor Telepon" },
-        { key: "aksi", label: "Aksi" },
+        { key: "actions", label: "Aksi" },
       ],
       hidden:false,
       items: [],
@@ -56,8 +56,11 @@ export default {
         }
       });
     },
-    deletePemasok() {
-      API.delete("pemasokcontroller", { id_pemasok: "" }).then(({status,data}) => {
+    editPemasok(data){
+      this.$router.push({path:'halamannya'})
+    },
+    deletePemasok(data) {
+      API.delete("pemasokcontroller", data).then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
             this.items = data.data
