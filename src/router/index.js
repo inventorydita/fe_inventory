@@ -34,13 +34,7 @@ const addpenjualan = () => import("@/views/penjualan/addpenjualan");
 const editpenjualan = () => import("@/views/penjualan/editpenjualan");
 const laporanpenjualan = () => import("@/views/penjualan/laporanpenjualan");
 
-const detailpenjualan = () => import("@/views/detailpenjualan/detailpenjualan");
-const adddetailpenjualan = () => import("@/views/detailpenjualan/adddetailpenjualan");
-const editdetailpenjualan = () => import("@/views/detailpenjualan/editdetailpenjualan");
 
-const detailpembelian = () => import("@/views/detailpembelian/detailpembelian");
-const adddetailpembelian = () => import("@/views/detailpembelian/adddetailpembelian");
-const editdetailpembelian = () => import("@/views/detailpembelian/editdetailpembelian");
 
 Vue.use(Router);
 
@@ -58,24 +52,24 @@ function configRoutes() {
       redirect: "/dashboard",
       name: "Home",
       component: TheContainer,
-      meta:{
-        requiresAuth:true
+      meta: {
+        requiresAuth: true
       },
       children: [
         {
           path: "dashboard",
           name: "Dashboard",
           component: Dashboard,
-          meta:{
-            requiresAuth:true
+          meta: {
+            requiresAuth: true
           },
         },
         {
           path: "master",
           redirect: "/base/cards",
           name: "base",
-          meta:{
-            requiresAuth:true
+          meta: {
+            requiresAuth: true
           },
           component: {
             render(c) {
@@ -87,202 +81,156 @@ function configRoutes() {
               path: "pemasok",
               name: "pemasok",
               component: Datapemasok,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "addpemasok",
               name: "addpemasok",
               component: addpemasok,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "editpemasok",
               name: "editpemasok",
               component: editPemasok,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "detailbarang",
               name: "detailbarang",
               component: detailbarang,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "adddetailbarang",
               name: "adddetailbarang",
               component: adddetailbarang,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "editdetailbarang",
               name: "editdetailbarang",
               component: editdetailbarang,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "satuanbarang",
               name: "satuanbarang",
               component: satuanbarang,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "addsatuanbarang",
               name: "addsatuanbarang",
               component: addsatuanbarang,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "editsatuanbarang",
               name: "editsatuanbarang",
               component: editsatuanbarang,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "pembelian",
               name: "pembelian",
               component: pembelian,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "addpembelian",
               name: "addpembelian",
               component: addpembelian,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "editpembelian",
               name: "editpembelian",
               component: editpembelian,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "stok",
               name: "stok",
               component: stok,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "addstok",
               name: "addstok",
               component: addstok,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "editstok",
               name: "editstok",
               component: editstok,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "penjualan",
               name: "penjualan",
               component: penjualan,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "addpenjualan",
               name: "addpenjualan",
               component: addpenjualan,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "editpenjualan",
               name: "editpenjualan",
               component: editpenjualan,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
             {
               path: "laporanpenjualan",
               name: "laporanpenjualan",
               component: laporanpenjualan,
-              meta:{
-                requiresAuth:true
+              meta: {
+                requiresAuth: true
               },
             },
-            {
-              path: "detailpenjualan",
-              name: "detailpenjualan",
-              component: detailpenjualan,
-              meta:{
-                requiresAuth:true
-              },
-            },
-            {
-              path: "adddetailpenjualan",
-              name: "adddetailpenjualan",
-              component: adddetailpenjualan,
-              meta:{
-                requiresAuth:true
-              },
-            },
-            {
-              path: "editdetailpenjualan",
-              name: "editdetailpenjualan",
-              component: editdetailpenjualan,
-              meta:{
-                requiresAuth:true
-              },
-            },
-            {
-              path: "detailpembelian",
-              name: "detailpembelian",
-              component: detailpembelian,
-              meta:{
-                requiresAuth:true
-              },
-            },
-            {
-              path: "adddetailpembelian",
-              name: "adddetailpembelian",
-              component: adddetailpembelian,
-              meta:{
-                requiresAuth:true
-              },
-            },
-            {
-              path: "editdetailpembelian",
-              name: "editdetailpembelian",
-              component: editdetailpembelian,
-              meta:{
-                requiresAuth:true
-              },
-            },
+
+
 
           ]
         }

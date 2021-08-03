@@ -57,18 +57,42 @@ export default {
       });
     },
     editPemasok(data){
-      this.$router.push({path:'halamannya'})
+      this.$router.push({path:'halamannya'}) 
     },
-    deletePemasok(data) {
-      API.delete("pemasokcontroller", data).then(({status,data}) => {
+    deletePemasok(dataPemasok) {
+      API.delete("pemasokcontroller", { id_pemasok:dataPemasok.id_pemasok }).then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
-            this.items = data.data
+            this.$notify({ // ketika data berhasil dihapus maka muncul notif
+              group: "notif",
+              type: "success",
+              title: "Informasi",
+              text: "Data telah berhasil dihapus",
+            });
+            this.getDataPemasok() // untuk me reload data ke back end 
           }
+          else { // ketika data gagal dihapus maka muncul notif
+          this.$notify({
+              group: "notif",
+              type: "error",
+              title: "Perhatian",
+              text: "Data gagal untuk dihapus",
+            });
+          }
+
         
         
         }
+        else { // ketika data gagal dihapus maka muncul notif
+          this.$notify({
+              group: "notif",
+              type: "error",
+              title: "Perhatian",
+              text: "Data gagal untuk dihapus",
+            });
+        }
       });
+      
     },
   },
 };

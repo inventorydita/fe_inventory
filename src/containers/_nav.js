@@ -47,10 +47,6 @@ export default [
             name: "Pembelian",
             to: "/master/pembelian"
           },
-          {
-            name: "Detail Pembelian",
-            to: "/master/detailpembelian"
-          },
         ]
       },
       {
@@ -67,10 +63,7 @@ export default [
             name: "Laporan Penjualan",
             to: "/master/laporanpenjualan"
           },
-          {
-            name: "Detail Penjualan",
-            to: "/master/detailpenjualan"
-          },
+          
 
 
         ]

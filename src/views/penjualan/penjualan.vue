@@ -2,7 +2,7 @@
   <div>
     <CRow>
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Penjualan">
+        <data-table :items="items" :headers="header" title="Penjualan" @edit="editPenjualan" @delete="deletePenjualan">
           <template #tambah>
             <CButton
               @click="$router.push({ path: '/master/addpenjualan' })"
@@ -37,9 +37,10 @@ export default {
         { key: "nomor_nota", label: "Nomor Nota" },
         { key: "tanggal", label: "Tanggal" },
         { key: "sub_total", label: "Sub Total" },
-        { key: "aksi", label: "Aksi" },
+        { key: "actions", label: "Aksi" },
       ],
-      items: [{ nomer: "Hai" }],
+      hidden:false,
+      items: [],
     };
   },
   created() {
@@ -57,12 +58,39 @@ export default {
         }
       });
     },
-    deletePenjualan() {
-      API.delete("penjualancontroller", { id_penjualan: "" }).then(({status,data}) => {
+    editPenjualan(data){
+      this.$router.push({path:'halamannya'}) 
+    },
+    deletePenjualan(dataPenjualan) {
+      API.delete("penjualancontroller", { id_penjualan:dataPenjualan.id_penjualan }).then(({status,data}) => {
         if(status === 200 || status === 201){
           if(data.status){
-            this.items = data.data
+            this.$notify({ // ketika data berhasil dihapus maka muncul notif
+              group: "notif",
+              type: "success",
+              title: "Informasi",
+              text: "Data telah berhasil dihapus",
+            });
+            this.getDataPenjualan() // untuk me reload data ke back end 
           }
+
+          else { // ketika data gagal dihapus maka muncul notif
+          this.$notify({
+              group: "notif",
+              type: "error",
+              title: "Perhatian",
+              text: "Data gagal untuk dihapus",
+            });
+          }
+
+          }
+        else { // ketika data gagal dihapus maka muncul notif
+          this.$notify({
+              group: "notif",
+              type: "error",
+              title: "Perhatian",
+              text: "Data gagal untuk dihapus",
+            });
         
         
         }
