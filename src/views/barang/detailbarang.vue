@@ -2,7 +2,7 @@
   <div>
     <CRow>
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Detail Barang"
+        <data-table :items="items" :headers="header" title="Detail Barang" 
           @edit="editDetailBarang" @delete="deleteDetailBarang">
           <template #tambah>
             <CButton
@@ -58,9 +58,6 @@ export default {
         }
       });
     },
-    editDetailBarang(data){
-      this.$router.push({path:'halamannya'}) 
-    },
     deleteDetailBarang(dataDetailbarang) {
       API.delete("masterbarangcontroller", {
         id_barang: dataDetailbarang.id_barang,
@@ -91,9 +88,19 @@ export default {
             type: "error",
             title: "Perhatian",
             text: "Data gagal untuk dihapus",
+            });
+          }
+
+          //tambahin ini buat notif ketika error 500 dll dari back end
+      }).catch(()=>{
+        this.$notify({
+          group: "notif",
+          type: "error",
+          title: "Perhatian",
+          text: "Data gagal untuk dihapus",
           });
-        }
       });
+
     },
   },
 };

@@ -71,7 +71,8 @@ export default {
             });
             this.getDataPemasok() // untuk me reload data ke back end 
           }
-          else { // ketika data gagal dihapus maka muncul notif
+          else 
+          { // ketika data gagal dihapus maka muncul notif
           this.$notify({
               group: "notif",
               type: "error",
@@ -80,10 +81,9 @@ export default {
             });
           }
 
-        
-        
         }
-        else { // ketika data gagal dihapus maka muncul notif
+        else
+        { // ketika data gagal dihapus maka muncul notif
           this.$notify({
               group: "notif",
               type: "error",
@@ -91,6 +91,7 @@ export default {
               text: "Data gagal untuk dihapus",
             });
         }
+
         //tambahin ini buat notif ketika error 500 dll dari back end
       }).catch(()=>{
         this.$notify({

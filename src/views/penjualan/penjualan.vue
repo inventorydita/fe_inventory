@@ -91,10 +91,18 @@ export default {
               title: "Perhatian",
               text: "Data gagal untuk dihapus",
             });
-        
-        
         }
+
+        //tambahin ini buat notif ketika error 500 dll dari back end
+      }).catch(()=>{
+        this.$notify({
+          group: "notif",
+          type: "error",
+          title: "Perhatian",
+          text: "Data gagal untuk dihapus",
+        });
       });
+      
     },
   },
 };
