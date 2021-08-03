@@ -56,7 +56,7 @@ export default {
         }
       });
     },
-    deleteDetailBarang() {
+    deleteDetailBarang(dataDetailbarang) {
       API.delete("masterbarangcontroller", { id_barang: "" }).then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
