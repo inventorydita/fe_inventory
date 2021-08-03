@@ -12,9 +12,28 @@ export default {
       body:{}
     }
   },
+  created() {
+    this.getPemasokById("id")
+    },
   methods: {
     submit() {
       this.$emit("submit", this.form);
+    },
+    getPemasokById(id){
+      API.get(`pemasokcontroller/${id}`).then((status,data) => {
+        if(status === 200 || status === 201){
+          if(data.status){
+            //notifikasi ketika berhasil
+            this.body = data.data
+          }else {
+            //gagal
+          }
+        }else{
+          //gagal
+        }
+      }).catch(()=>{
+        //errpr
+      });
     },
     editPemasok() {
       API.put("pemasokcontroller", {}).then((status,data) => {
