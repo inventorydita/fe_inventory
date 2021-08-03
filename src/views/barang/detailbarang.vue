@@ -2,7 +2,8 @@
   <div>
     <CRow>
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Detail Barang">
+        <data-table :items="items" :headers="header" title="Detail Barang"
+          @edit="editDetailBarang" @delete="deleteDetailBarang">
           <template #tambah>
             <CButton
               @click="$router.push({ path: '/master/adddetailbarang' })"
@@ -38,9 +39,10 @@ export default {
         { key: "nama_satuan", label: "Satuan" },
         { key: "harga_modal", label: "Harga Modal" },
         { key: "harga_jual", label: "Harga Jual" },
-        { key: "aksi", label: "Aksi" },
+        { key: "actions", label: "Aksi" },
       ],
-      items: [{ nama_barang: "" }],
+      hidden: false,
+      items: [],
     };
   },
   created() {
@@ -48,22 +50,45 @@ export default {
   },
   methods: {
     getDataDetailBarang() {
-      API.get("masterbarangcontroller").then(({status,data}) => {
-        if(status == 200 || status == 201){
-          if(data.status){
-            this.items = data.data
+      API.get("masterbarangcontroller").then(({ status, data }) => {
+        if (status == 200 || status == 201) {
+          if (data.status) {
+            this.items = data.data;
           }
         }
       });
     },
     deleteDetailBarang(dataDetailbarang) {
-      API.delete("masterbarangcontroller", { id_barang: "" }).then(({status,data}) => {
-        if(status == 200 || status == 201){
-          if(data.status){
-            this.items = data.data
+      API.delete("masterbarangcontroller", {
+        id_barang: dataDetailbarang.id_barang,
+      }).then(({ status, data }) => {
+        if (status == 200 || status == 201) {
+          if (data.status) {
+            this.$notify({
+              // ketika data berhasil dihapus maka muncul notif
+              group: "notif",
+              type: "success",
+              title: "Informasi",
+              text: "Data telah berhasil dihapus",
+            });
+            this.getDataDetailBarang(); // untuk me reload data ke back end
+          } else {
+            // ketika data gagal dihapus maka muncul notif
+            this.$notify({
+              group: "notif",
+              type: "error",
+              title: "Perhatian",
+              text: "Data gagal untuk dihapus",
+            });
           }
-        
-        
+        } else {
+          // ketika data gagal dihapus maka muncul notif
+          this.$notify({
+            group: "notif",
+            type: "error",
+            title: "Perhatian",
+            text: "Data gagal untuk dihapus",
+          });
         }
       });
     },

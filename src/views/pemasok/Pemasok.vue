@@ -60,7 +60,7 @@ export default {
       this.$router.push({path:'halamannya'}) 
     },
     deletePemasok(dataPemasok) {
-      API.delete("pemasokcontroller", {id_pemasok:dataPemasok.id_pemasok}).then(({status,data}) => {
+      API.delete("pemasokcontroller", { id_pemasok:dataPemasok.id_pemasok }).then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
             this.$notify({ // ketika data berhasil dihapus maka muncul notif

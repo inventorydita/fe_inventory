@@ -2,7 +2,13 @@
   <div>
     <CRow>
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Stok Barang">
+        <data-table
+          :items="items"
+          :headers="header"
+          title="Stok Barang"
+          @edit="editStok"
+          @delete="deleteStok"
+        >
           <template #tambah>
             <CButton
               @click="$router.push({ path: '/master/addstok' })"
@@ -37,9 +43,10 @@ export default {
         { key: "nama_barang", label: "Nama Barang" },
         { key: "nama_satuan", label: "Satuan" },
         { key: "stok", label: "Kuantitas" },
-        { key: "aksi", label: "Aksi" },
+        { key: "actions", label: "Aksi" },
       ],
-      items: [{ nomer: "Hai" }],
+      hidden: false,
+      items: [],
     };
   },
   created() {
@@ -55,16 +62,39 @@ export default {
         }
       });
     },
-    deleteStok() {
-      API.delete("stokbarangcontroller", { id_Stok: "" }).then(
-        ({ status, data }) => {
-          if (status === 200 || status === 201) {
-            if (data.status) {
-              this.items = data.data;
-            }
+    deleteStok(dataStok) {
+      API.delete("stokbarangcontroller", {
+        id_stok_barang: dataStok.id_stok_barang,
+      }).then(({ status, data }) => {
+        if (status === 200 || status === 201) {
+          if (data.status) {
+            this.$notify({
+              // ketika data berhasil dihapus maka muncul notif
+              group: "notif",
+              type: "success",
+              title: "Informasi",
+              text: "Data telah berhasil dihapus",
+            });
+            this.getDataStok(); // untuk me reload data ke back end
+          } else {
+            // ketika data gagal dihapus maka muncul notif
+            this.$notify({
+              group: "notif",
+              type: "error",
+              title: "Perhatian",
+              text: "Data gagal untuk dihapus",
+            });
           }
+        } else {
+          // ketika data gagal dihapus maka muncul notif
+          this.$notify({
+            group: "notif",
+            type: "error",
+            title: "Perhatian",
+            text: "Data gagal untuk dihapus",
+          });
         }
-      );
+      });
     },
   },
 };
