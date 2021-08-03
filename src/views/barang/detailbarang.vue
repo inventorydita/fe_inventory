@@ -58,6 +58,9 @@ export default {
         }
       });
     },
+    editDetailBarang(data){
+      this.$router.push({path:'halamannya'}) 
+    },
     deleteDetailBarang(dataDetailbarang) {
       API.delete("masterbarangcontroller", {
         id_barang: dataDetailbarang.id_barang,

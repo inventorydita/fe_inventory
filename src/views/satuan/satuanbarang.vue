@@ -56,6 +56,9 @@ export default {
         }
       });
     },
+    editSatuanBarang(data){
+      this.$router.push({path:'halamannya'}) 
+    },
     deleteSatuanBarang(dataSatuanBarang) {
       API.delete("satuancontroller", { id_satuan:dataSatuanBarang.id_satuan }).then(({status,data}) => {
         if(status == 200 || status == 201){

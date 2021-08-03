@@ -59,6 +59,9 @@ export default {
         })
         .catch(() => {});
     },
+    editPembelian(data){
+      this.$router.push({path:'halamannya'}) 
+    },
     deletePembelian(dataPembelian) {
       API.delete("pembeliancontroller", { id_pembelian:dataPembelian.id_pembelian }).then(
         ({ status, data }) => {

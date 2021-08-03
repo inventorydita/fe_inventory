@@ -62,6 +62,9 @@ export default {
         }
       });
     },
+    editStok(data) {
+      this.$router.push({ path: "halamannya" });
+    },
     deleteStok(dataStok) {
       API.delete("stokbarangcontroller", {
         id_stok_barang: dataStok.id_stok_barang,

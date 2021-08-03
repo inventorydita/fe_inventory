@@ -58,6 +58,9 @@ export default {
         }
       });
     },
+    editPenjualan(data){
+      this.$router.push({path:'halamannya'}) 
+    },
     deletePenjualan(dataPenjualan) {
       API.delete("penjualancontroller", { id_penjualan:dataPenjualan.id_penjualan }).then(({status,data}) => {
         if(status === 200 || status === 201){
