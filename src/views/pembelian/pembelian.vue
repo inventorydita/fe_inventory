@@ -60,7 +60,7 @@ export default {
         .catch(() => {});
     },
     editPembelian(data){
-      this.$router.push({path:'halamannya'}) 
+      this.$router.push({path: "/master/editstok/"+data.id_pembelian }) 
     },
     deletePembelian(dataPembelian) {
       API.delete("pembeliancontroller", { id_pembelian:dataPembelian.id_pembelian }).then(

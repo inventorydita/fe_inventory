@@ -63,7 +63,7 @@ export default {
       });
     },
     editStok(data) {
-      this.$router.push({ path: "halamannya" });
+      this.$router.push({ path: "/master/editstok/"+data.id_stok_barang });
     },
     deleteStok(dataStok) {
       API.delete("stokbarangcontroller", {
