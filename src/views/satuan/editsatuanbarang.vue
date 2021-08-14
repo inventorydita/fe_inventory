@@ -15,9 +15,7 @@ export default {
     this.getDataSatuanBarang(this.$route.params.id);
   },
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
+    
     getDataPemasok(id) {
       API.get(`satuancontroller/${id}`)
         .then((status, data) => {

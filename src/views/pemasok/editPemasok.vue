@@ -21,9 +21,7 @@ export default {
     this.getDataPemasok(this.$route.params.id);
   },
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
+    
     getDataPemasok(id) {
       API.get(`pemasokcontroller/${id}`)
         .then((status, data) => {

@@ -15,9 +15,7 @@ export default {
     this.getDataPenjualan(this.$route.params.id);
   },
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
+    
     getDataPenjualan(id) {
       API.get(`penjualancontroller/${id}`)
         .then((status, data) => {

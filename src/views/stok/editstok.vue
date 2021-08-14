@@ -16,9 +16,6 @@ export default {
   },
 
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
     getDataStok(id) {
       API.get(`stokbarangcontroller/${id}`)
         .then((status, data) => {

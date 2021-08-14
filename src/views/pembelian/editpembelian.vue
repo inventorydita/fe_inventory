@@ -16,9 +16,7 @@ export default {
     this.getDataPembelian(this.$route.params.id);
   },
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
+    
      getDataPembelian(id) {
       API.get(`pembeliancontroller/${id}`)
         .then((status, data) => {
