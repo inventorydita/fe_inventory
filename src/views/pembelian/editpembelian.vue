@@ -12,7 +12,7 @@ export default {
     return{body:{}}
   },
   created() {
-    this.getDataPembelian(1);
+    this.getDataPembelian(this.$route.params.id);
   },
   methods: {
     submit() {

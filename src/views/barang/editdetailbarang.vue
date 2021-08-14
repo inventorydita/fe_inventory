@@ -15,7 +15,7 @@ export default {
   },
   created() {
     //ambil data by id
-    this.getDataDetailBarang(1);
+    this.getDataDetailBarang(this.$route.params.id);
   },
   methods: {
     submit() {
@@ -36,7 +36,7 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil dihapus",
               });
-              this.getDataPemasok();
+              this.getDataDetailBarang();
             } else {
               //gagal
               this.$notify({

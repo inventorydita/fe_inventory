@@ -17,7 +17,7 @@ export default {
     };
   },
   created() {
-    this.getDataPemasok(1);
+    this.getDataPemasok(this.$route.params.id);
   },
   methods: {
     submit() {
@@ -30,24 +30,22 @@ export default {
             if (data.status) {
               this.body = data.data;
               //notifikasi ketika berhasil
-              this.$notify({ // ketika data berhasil dihapus maka muncul notif
-              group: "notif",
-              type: "success",
-              title: "Informasi",
-              text: "Data telah berhasil dihapus",
-            });
-            this.getDataPemasok()
-            
-              
+              this.$notify({
+                // ketika data berhasil dihapus maka muncul notif
+                group: "notif",
+                type: "success",
+                title: "Informasi",
+                text: "Data telah berhasil dihapus",
+              });
+              this.getDataPemasok();
             } else {
               //gagal
               this.$notify({
-              group: "notif",
-              type: "error",
-              title: "Perhatian",
-              text: "Data gagal untuk dihapus",
-            });
-
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Data gagal untuk dihapus",
+              });
             }
           } else {
             //gagal
@@ -57,18 +55,16 @@ export default {
               title: "Perhatian",
               text: "Data gagal untuk dihapus",
             });
-
           }
         })
         .catch(() => {
           //error
           this.$notify({
-          group: "notif",
-          type: "error",
-          title: "Perhatian",
-          text: "Data gagal untuk dihapus",
-        });
-
+            group: "notif",
+            type: "error",
+            title: "Perhatian",
+            text: "Data gagal untuk dihapus",
+          });
         });
     },
     editPemasok() {
@@ -77,23 +73,22 @@ export default {
           if (status === 200 || status === 201) {
             if (data.status) {
               //notifikasi ketika berhasil
-              this.$notify({ // ketika data berhasil dihapus maka muncul notif
-              group: "notif",
-              type: "success",
-              title: "Informasi",
-              text: "Data telah berhasil dihapus",
-            });
-            this.getDataPemasok()
-
+              this.$notify({
+                // ketika data berhasil dihapus maka muncul notif
+                group: "notif",
+                type: "success",
+                title: "Informasi",
+                text: "Data telah berhasil dihapus",
+              });
+              this.getDataPemasok();
             } else {
               //gagal
               this.$notify({
-              group: "notif",
-              type: "error",
-              title: "Perhatian",
-              text: "Data gagal untuk dihapus",
-            });
-
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Data gagal untuk dihapus",
+              });
             }
           } else {
             //gagal
@@ -103,18 +98,16 @@ export default {
               title: "Perhatian",
               text: "Data gagal untuk dihapus",
             });
-
           }
         })
         .catch(() => {
           //error
-           this.$notify({
-          group: "notif",
-          type: "error",
-          title: "Perhatian",
-          text: "Data gagal untuk dihapus",
-        });
-        
+          this.$notify({
+            group: "notif",
+            type: "error",
+            title: "Perhatian",
+            text: "Data gagal untuk dihapus",
+          });
         });
     },
   },

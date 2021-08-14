@@ -11,7 +11,7 @@ export default {
     return { body: {} };
   },
   created() {
-    this.getDataStok(1);
+    this.getDataStok(this.$route.params.id);
   },
 
   methods: {

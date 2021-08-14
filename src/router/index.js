@@ -94,7 +94,7 @@ function configRoutes() {
               },
             },
             {
-              path: "editpemasok",
+              path: "editpemasok/:id",
               name: "editpemasok",
               component: editPemasok,
               meta: {
@@ -118,7 +118,7 @@ function configRoutes() {
               },
             },
             {
-              path: "editdetailbarang",
+              path: "editdetailbarang/:id",
               name: "editdetailbarang",
               component: editdetailbarang,
               meta: {
@@ -142,7 +142,7 @@ function configRoutes() {
               },
             },
             {
-              path: "editsatuanbarang",
+              path: "editsatuanbarang/:id",
               name: "editsatuanbarang",
               component: editsatuanbarang,
               meta: {
@@ -166,7 +166,7 @@ function configRoutes() {
               },
             },
             {
-              path: "editpembelian",
+              path: "editpembelian/:id",
               name: "editpembelian",
               component: editpembelian,
               meta: {
@@ -190,7 +190,7 @@ function configRoutes() {
               },
             },
             {
-              path: "editstok",
+              path: "editstok/:id",
               name: "editstok",
               component: editstok,
               meta: {
@@ -214,7 +214,7 @@ function configRoutes() {
               },
             },
             {
-              path: "editpenjualan",
+              path: "editpenjualan/:id",
               name: "editpenjualan",
               component: editpenjualan,
               meta: {

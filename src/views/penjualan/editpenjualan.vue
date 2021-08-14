@@ -11,7 +11,7 @@ export default {
     return{body:{}}
   },
   created() {
-    this.getDataPenjualan(1);
+    this.getDataPenjualan(this.$route.params.id);
   },
   methods: {
     submit() {
