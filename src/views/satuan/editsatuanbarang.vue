@@ -15,9 +15,7 @@ export default {
     this.getDataSatuanBarang(this.$route.params.id);
   },
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
+    
     getDataPemasok(id) {
       API.get(`satuancontroller/${id}`)
         .then((status, data) => {
@@ -68,6 +66,7 @@ export default {
     },
 
     OnSimpan(data) {
+      data.id_satuan = this.$route.params.id
       API.put("satuancontroller", data).then(({status,data}) => {
         if(status === 200 || status === 201){
           if(data.status){

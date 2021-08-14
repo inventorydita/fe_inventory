@@ -16,9 +16,7 @@ export default {
     this.getDataPembelian(this.$route.params.id);
   },
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
+    
      getDataPembelian(id) {
       API.get(`pembeliancontroller/${id}`)
         .then((status, data) => {
@@ -68,6 +66,7 @@ export default {
         });
     },
     OnSimpan(data) {
+      data.id_pembelian = this.$route.params.id
       API.put("pembeliancontroller", data).then(({status,data}) => {
         if(status === 200 || status === 201){
           if(data.status){

@@ -57,7 +57,7 @@ export default {
       });
     },
     editSatuanBarang(data){
-      this.$router.push({path:'halamannya'}) 
+      this.$router.push({path:"/master/editstok/"+data.id_satuan }) 
     },
     deleteSatuanBarang(dataSatuanBarang) {
       API.delete("satuancontroller", { id_satuan:dataSatuanBarang.id_satuan }).then(({status,data}) => {

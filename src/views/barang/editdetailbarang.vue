@@ -19,9 +19,7 @@ export default {
     this.getDataDetailBarang(this.$route.params.id);
   },
   methods: {
-    submit() {
-      this.$emit("submit", this.form);
-    },
+    
     //get data by id
     getDataDetailBarang(id) {
       API.get(`masterbarangcontroller/${id}`)
@@ -69,7 +67,8 @@ export default {
     },
     onSimpan(data) {
       //proses simpan ke back end
-      API.post("masterbarangcontroller", data)
+      data.id_barang = this.$route.params.id
+      API.put("masterbarangcontroller", data)
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
