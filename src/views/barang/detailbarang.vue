@@ -59,7 +59,7 @@ export default {
       });
     },
     editDetailBarang(data){
-      this.$router.push({path: "/master/editstok/"+data.id_barang }) 
+      this.$router.push({path: "/master/editdetailbarang/"+data.id_barang }) 
     },
     deleteDetailBarang(dataDetailbarang) {
       API.delete("masterbarangcontroller", {

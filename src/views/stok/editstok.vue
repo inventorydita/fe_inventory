@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form_stok :isEdit="false" :body="body" @submit="editStok"></form_stok>
+    <form_stok :isEdit="false" :body="body" @submit="OnSimpan"></form_stok>
   </div>
 </template>
 
@@ -11,8 +11,7 @@ export default {
     return { body: {} };
   },
   created() {
-    if (this.$route.params.id)
-    this.getDataStok(this.$route.params.id);
+    if (this.$route.params.id) this.getDataStok(this.$route.params.id);
   },
 
   methods: {
@@ -28,7 +27,7 @@ export default {
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data berhasil untuk diambil",
               });
               this.getDataPemasok();
             } else {
@@ -37,7 +36,7 @@ export default {
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk diambil",
               });
             }
           } else {
@@ -46,7 +45,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk diambil",
             });
           }
         })
@@ -56,13 +55,13 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk diambil",
           });
         });
     },
 
     OnSimpan(data) {
-      data.id_satuan_barang = this.$route.params.id
+      data.id_satuan_barang = this.$route.params.id;
       API.put("stokbarangcontroller", data)
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {

@@ -29,11 +29,11 @@ export default {
               this.body = data.data;
               //notifikasi ketika berhasil
               this.$notify({
-                // ketika data berhasil dihapus maka muncul notif
+                // ketika data berhasil diambil maka muncul notif
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data berhasil untuk diambil",
               });
               this.getDataDetailBarang();
             } else {
@@ -42,7 +42,7 @@ export default {
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk diambil",
               });
             }
           } else {
@@ -51,7 +51,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk diambil",
             });
           }
         })
@@ -61,10 +61,11 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk diambil",
           });
         });
     },
+
     onSimpan(data) {
       //proses simpan ke back end
       data.id_barang = this.$route.params.id

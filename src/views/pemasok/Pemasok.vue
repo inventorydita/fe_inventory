@@ -57,7 +57,7 @@ export default {
       });
     },
     editPemasok(data){
-      this.$router.push({path: "/master/editstok/"+data.id_pemasok }) 
+      this.$router.push({path: "/master/editpemasok/"+data.id_pemasok }) 
     },
     deletePemasok(dataPemasok) {
       API.delete("pemasokcontroller", { id_pemasok:dataPemasok.id_pemasok }).then(({status,data}) => {

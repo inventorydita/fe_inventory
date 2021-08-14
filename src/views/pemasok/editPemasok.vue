@@ -34,7 +34,7 @@ export default {
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data berhasil untuk diambil",
               });
               this.getDataPemasok();
             } else {
@@ -43,7 +43,7 @@ export default {
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk diambil",
               });
             }
           } else {
@@ -52,7 +52,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk diambil",
             });
           }
         })
@@ -62,7 +62,7 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk diambil",
           });
         });
     },
