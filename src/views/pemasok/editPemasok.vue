@@ -3,7 +3,7 @@
     <form_pemasok
       :body="body"
       :isEdit="true"
-      @submit="editPemasok"
+      @submit="OnSimpan"
     ></form_pemasok>
   </div>
 </template>
@@ -66,7 +66,8 @@ export default {
           });
         });
     },
-    editPemasok() {
+    OnSimpan(Data) {
+      data.id_pemasok = this.$route.params.id
       API.put("pemasokcontroller", {})
         .then((status, data) => {
           if (status === 200 || status === 201) {

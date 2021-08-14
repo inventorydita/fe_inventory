@@ -67,6 +67,7 @@ export default {
     },
     onSimpan(data) {
       //proses simpan ke back end
+      data.id_barang = this.$route.params.id
       API.put("masterbarangcontroller", data)
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {

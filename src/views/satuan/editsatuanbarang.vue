@@ -66,6 +66,7 @@ export default {
     },
 
     OnSimpan(data) {
+      data.id_satuan = this.$route.params.id
       API.put("satuancontroller", data).then(({status,data}) => {
         if(status === 200 || status === 201){
           if(data.status){

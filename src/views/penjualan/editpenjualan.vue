@@ -65,6 +65,7 @@ export default {
         });
     },
     OnSimpan(data) {
+      data.id_penjualan = this.$route.params.id
       API.put("penjualancontroller", data).then(({status,data}) => {
         if(status === 200 || status === 201){
           if(data.status){

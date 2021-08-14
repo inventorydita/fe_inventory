@@ -61,7 +61,8 @@ export default {
         });
     },
 
-    editStok(data) {
+    OnSimpan(data) {
+      data.id_satuan_barang = this.$route.params.id
       API.put("stokbarangcontroller", data)
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
