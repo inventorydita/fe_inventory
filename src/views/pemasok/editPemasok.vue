@@ -17,6 +17,7 @@ export default {
     };
   },
   created() {
+    if (this.$route.params.id)
     this.getDataPemasok(this.$route.params.id);
   },
   methods: {

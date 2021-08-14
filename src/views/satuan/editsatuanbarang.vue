@@ -11,6 +11,7 @@ export default {
     return{body:{}}
   },
   created() {
+    if (this.$route.params.id)
     this.getDataSatuanBarang(this.$route.params.id);
   },
   methods: {

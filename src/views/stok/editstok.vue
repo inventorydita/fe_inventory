@@ -11,6 +11,7 @@ export default {
     return { body: {} };
   },
   created() {
+    if (this.$route.params.id)
     this.getDataStok(this.$route.params.id);
   },
 

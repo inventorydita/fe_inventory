@@ -12,6 +12,7 @@ export default {
     return{body:{}}
   },
   created() {
+    if (this.$route.params.id)
     this.getDataPembelian(this.$route.params.id);
   },
   methods: {

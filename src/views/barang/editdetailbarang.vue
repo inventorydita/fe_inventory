@@ -15,6 +15,7 @@ export default {
   },
   created() {
     //ambil data by id
+    if (this.$route.params.id)
     this.getDataDetailBarang(this.$route.params.id);
   },
   methods: {
