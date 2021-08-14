@@ -17,7 +17,7 @@ export default {
     };
   },
   created() {
-    this.getDataPemasok();
+    this.getDataPemasok(1);
   },
   methods: {
     submit() {
