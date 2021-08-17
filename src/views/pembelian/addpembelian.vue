@@ -22,9 +22,10 @@ export default {
               group: "notif",
               type: "success",
               title: "Informasi",
-              text: "Data telah berhasil dihapus",
+              text: "Data telah berhasil ditambah",
             });
-            this.getDataPembelian()
+            //Pindah halaman 
+            this.$router.push({ path:'/master/pembelian' })
 
           }else {
             //gagal
@@ -32,7 +33,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Gagal menambah data",
             });
 
           }
@@ -42,7 +43,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Gagal menambah data",
             });
 
         }
@@ -52,7 +53,7 @@ export default {
           group: "notif",
           type: "error",
           title: "Perhatian",
-          text: "Data gagal untuk dihapus",
+          text: "Gagal menambah data",
         });
         
       });

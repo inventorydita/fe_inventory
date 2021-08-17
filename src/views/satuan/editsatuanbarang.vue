@@ -15,7 +15,8 @@ export default {
   },
   methods: {
     getDataSatuanBarang(id) {
-      API.get(`satuancontroller/${id}`)
+      //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
+      API.get(`satuancontroller?id_satuan=${id}`)
         .then((status, data) => {
           if (status === 200 || status === 201) {
             if (data.status) {
@@ -28,7 +29,6 @@ export default {
                 title: "Informasi",
                 text: "Data berhasil untuk diambil",
               });
-              this.getDataSatuanbarang();
             } else {
               //gagal
               this.$notify({

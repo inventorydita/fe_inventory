@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form_barang :body="body" :isEdit="false" @submit="onSimpan"></form_barang>
+    <form_barang :body="body" :isEdit="false" @submit="addDetailBarang"></form_barang>
   </div>
 </template>
 
@@ -14,7 +14,8 @@ export default {
     }
   },
   methods: {
-    onSimpan(data){
+
+    addDetailBarang(data){
       //proses simpan ke back end
       API.post("masterbarangcontroller", data).then(({status,data}) => {
         if(status === 200 || status === 201){
@@ -24,9 +25,10 @@ export default {
               group: "notif",
               type: "success",
               title: "Informasi",
-              text: "Data telah berhasil dihapus",
+              text: "Data telah berhasil ditambahkan",
             });
-            this.getDataDetailBarang();
+            //Pindah halaman 
+            this.$router.push({ path:'/master/detailbarang' })
 
           }else {
             //gagal
@@ -34,7 +36,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Gagal menambah data",
             });
           }
         }else{
@@ -43,7 +45,7 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Gagal menambah data",
             });
         }
       }).catch(()=>{
@@ -52,7 +54,7 @@ export default {
           group: "notif",
           type: "error",
           title: "Perhatian",
-          text: "Data gagal untuk dihapus",
+          text: "Gagal menambah data",
           });
       });
     },

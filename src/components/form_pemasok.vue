@@ -11,7 +11,7 @@
               description=""
               label="Nama Pemasok"
               type="text"
-              :value="form.nama_pemasok"
+              v-model="form.nama_pemasok"
               horizontal
               autocomplete="Nama Pemasok"
             />
@@ -19,7 +19,7 @@
               description=""
               label="Alamat"
               type="text"
-              :value="form.alamat"
+              v-model="form.alamat"
               horizontal
               autocomplete="Alamat"
             />
@@ -27,7 +27,7 @@
               description=""
               label="Kota"
               type="text"
-              :value="form.kota"
+              v-model="form.kota"
               horizontal
               autocomplete="Kota"
             />
@@ -35,12 +35,12 @@
               description=""
               label="Nomor Telepon"
               type="text"
-              :value="form.no_telp"
+              v-model="form.telepon"
               horizontal
               autocomplete="Nomor"
             />
             <div class="form-group form-actions">
-              <CButton type="submit" size="sm" color="primary">
+              <CButton type="button" @click="submit" size="sm" color="primary">
                 Submit
               </CButton>
             </div>
@@ -53,24 +53,25 @@
 
 <script>
 export default {
-  props:["body","isEdit"],
+  props: ["body", "isEdit"],
   data: () => {
     return {
       form: {},
     };
   },
 
-  watch:{
+  watch: {
     //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body:function (newData){
-      this.form = newData
-    }
+    body: function (newData) {
+      console.log(newData);
+      this.form = newData;
+    },
   },
 
-  methods:{
-    submit(){
-      this.$emit("submit",this.form)
-    }
-  }
+  methods: {
+    submit() {
+      this.$emit("submit", this.form);
+    },
+  },
 };
 </script>

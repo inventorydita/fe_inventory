@@ -26,9 +26,10 @@ export default {
               group: "notif",
               type: "success",
               title: "Informasi",
-              text: "Data telah berhasil dihapus",
+              text: "Data telah berhasil ditambahkan",
             });
-            this.getDataPemasok()
+            //pindah halaman
+            this.$router.push({ path:'/master/pemasok' })
 
           }else {
             //gagal
@@ -36,7 +37,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Gagal menambah data",
             });
 
           }
@@ -46,7 +47,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Gagal menambah data",
             });
 
         }
@@ -56,7 +57,7 @@ export default {
           group: "notif",
           type: "error",
           title: "Perhatian",
-          text: "Data gagal untuk dihapus",
+          text: "Gagal menambah data",
         });
         
       });

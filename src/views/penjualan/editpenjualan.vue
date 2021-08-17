@@ -17,7 +17,8 @@ export default {
   methods: {
     
     getDataPenjualan(id) {
-      API.get(`penjualancontroller/${id}`)
+      //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
+      API.get(`penjualancontroller?id_penjualan=${id}`)
         .then((status, data) => {
           if (status === 200 || status === 201) {
             if (data.status) {
@@ -29,9 +30,7 @@ export default {
               title: "Informasi",
               text: "Data berhasil untuk diambil",
             });
-            this.getDataPenjualan()
             
-              
             } else {
               //gagal
               this.$notify({
