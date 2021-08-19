@@ -28,7 +28,7 @@ export default {
                 text: "Data telah berhasil ditambah",
               });
               //Pindah halaman
-              this.$router.push({ path: "/master/detailbarang" });
+              this.$router.push({ path: "/master/stok" });
             } else {
               //gagal
               this.$notify({

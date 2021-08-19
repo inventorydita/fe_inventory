@@ -12,7 +12,7 @@
                 description=""
                 label="Nama Barang"
                 type="text"
-                :value="form.nama_barang"
+                v-model="form.nama_barang"
                 horizontal
                 autocomplete="Nama Barang"
               />
@@ -20,7 +20,7 @@
                 description=""
                 label="ID Satuan"
                 type="text"
-                :value="form.satuan_barang"
+                v-model="form.id_satuan"
                 horizontal
                 autocomplete="ID Satuan"
               />
@@ -28,7 +28,7 @@
                 description=""
                 label="Harga Modal"
                 type="text"
-                :value="form.harga_modal"
+                v-model="form.harga_modal"
                 horizontal
                 autocomplete="Harga Modal"
               />
@@ -36,12 +36,17 @@
                 description=""
                 label="Harga Jual"
                 type="text"
-                :value="form.harga_jual"
+                v-model="form.harga_jual"
                 horizontal
                 autocomplete="Harga Jual"
               />
               <div class="form-group form-actions">
-                <CButton type="submit" size="sm" color="primary">
+                <CButton
+                  type="button"
+                  @click="submit"
+                  size="sm"
+                  color="primary"
+                >
                   Submit
                 </CButton>
               </div>
@@ -54,27 +59,25 @@
 </template>
 
 <script>
-export default{
+export default {
   //props yang diisi oleh parent component
-  props:["body","isEdit"],
-    data: () => {
-      return {
-        form:{},
+  props: ["body", "isEdit"],
+  data: () => {
+    return {
+      form: {},
     };
-
   },
-  watch:{
+  watch: {
     //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body:function (newData){
-      this.form = newData
-    }
+    body: function (newData) {
+      this.form = newData;
+    },
   },
-  methods:{
-    submit(){
-      this.$emit("submit",this.form)
-    }
-  }
+  methods: {
+    submit() {
+      this.$emit("submit", this.form);
+    },
+  },
 };
-
 </script>
 

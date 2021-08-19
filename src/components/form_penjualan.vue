@@ -46,7 +46,7 @@
           <CCardBody>
             <CForm>
               <CInput
-                :value="form.sub_total"
+                v-model="form.sub_total"
                 autocomplete="Sub Total"
                 description=""
                 horizontal
@@ -54,7 +54,7 @@
                 type="number"
               />
               <CInput
-                :value="form.nomor_nota"
+                v-model="form.nomor_nota"
                 autocomplete="Nomor Nota"
                 description=""
                 horizontal
@@ -62,7 +62,7 @@
                 type="text"
               />
               <div class="form-group form-actions">
-                <CButton color="primary" size="sm" type="submit">
+                <CButton color="primary" size="sm" type="button" @click="submit">
                   Tambah
                 </CButton>
               </div>

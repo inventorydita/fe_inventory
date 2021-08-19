@@ -12,7 +12,7 @@
                 description=""
                 label="ID Pemasok"
                 type="text"
-                :value="form.id_pemasok"
+                v-model="form.id_pemasok"
                 horizontal
                 autocomplete="ID Pemasok"
               />
@@ -20,7 +20,7 @@
                 description=""
                 label="Sub Total"
                 type="number"
-                :value="form.sub_total"
+                v-model="form.sub_total"
                 horizontal
                 autocomplete="Sub Total"
               />
@@ -28,12 +28,17 @@
                 description=""
                 label="Nomor Nota"
                 type="text"
-                :value="form.nomor_nota"
+                v-model="form.nomor_nota"
                 horizontal
                 autocomplete="Nomor Nota"
               />
               <div class="form-group form-actions">
-                <CButton type="submit" size="sm" color="primary">
+                <CButton
+                  type="button"
+                  @click="submit"
+                  size="sm"
+                  color="primary"
+                >
                   Submit
                 </CButton>
               </div>

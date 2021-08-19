@@ -40,7 +40,7 @@
               type="number"
             />
             <div class="form-group form-actions">
-              <CButton color="primary" size="sm" type="submit">
+              <CButton color="primary" size="sm" type="button" @click="submit">
                 Submit
               </CButton>
             </div>
@@ -54,7 +54,7 @@
         <CCardBody>
           <CForm>
             <CInput
-              :value="form.id_barang"
+              v-model="form.id_barang"
               autocomplete="ID Barang"
               description=""
               horizontal
@@ -62,7 +62,7 @@
               type="text"
             />
             <CInput
-              :value="form.nama_barang"
+              v-model="form.nama_barang"
               autocomplete="Nama Barang"
               description=""
               horizontal
