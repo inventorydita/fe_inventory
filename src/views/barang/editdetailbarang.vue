@@ -37,6 +37,9 @@ export default {
                 text: "Data berhasil untuk diambil",
               });
              
+                //Pindah halaman
+              this.$router.push({ path: "/master/detailbarang" });
+
             } else {
               //gagal
               this.$notify({
@@ -80,16 +83,16 @@ export default {
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data telah berhasil disimpan",
               });
-              this.getDataDetailBarang();
+              
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk disimpan",
               });
             }
           } else {
@@ -98,7 +101,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk disimpan",
             });
           }
         })
@@ -108,7 +111,7 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk disimpan",
           });
         });
     },

@@ -17,8 +17,7 @@
               <CButton color="outline-success" class="" type="submit"
                 >Search</CButton
               >
-            </CForm></template
-          >
+            </CForm></template>
         </data-table>
         <CPagination align="center" :pages="10" />
       </CCol>

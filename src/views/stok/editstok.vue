@@ -73,16 +73,16 @@ export default {
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data telah berhasil disimpan",
               });
-              this.getDataStok();
+              
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk disimpan",
               });
             }
           } else {
@@ -91,7 +91,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk disimpan",
             });
           }
         })
@@ -101,7 +101,7 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk disimpan",
           });
         });
     },

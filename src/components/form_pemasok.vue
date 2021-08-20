@@ -63,7 +63,6 @@ export default {
   watch: {
     //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
     body: function (newData) {
-      
       this.form = newData;
     },
   },

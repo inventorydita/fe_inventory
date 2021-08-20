@@ -19,7 +19,7 @@ export default {
     getDataPemasok(id) {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
       API.get(`pemasokcontroller?id_pemasok=${id}`)
-        .then((status, data) => {
+        .then((status,data) => {
           if (status === 200 || status === 201) {
             if (data.status) {
               this.body = data.data;
@@ -31,7 +31,7 @@ export default {
                 title: "Informasi",
                 text: "Data berhasil untuk diambil",
               });
-              
+             
             } else {
               //gagal
               this.$notify({
@@ -73,16 +73,16 @@ export default {
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data telah berhasil disimpan",
               });
-              this.getDataPemasok();
+             
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk disimpan",
               });
             }
           } else {
@@ -91,7 +91,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk disimpan",
             });
           }
         })
@@ -101,7 +101,7 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk disimpan",
           });
         });
     },
