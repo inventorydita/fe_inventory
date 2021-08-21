@@ -17,8 +17,7 @@
               <CButton color="outline-success" class="" type="submit"
                 >Search</CButton
               >
-            </CForm></template
-          >
+            </CForm></template>
         </data-table>
         <CPagination align="center" :pages="10" />
       </CCol>
@@ -60,7 +59,7 @@ export default {
         .catch(() => {});
     },
     editPembelian(data){
-      this.$router.push({path: "/master/editstok/"+data.id_pembelian }) 
+      this.$router.push({path: "/master/editpembelian/"+data.id_pembelian }) 
     },
     deletePembelian(dataPembelian) {
       API.delete("pembeliancontroller", { id_pembelian:dataPembelian.id_pembelian }).then(

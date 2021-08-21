@@ -10,30 +10,43 @@
             <CForm>
               <CInput
                 description=""
-                label="ID Pemasok"
+                label="ID Barang"
                 type="text"
-                :value="form.id_pemasok"
+                v-model="form.id_barang"
                 horizontal
-                autocomplete="ID Pemasok"
+                autocomplete="ID Barang"
               />
               <CInput
                 description=""
-                label="Sub Total"
+                label="Harga Modal"
                 type="number"
-                :value="form.sub_total"
+                v-model="form.harga_modal"
                 horizontal
-                autocomplete="Sub Total"
+                autocomplete="Harga Modal"
               />
               <CInput
                 description=""
-                label="Nomor Nota"
-                type="text"
-                :value="form.nomor_nota"
+                label="Harga Jual"
+                type="number"
+                v-model="form.harga_jual"
                 horizontal
-                autocomplete="Nomor Nota"
+                autocomplete="Harga Jual"
+              />
+              <CInput
+                description=""
+                label="Stok"
+                type="number"
+                v-model="form.stok"
+                horizontal
+                autocomplete="Stok"
               />
               <div class="form-group form-actions">
-                <CButton type="submit" size="sm" color="primary">
+                <CButton
+                  type="button"
+                  @click="submit"
+                  size="sm"
+                  color="primary"
+                >
                   Submit
                 </CButton>
               </div>

@@ -6,7 +6,6 @@
 
 <script>
 import API from "../../services/api.service";
-
 export default {
   data: () => {
     return {
@@ -15,34 +14,33 @@ export default {
   },
   created() {
     //ambil data by id
-    if (this.$route.params.id)
-    this.getDataDetailBarang(this.$route.params.id);
+    if (this.$route.params.id) this.getDataDetailBarang(this.$route.params.id);
   },
   methods: {
-    
     //get data by id
     getDataDetailBarang(id) {
-      API.get(`masterbarangcontroller/${id}`)
-        .then((status, data) => {
+      //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
+      API.get(`masterbarangcontroller?id_barang=${id}`)
+      // object destruction (21)
+        .then(({status, data}) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data;
+              this.body = data.data[0];
               //notifikasi ketika berhasil
               this.$notify({
-                // ketika data berhasil dihapus maka muncul notif
+                // ketika data berhasil diambil maka muncul notif
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data berhasil untuk diambil",
               });
-              this.getDataDetailBarang();
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk diambil",
               });
             }
           } else {
@@ -51,7 +49,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk diambil",
             });
           }
         })
@@ -61,13 +59,14 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk diambil",
           });
         });
     },
+
     onSimpan(data) {
       //proses simpan ke back end
-      data.id_barang = this.$route.params.id
+      data.id_barang = this.$route.params.id;
       API.put("masterbarangcontroller", data)
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
@@ -78,16 +77,17 @@ export default {
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data telah berhasil disimpan",
               });
-              this.getDataDetailBarang();
+              //Pindah halaman
+              this.$router.push({ path: "/master/detailbarang" });
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk disimpan",
               });
             }
           } else {
@@ -96,7 +96,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk disimpan",
             });
           }
         })
@@ -106,7 +106,7 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk disimpan",
           });
         });
     },

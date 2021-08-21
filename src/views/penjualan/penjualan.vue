@@ -59,7 +59,7 @@ export default {
       });
     },
     editPenjualan(data){
-      this.$router.push({path: "/master/editstok/"+data.id_penjualan }) 
+      this.$router.push({path: "/master/editpenjualan/"+data.id_penjualan }) 
     },
     deletePenjualan(dataPenjualan) {
       API.delete("penjualancontroller", { id_penjualan:dataPenjualan.id_penjualan }).then(({status,data}) => {

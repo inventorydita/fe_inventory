@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form_stok :isEdit="false" :body="body" @submit="editStok"></form_stok>
+    <form_stok :isEdit="false" :body="body" @submit="OnSimpan"></form_stok>
   </div>
 </template>
 
@@ -11,33 +11,32 @@ export default {
     return { body: {} };
   },
   created() {
-    if (this.$route.params.id)
-    this.getDataStok(this.$route.params.id);
+    if (this.$route.params.id) this.getDataStok(this.$route.params.id);
   },
 
   methods: {
     getDataStok(id) {
-      API.get(`stokbarangcontroller/${id}`)
-        .then((status, data) => {
+      //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
+      API.get(`stokbarangcontroller?id_stok_barang=${id}`)
+        .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data;
+              this.body = data.data[0];
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data berhasil untuk diambil",
               });
-              this.getDataPemasok();
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk diambil",
               });
             }
           } else {
@@ -46,7 +45,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk diambil",
             });
           }
         })
@@ -56,13 +55,13 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk diambil",
           });
         });
     },
 
     OnSimpan(data) {
-      data.id_satuan_barang = this.$route.params.id
+      data.id_satuan_barang = this.$route.params.id;
       API.put("stokbarangcontroller", data)
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
@@ -73,16 +72,17 @@ export default {
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data telah berhasil disimpan",
               });
-              this.getDataStok();
+              //pindah halaman
+              this.$router.push({ path: "/master/stok" });
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk disimpan",
               });
             }
           } else {
@@ -91,7 +91,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk disimpan",
             });
           }
         })
@@ -101,7 +101,7 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk disimpan",
           });
         });
     },

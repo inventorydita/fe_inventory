@@ -1,6 +1,10 @@
 <template>
   <div>
-    <form_barang :body="body" :isEdit="false" @submit="onSimpan"></form_barang>
+    <form_barang
+      :body="body"
+      :isEdit="false"
+      @submit="addDetailBarang"
+    ></form_barang>
   </div>
 </template>
 
@@ -8,55 +12,58 @@
 import API from "../../services/api.service";
 
 export default {
-  data:()=>{
-    return{
-      body:{}
-    }
+  data: () => {
+    return {
+      body: {},
+    };
   },
   methods: {
-    onSimpan(data){
+    addDetailBarang(data) {
       //proses simpan ke back end
-      API.post("masterbarangcontroller", data).then(({status,data}) => {
-        if(status === 200 || status === 201){
-          if(data.status){
-           //notifikasi ketika berhasil
+      API.post("masterbarangcontroller", data)
+        .then(({status,data}) => {
+          if (status === 200 || status === 201) {
+            if (data.status) {
+              //notifikasi ketika berhasil
               this.$notify({
-              group: "notif",
-              type: "success",
-              title: "Informasi",
-              text: "Data telah berhasil dihapus",
-            });
-            this.getDataDetailBarang();
+                group: "notif",
+                type: "success",
+                title: "Informasi",
+                text: "Data telah berhasil ditambahkan",
+              });
 
-          }else {
+              //Pindah halaman
+              this.$router.push({ path: "/master/detailbarang" });
+              
+            } else {
+              //gagal
+              this.$notify({
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Gagal menambah data",
+              });
+            }
+          } else {
             //gagal
             this.$notify({
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Gagal menambah data",
             });
           }
-        }else{
-          //gagal
+        })
+        .catch(() => {
+          //error
           this.$notify({
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
-            });
-        }
-      }).catch(()=>{
-        //error
-        this.$notify({
-          group: "notif",
-          type: "error",
-          title: "Perhatian",
-          text: "Data gagal untuk dihapus",
+            text: "Gagal menambah data",
           });
-      });
+        });
     },
-
   },
 };
 </script>

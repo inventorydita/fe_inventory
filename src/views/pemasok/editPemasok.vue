@@ -2,7 +2,7 @@
   <div>
     <form_pemasok
       :body="body"
-      :isEdit="true"
+      :isEdit="false"
       @submit="OnSimpan"
     ></form_pemasok>
   </div>
@@ -17,33 +17,33 @@ export default {
     };
   },
   created() {
-    if (this.$route.params.id)
-    this.getDataPemasok(this.$route.params.id);
+    if (this.$route.params.id) this.getDataPemasok(this.$route.params.id);
   },
   methods: {
-    
+    //get data by id
     getDataPemasok(id) {
-      API.get(`pemasokcontroller/${id}`)
-        .then((status, data) => {
+      //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
+      API.get(`pemasokcontroller?id_pemasok=${id}`)
+        // object destruction (21)
+        .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data;
+              this.body = data.data[0];
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data berhasil untuk diambil",
               });
-              this.getDataPemasok();
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk diambil",
               });
             }
           } else {
@@ -52,7 +52,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk diambil",
             });
           }
         })
@@ -62,14 +62,14 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk diambil",
           });
         });
     },
-    OnSimpan(Data) {
-      data.id_pemasok = this.$route.params.id
-      API.put("pemasokcontroller", {})
-        .then((status, data) => {
+    OnSimpan(data) {
+      data.id_pemasok = this.$route.params.id;
+      API.put("pemasokcontroller", data)
+        .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
               //notifikasi ketika berhasil
@@ -78,16 +78,17 @@ export default {
                 group: "notif",
                 type: "success",
                 title: "Informasi",
-                text: "Data telah berhasil dihapus",
+                text: "Data telah berhasil disimpan",
               });
-              this.getDataPemasok();
+              //pindah halaman
+              this.$router.push({ path: "/master/pemasok" });
             } else {
               //gagal
               this.$notify({
                 group: "notif",
                 type: "error",
                 title: "Perhatian",
-                text: "Data gagal untuk dihapus",
+                text: "Data gagal untuk disimpan",
               });
             }
           } else {
@@ -96,7 +97,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk disimpan",
             });
           }
         })
@@ -106,7 +107,7 @@ export default {
             group: "notif",
             type: "error",
             title: "Perhatian",
-            text: "Data gagal untuk dihapus",
+            text: "Data gagal untuk disimpan",
           });
         });
     },

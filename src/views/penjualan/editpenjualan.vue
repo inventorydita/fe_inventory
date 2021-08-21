@@ -17,7 +17,8 @@ export default {
   methods: {
     
     getDataPenjualan(id) {
-      API.get(`penjualancontroller/${id}`)
+      //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
+      API.get(`penjualancontroller?id_penjualan=${id}`)
         .then((status, data) => {
           if (status === 200 || status === 201) {
             if (data.status) {
@@ -27,18 +28,16 @@ export default {
               group: "notif",
               type: "success",
               title: "Informasi",
-              text: "Data telah berhasil dihapus",
+              text: "Data berhasil untuk diambil",
             });
-            this.getDataPenjualan()
             
-              
             } else {
               //gagal
               this.$notify({
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk diambil",
             });
 
             }
@@ -48,7 +47,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk diambil",
             });
 
           }
@@ -59,7 +58,7 @@ export default {
           group: "notif",
           type: "error",
           title: "Perhatian",
-          text: "Data gagal untuk dihapus",
+          text: "Data gagal untuk diambil",
         });
 
         });
@@ -74,16 +73,16 @@ export default {
               group: "notif",
               type: "success",
               title: "Informasi",
-              text: "Data telah berhasil dihapus",
+              text: "Data telah berhasil disimpan",
             });
-            this.getDataPenjualan()
+           
           }else {
             //gagal
             this.$notify({
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk disimpan",
             });
 
           }
@@ -93,7 +92,7 @@ export default {
               group: "notif",
               type: "error",
               title: "Perhatian",
-              text: "Data gagal untuk dihapus",
+              text: "Data gagal untuk disimpan",
             });
 
         }
@@ -103,7 +102,7 @@ export default {
           group: "notif",
           type: "error",
           title: "Perhatian",
-          text: "Data gagal untuk dihapus",
+          text: "Data gagal untuk disimpan",
         });
         
       });

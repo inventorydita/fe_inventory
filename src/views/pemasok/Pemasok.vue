@@ -2,7 +2,13 @@
   <div>
     <CRow >
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Pemasok" @edit="editPemasok" @delete="deletePemasok">
+        <data-table 
+        :items="items" 
+        :headers="header" 
+        title="Pemasok" 
+        @edit="editPemasok" 
+        @delete="deletePemasok"
+        >
           <template #tambah>
             <CButton
               @click="$router.push({ path: '/master/addpemasok' })"
@@ -17,7 +23,8 @@
               <CButton color="outline-success" class="" type="submit"
                 >Search</CButton
               >
-            </CForm></template>
+            </CForm></template
+            >
         </data-table>
         <CPagination align="center" :pages="10" />
       </CCol>
@@ -57,22 +64,25 @@ export default {
       });
     },
     editPemasok(data){
-      this.$router.push({path: "/master/editstok/"+data.id_pemasok }) 
+      this.$router.push({path: "/master/editpemasok/"+data.id_pemasok }) 
     },
     deletePemasok(dataPemasok) {
-      API.delete("pemasokcontroller", { id_pemasok:dataPemasok.id_pemasok }).then(({status,data}) => {
+    console.log(dataPemasok);
+      API.delete(`pemasokcontroller/${dataPemasok.id_pemasok}`).then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
-            this.$notify({ // ketika data berhasil dihapus maka muncul notif
+            this.$notify({ 
+            // ketika data berhasil dihapus maka muncul notif
               group: "notif",
               type: "success",
               title: "Informasi",
               text: "Data telah berhasil dihapus",
             });
-            this.getDataPemasok() // untuk me reload data ke back end 
+            this.getDataPemasok();
           }
           else 
-          { // ketika data gagal dihapus maka muncul notif
+          { 
+          // ketika data gagal dihapus maka muncul notif
           this.$notify({
               group: "notif",
               type: "error",
@@ -83,7 +93,8 @@ export default {
 
         }
         else
-        { // ketika data gagal dihapus maka muncul notif
+        { 
+        // ketika data gagal dihapus maka muncul notif
           this.$notify({
               group: "notif",
               type: "error",

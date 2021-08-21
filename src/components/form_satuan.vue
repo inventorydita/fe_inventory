@@ -12,12 +12,12 @@
                 description=""
                 label="Nama Satuan"
                 type="text"
-                :value="form.nama_satuan"
+                v-model="form.nama_satuan"
                 horizontal
                 autocomplete="Nama Satuan"
               />
               <div class="form-group form-actions">
-                <CButton type="submit" size="sm" color="primary">
+                <CButton type="button" @click="submit" size="sm" color="primary">
                   Submit
                 </CButton>
               </div>
@@ -40,7 +40,7 @@ export default {
 
   watch:{
     //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body:function (newData){
+    body:function (newData){ 
       this.form = newData
     }
   },
