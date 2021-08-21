@@ -77,7 +77,7 @@ export default {
               title: "Informasi",
               text: "Data telah berhasil dihapus",
             });
-            
+            this.getDataPemasok();
           }
           else 
           { 

@@ -142,9 +142,10 @@ export default {
       this.modal = val;
     },
     barangSelected() {},
-  },
-  submit() {
+    submit() {
     this.$emit("submit", this.form);
   },
+  },
+  
 };
 </script>

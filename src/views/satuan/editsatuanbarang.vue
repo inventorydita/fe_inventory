@@ -17,10 +17,11 @@ export default {
     getDataSatuanBarang(id) {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
       API.get(`satuancontroller?id_satuan=${id}`)
-        .then((status, data) => {
+        // object destruction (21)
+        .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data;
+              this.body = data.data[0];
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
@@ -73,7 +74,8 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil disimpan",
               });
-              
+              //Pindah halaman
+              this.$router.push({ path: "/master/satuanbarang" });
             } else {
               //gagal
               this.$notify({

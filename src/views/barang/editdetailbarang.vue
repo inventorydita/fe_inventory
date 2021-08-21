@@ -21,10 +21,11 @@ export default {
     getDataDetailBarang(id) {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
       API.get(`masterbarangcontroller?id_barang=${id}`)
-        .then((status, data) => {
+      // object destruction (21)
+        .then(({status, data}) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data;
+              this.body = data.data[0];
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil diambil maka muncul notif
@@ -78,6 +79,8 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil disimpan",
               });
+              //Pindah halaman
+              this.$router.push({ path: "/master/detailbarang" });
             } else {
               //gagal
               this.$notify({

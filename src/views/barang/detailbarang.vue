@@ -80,7 +80,7 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil dihapus",
               });
-
+              this.getDataDetailBarang();
             } else {
               // ketika data gagal dihapus maka muncul notif
               this.$notify({
