@@ -64,7 +64,7 @@ export default {
       this.$router.push({ path: "/master/editsatuanbarang/" + data.id_satuan });
     },
     deleteSatuanBarang(dataSatuanBarang) {
-      API.delete("satuancontroller", { id_satuan: dataSatuanBarang.id_satuan })
+      API.delete(`satuancontroller/${dataSatuanBarang.id_satuan}`)
         .then(({ status, data }) => {
           if (status == 200 || status == 201) {
             if (data.status) {

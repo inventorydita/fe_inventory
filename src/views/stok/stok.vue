@@ -66,9 +66,8 @@ export default {
       this.$router.push({ path: "/master/editstok/" + data.id_stok_barang });
     },
     deleteStok(dataStok) {
-      API.delete("stokbarangcontroller", {
-        id_stok_barang: dataStok.id_stok_barang,
-      })
+    console.log(dataStok);
+      API.delete(`stokbarangcontroller/${dataStok.id_stok_barang}`)
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
@@ -79,7 +78,7 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil dihapus",
               });
-              this.getDataStok(); // untuk me reload data ke back end
+              this.getDataStok(); 
             } else {
               // ketika data gagal dihapus maka muncul notif
               this.$notify({

@@ -132,9 +132,8 @@ export default {
     },
     barangSelected() {},
     submit() {
-    this.$emit("submit", this.form);
+      this.$emit("submit", this.form);
+    },
   },
-  },
-  
 };
 </script>

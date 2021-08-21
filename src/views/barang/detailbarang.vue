@@ -41,7 +41,7 @@ export default {
     return {
       header: [
         { key: "nama_barang", label: "Nama Barang" },
-        { key: "id_satuan", label: "Satuan" },
+        { key: "nama_satuan", label: "Satuan" },
         { key: "harga_modal", label: "Harga Modal" },
         { key: "harga_jual", label: "Harga Jual" },
         { key: "actions", label: "Aksi" },
@@ -67,9 +67,7 @@ export default {
       this.$router.push({ path: "/master/editdetailbarang/"+data.id_barang })
     },
     deleteDetailBarang(dataDetailbarang) {
-      API.delete("masterbarangcontroller", {
-        id_barang: dataDetailbarang.id_barang,
-      })
+      API.delete(`masterbarangcontroller/${dataDetailbarang.id_barang}`)
         .then(({status,data}) => {
           if (status == 200 || status == 201) {
             if (data.status) {

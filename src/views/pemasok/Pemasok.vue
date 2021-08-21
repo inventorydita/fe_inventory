@@ -67,7 +67,8 @@ export default {
       this.$router.push({path: "/master/editpemasok/"+data.id_pemasok }) 
     },
     deletePemasok(dataPemasok) {
-      API.delete("pemasokcontroller", { id_pemasok:dataPemasok.id_pemasok }).then(({status,data}) => {
+    console.log(dataPemasok);
+      API.delete(`pemasokcontroller/${dataPemasok.id_pemasok}`).then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
             this.$notify({ 
