@@ -9,30 +9,35 @@
           <CCardBody>
             <CForm>
               <CInput
-                autocomplete="ID Penjualan"
+                autocomplete="Nomor Nota"
                 description=""
                 horizontal
-                label="ID Penjualan"
+                label="Nomor Nota"
+                v-model="form.nomor_nota"
                 type="text"
               />
               <CInput
-                autocomplete="Harga Jual"
-                description=""
                 horizontal
-                label="Harga Jual"
-                type="text"
+                label="Tanggal"
+                type="date"
+                v-model="form.tanggal"
               />
               <CInput
-                autocomplete="Kuantitas"
+                autocomplete="Sub Total"
                 description=""
                 horizontal
-                label="Kuantitas"
+                label="Sub Total"
+                v-model="form.subtotal"
                 type="text"
               />
-              <CInput horizontal label="Tanggal" type="date" />
 
               <div class="form-group form-actions">
-                <CButton color="primary" size="sm" type="submit">
+                <CButton
+                  color="primary"
+                  size="sm"
+                  type="button"
+                  @click="submit"
+                >
                   Submit
                 </CButton>
               </div>
@@ -46,23 +51,36 @@
           <CCardBody>
             <CForm>
               <CInput
-                v-model="form.sub_total"
-                autocomplete="Sub Total"
+                autocomplete="ID Barang"
                 description=""
                 horizontal
-                label="Sub Total"
-                type="number"
+                label="ID Barang"
+                v-model="form.id_barang"
+                type="text"
               />
               <CInput
-                v-model="form.nomor_nota"
-                autocomplete="Nomor Nota"
+                autocomplete="Kuantitas"
                 description=""
                 horizontal
-                label="Nomor Nota"
+                label="Kuantitas"
+                v-model="form.quantity"
+                type="text"
+              />
+              <CInput
+                autocomplete="Harga Jual"
+                description=""
+                horizontal
+                label="Harga Jual"
+                v-model="form.harga_jual"
                 type="text"
               />
               <div class="form-group form-actions">
-                <CButton color="primary" size="sm" type="button" @click="submit">
+                <CButton
+                  color="primary"
+                  size="sm"
+                  type="button"
+                  @click="submit"
+                >
                   Tambah
                 </CButton>
               </div>
@@ -94,7 +112,7 @@ export default {
       header: [],
       items: [],
       modal: false,
-      form:{}
+      form: {},
     };
   },
   watch: {
@@ -113,9 +131,9 @@ export default {
       this.modal = val;
     },
     barangSelected() {},
-    },
-    submit(){
-      this.$emit("submit",this.form)
-    },
+  },
+  submit() {
+    this.$emit("submit", this.form);
+  },
 };
 </script>

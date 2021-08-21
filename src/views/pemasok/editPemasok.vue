@@ -1,6 +1,10 @@
 <template>
   <div>
-    <form_pemasok :body="body" :isEdit="true" @submit="OnSimpan"></form_pemasok>
+    <form_pemasok
+      :body="body"
+      :isEdit="false"
+      @submit="OnSimpan"
+    ></form_pemasok>
   </div>
 </template>
 
@@ -16,10 +20,11 @@ export default {
     if (this.$route.params.id) this.getDataPemasok(this.$route.params.id);
   },
   methods: {
+    //get data by id
     getDataPemasok(id) {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
       API.get(`pemasokcontroller?id_pemasok=${id}`)
-        .then((status,data) => {
+        .then((status, data) => {
           if (status === 200 || status === 201) {
             if (data.status) {
               this.body = data.data;
@@ -31,7 +36,9 @@ export default {
                 title: "Informasi",
                 text: "Data berhasil untuk diambil",
               });
-             
+
+              
+
             } else {
               //gagal
               this.$notify({
@@ -63,8 +70,8 @@ export default {
     },
     OnSimpan(data) {
       data.id_pemasok = this.$route.params.id;
-      API.put("pemasokcontroller", {})
-        .then((status, data) => {
+      API.put("pemasokcontroller", data)
+        .then(({status, data}) => {
           if (status === 200 || status === 201) {
             if (data.status) {
               //notifikasi ketika berhasil
@@ -75,7 +82,6 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil disimpan",
               });
-             
             } else {
               //gagal
               this.$notify({

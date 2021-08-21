@@ -6,7 +6,6 @@
 
 <script>
 import API from "../../services/api.service";
-
 export default {
   data: () => {
     return {
@@ -15,11 +14,9 @@ export default {
   },
   created() {
     //ambil data by id
-    if (this.$route.params.id)
-    this.getDataDetailBarang(this.$route.params.id);
+    if (this.$route.params.id) this.getDataDetailBarang(this.$route.params.id);
   },
   methods: {
-    
     //get data by id
     getDataDetailBarang(id) {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
@@ -36,10 +33,6 @@ export default {
                 title: "Informasi",
                 text: "Data berhasil untuk diambil",
               });
-             
-                //Pindah halaman
-              this.$router.push({ path: "/master/detailbarang" });
-
             } else {
               //gagal
               this.$notify({
@@ -72,7 +65,7 @@ export default {
 
     onSimpan(data) {
       //proses simpan ke back end
-      data.id_barang = this.$route.params.id
+      data.id_barang = this.$route.params.id;
       API.put("masterbarangcontroller", data)
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
@@ -85,7 +78,6 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil disimpan",
               });
-              
             } else {
               //gagal
               this.$notify({
