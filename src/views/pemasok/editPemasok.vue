@@ -25,7 +25,7 @@ export default {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
       API.get(`pemasokcontroller?id_pemasok=${id}`)
         // object destruction (21)
-        .then(({ status, data }) => {
+        .then(({status, data}) => {
           if (status === 200 || status === 201) {
             if (data.status) {
               this.body = data.data[0];

@@ -1,7 +1,7 @@
 <template>
   <div>
     <form_pembelian
-      :isEdit="true"
+      :isEdit="false"
       :body="body"
       @submit="OnSimpan"
     ></form_pembelian>
@@ -22,10 +22,10 @@ export default {
     getDataPembelian(id) {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
       API.get(`pembeliancontroller?id_pembelian=${id}`)
-        .then((status, data) => {
+        .then(({status, data}) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data;
+              this.body = data.data[0];
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
@@ -34,7 +34,7 @@ export default {
                 title: "Informasi",
                 text: "Data berhasil untuk diambil",
               });
-              
+            
             } else {
               //gagal
               this.$notify({
@@ -78,7 +78,8 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil disimpan",
               });
-             
+             //pindah halaman
+              this.$router.push({ path: "/master/pembelian" });
             } else {
               //gagal
               this.$notify({

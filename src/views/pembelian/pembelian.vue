@@ -2,7 +2,13 @@
   <div>
     <CRow>
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Pembelian" @edit="editPembelian" @delete="deletePembelian">
+        <data-table
+          :items="items"
+          :headers="header"
+          title="Pembelian"
+          @edit="editPembelian"
+          @delete="deletePembelian"
+        >
           <template #tambah>
             <CButton
               @click="$router.push({ path: '/master/addpembelian' })"
@@ -17,7 +23,8 @@
               <CButton color="outline-success" class="" type="submit"
                 >Search</CButton
               >
-            </CForm></template>
+            </CForm></template
+          >
         </data-table>
         <CPagination align="center" :pages="10" />
       </CCol>
@@ -34,12 +41,12 @@ export default {
     return {
       header: [
         { key: "nomor_nota", label: "Nomor Nota" },
-        { key: "nama_barang", label: "Nama Barang" },
-        { key: "nama_pemasok", label: "Nama Pemasok" },
-        { key: "kota", label: "Kota" },
+        { key: "id_pemasok", label: "Nama Pemasok" },
+        { key: "tanggal", label: "Tanggal" },
+        { key: "subtotal", label: "Sub Total" },
         { key: "actions", label: "Aksi" },
       ],
-      hidden:false,
+      hidden: false,
       items: [],
     };
   },
@@ -58,35 +65,35 @@ export default {
         })
         .catch(() => {});
     },
-    editPembelian(data){
-      this.$router.push({path: "/master/editpembelian/"+data.id_pembelian }) 
+    editPembelian(data) {
+      this.$router.push({ path: "/master/editpembelian/" + data.id_pembelian });
     },
     deletePembelian(dataPembelian) {
-      API.delete("pembeliancontroller", { id_pembelian:dataPembelian.id_pembelian }).then(
-        ({ status, data }) => {
+      console.log(dataPembelian);
+      API.delete(`pembeliancontroller/${dataPembelian.id_pembelian}`)
+        .then(({ status, data }) => {
           if (status == 200 || status == 201) {
             if (data.status) {
-             this.$notify({ // ketika data berhasil dihapus maka muncul notif
-              group: "notif",
-              type: "success",
-              title: "Informasi",
-              text: "Data telah berhasil dihapus",
-            });
-            this.getDataPembelian() // untuk me reload data ke back end 
+              this.$notify({
+                // ketika data berhasil dihapus maka muncul notif
+                group: "notif",
+                type: "success",
+                title: "Informasi",
+                text: "Data telah berhasil dihapus",
+              });
+              this.getDataPembelian(); // untuk me reload data ke back end
+            } else {
+              // ketika data gagal dihapus maka muncul notif
+              this.$notify({
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Data gagal untuk dihapus",
+              });
             }
-
-            else { // ketika data gagal dihapus maka muncul notif
-          this.$notify({
-              group: "notif",
-              type: "error",
-              title: "Perhatian",
-              text: "Data gagal untuk dihapus",
-            });
-          }
-
-          }
-        else { // ketika data gagal dihapus maka muncul notif
-          this.$notify({
+          } else {
+            // ketika data gagal dihapus maka muncul notif
+            this.$notify({
               group: "notif",
               type: "error",
               title: "Perhatian",
@@ -95,15 +102,15 @@ export default {
           }
 
           //tambahin ini buat notif ketika error 500 dll dari back end
-      }).catch(()=>{
-        this.$notify({
-          group: "notif",
-          type: "error",
-          title: "Perhatian",
-          text: "Data gagal untuk dihapus",
+        })
+        .catch(() => {
+          this.$notify({
+            group: "notif",
+            type: "error",
+            title: "Perhatian",
+            text: "Data gagal untuk dihapus",
+          });
         });
-      });
-       
     },
   },
 };
