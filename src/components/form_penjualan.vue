@@ -92,10 +92,12 @@
 </template>
 <script>
 export default {
-  props: ["body","items", "isEdit"],
+  props: ["body", "items", "isEdit"],
   name: "RincianPenjualan",
   data: () => {
     return {
+
+      header: [],
       header: [
         { key: "nama_barang", label: "Nama Barang" },
         { key: "quantity", label: "Quantity" },
@@ -115,10 +117,11 @@ export default {
       this.form = newData;
       console.log("form",newData)
     },
-    items:function(newVal){
-      this.list = newVal
 
-    }
+    items: function (newVal) {
+      this.list = newVal;
+    },
+
   },
   methods: {
     onPickBarang() {
