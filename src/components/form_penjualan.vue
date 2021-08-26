@@ -87,7 +87,7 @@
               <div>
                 <CRow>
                   <CCol lg="12">
-                    <data-table :headers="header" :items="items" title="">
+                    <data-table :headers="header" :items="list" title="">
                       <template></template>
                       <template #search>
                         <CForm inline></CForm>
@@ -105,12 +105,12 @@
 </template>
 <script>
 export default {
-  props: ["body","items", "isEdit"],
+  props: ["body", "items", "isEdit"],
   name: "RincianPenjualan",
   data: () => {
     return {
       header: [],
-      items: [],
+      list: [],
       modal: false,
       form: {},
     };
@@ -119,9 +119,9 @@ export default {
     body: function (newData) {
       this.form = newData;
     },
-    items:function(newVal){
-      this.items = newVal
-    }
+    items: function (newVal) {
+      this.list = newVal;
+    },
   },
   methods: {
     onPickBarang() {
