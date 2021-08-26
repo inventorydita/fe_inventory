@@ -61,7 +61,8 @@ export default {
             this.items = data.data
           }
         }
-      });
+      })
+      .catch(() => {});
     },
     editPemasok(data){
       this.$router.push({path: "/master/editpemasok/"+data.id_pemasok }) 

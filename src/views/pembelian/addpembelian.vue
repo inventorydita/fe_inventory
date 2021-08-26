@@ -13,8 +13,8 @@ export default {
   },
   methods: {
 
-    addPembelian() {
-      API.post("pembeliancontroller", {}).then((status,data) => {
+    addPembelian(data) {
+      API.post("pembeliancontroller", data).then(({status,data}) => {
         if(status === 200 || status === 201){
           if(data.status){
            //notifikasi ketika berhasil

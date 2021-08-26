@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form_penjualan :isEdit="true" :body="body" @submit="OnSimpan"></form_penjualan>
+    <form_penjualan :isEdit="false" :body="body" @submit="OnSimpan"></form_penjualan>
   </div>
 </template>
 
@@ -19,10 +19,10 @@ export default {
     getDataPenjualan(id) {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
       API.get(`penjualancontroller?id_penjualan=${id}`)
-        .then((status, data) => {
+        .then(({status, data}) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data;
+              this.body = data.data[0];
               //notifikasi ketika berhasil
               this.$notify({ // ketika data berhasil dihapus maka muncul notif
               group: "notif",
@@ -75,7 +75,8 @@ export default {
               title: "Informasi",
               text: "Data telah berhasil disimpan",
             });
-           
+           //pindah halaman
+              this.$router.push({ path: "/master/penjualan" });
           }else {
             //gagal
             this.$notify({

@@ -56,13 +56,15 @@ export default {
         
         
         }
-      });
+      })
+      .catch(() => {});
     },
     editPenjualan(data){
       this.$router.push({path: "/master/editpenjualan/"+data.id_penjualan }) 
     },
     deletePenjualan(dataPenjualan) {
-      API.delete("penjualancontroller", { id_penjualan:dataPenjualan.id_penjualan }).then(({status,data}) => {
+      console.log(dataPenjualan);
+      API.delete(`penjualancontroller/${dataPenjualan.id_penjualan}`).then(({status,data}) => {
         if(status === 200 || status === 201){
           if(data.status){
             this.$notify({ // ketika data berhasil dihapus maka muncul notif
