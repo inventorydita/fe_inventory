@@ -105,7 +105,7 @@
 </template>
 <script>
 export default {
-  props: ["body", "isEdit"],
+  props: ["body","items", "isEdit"],
   name: "RincianPenjualan",
   data: () => {
     return {
@@ -119,9 +119,9 @@ export default {
     body: function (newData) {
       this.form = newData;
     },
-    data: function (newVal) {
-      this.items = newVal;
-    },
+    items:function(newVal){
+      this.items = newVal
+    }
   },
   methods: {
     onPickBarang() {
