@@ -25,7 +25,7 @@ export default {
           if (status === 200 || status === 201) {
             if (data.status) {
 
-              this.body = data.data.penjualan;
+              this.body = data.data.penjualan[0];
               this.barang_yang_dibeli = data.data.barang_yang_dibeli
 
               //notifikasi ketika berhasil
