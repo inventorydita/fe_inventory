@@ -1,8 +1,8 @@
 <template>
   <div>
     <CRow>
-      <CCol lg="6" md="6" sm="12" xl="6">
-        <CCard>
+      <CCol lg="4" md="6" sm="12" xl="4">
+        <CCard >
           <CCardHeader>
             <b>Tambah Penjualan</b>
           </CCardHeader>
@@ -44,42 +44,29 @@
             </CForm>
           </CCardBody>
         </CCard>
-        <CCard>
+      </CCol>
+        <CCol lg="8" md="6" sm="12" xl="8">
+        <CCard >
           <CCardHeader>
             <b>Detail Penjualan</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
               <CInput
-                autocomplete="ID Barang"
-                description=""
-                horizontal
-                label="ID Barang"
-                v-model="form.id_barang"
-                type="text"
+                  autocomplete="ID Barang"
+                  description=""
+                  horizontal
+                  label="Barang"
+                  v-model="form.id_barang"
+                  type="text"
               />
-              <CInput
-                autocomplete="Kuantitas"
-                description=""
-                horizontal
-                label="Kuantitas"
-                v-model="form.quantity"
-                type="text"
-              />
-              <CInput
-                autocomplete="Harga Jual"
-                description=""
-                horizontal
-                label="Harga Jual"
-                v-model="form.harga_jual"
-                type="text"
-              />
+
               <div class="form-group form-actions">
                 <CButton
-                  color="primary"
-                  size="sm"
-                  type="button"
-                  @click="submit"
+                    color="primary"
+                    size="sm"
+                    type="button"
+                    @click="submit"
                 >
                   Tambah
                 </CButton>
@@ -87,7 +74,7 @@
               <div>
                 <CRow>
                   <CCol lg="12">
-                    <data-table :headers="header" :items="items" title="">
+                    <data-table :headers="header" :items="list" title="">
                       <template></template>
                       <template #search>
                         <CForm inline></CForm>
@@ -109,18 +96,28 @@ export default {
   name: "RincianPenjualan",
   data: () => {
     return {
-      header: [],
-      items: [],
+      header: [
+        { key: "nama_barang", label: "Nama Barang" },
+        { key: "quantity", label: "Quantity" },
+        {key:"nama_satuan",label: "Satuan"},
+        { key: "harga_jual", label: "harga" },
+        { key: "actions", label: "Aksi" },
+      ],
+      list: [],
       modal: false,
-      form: {},
+      form: {
+        nomor_nota:0
+      },
     };
   },
   watch: {
     body: function (newData) {
       this.form = newData;
+      console.log("form",newData)
     },
     items:function(newVal){
-      this.items = newVal
+      this.list = newVal
+
     }
   },
   methods: {
