@@ -14,10 +14,10 @@ import API from "../../services/api.service";
 
 export default {
   data: () => {
-    return { 
+    return {
       body: {},
-      barang_yang_dibeli:[] 
-      }
+      barang_yang_dibeli: [],
+    };
   },
   created() {
     if (this.$route.params.id) this.getDataPembelian(this.$route.params.id);
@@ -26,12 +26,11 @@ export default {
     getDataPembelian(id) {
       //Mengambil barang dari back-end (sesuai dengan yang diklik ditombol edit)
       API.get(`pembeliancontroller?id_pembelian=${id}`)
-        .then(({status, data}) => {
+        .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              
               this.body = data.data.pembelian;
-              this.barang_yang_dibeli = data.data.barang_yang_dibeli
+              this.barang_yang_dibeli = data.data.barang_yang_dibeli;
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
@@ -40,7 +39,6 @@ export default {
                 title: "Informasi",
                 text: "Data berhasil untuk diambil",
               });
-            
             } else {
               //gagal
               this.$notify({
@@ -73,7 +71,7 @@ export default {
     OnSimpan(data) {
       data.id_pembelian = this.$route.params.id;
       API.put("pembeliancontroller", data)
-        .then(({status,data}) => {
+        .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
               //notifikasi ketika berhasil
@@ -84,7 +82,7 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil disimpan",
               });
-             //pindah halaman
+              //pindah halaman
               this.$router.push({ path: "/master/pembelian" });
             } else {
               //gagal
