@@ -50,14 +50,28 @@
           </CCardHeader>
           <CCardBody>
             <CForm>
+              <CInput
+                autocomplete="Nama barang"
+                description=""
+                horizontal
+                label="Barang"
+                v-model="selected.nama_barang"
+                type="text"
+              />
+              <CInput
+                horizontal
+                label="Quantity"
+                type="number"
+                v-model="quantity"
+              />
               <div class="form-group form-actions">
                 <CButton
                   color="primary"
                   size="sm"
                   type="button"
-                  @click="modal = true"
+                  @click="onTambah"
                 >
-                  Submit
+                  Tambahkan barang
                 </CButton>
               </div>
             </CForm>
@@ -111,6 +125,8 @@ export default {
         nomor_nota: 0,
         detail_penjualan: [],
       },
+      selected: {},
+      quantity: 0,
     };
   },
   watch: {
@@ -135,13 +151,24 @@ export default {
     submit() {
       this.$emit("submit", this.form);
     },
+    onTambah() {
+      if (this.quantity > 0) {
+        let data = {
+          id_barang: this.selected.id_barang,
+          nama_barang: this.selected.nama_barang,
+          harga_jual: this.selected.harga_jual,
+          nama_satuan: this.selected.nama_satuan,
+          quantity: this.quantity,
+        };
+        this.form.subtotal = parseFloat(
+          this.quantity * this.selected.harga_jual
+        );
+        this.form.detail_penjualan.push(data);
+        this.list.push(data);
+      }
+    },
     onSelected(barang) {
-      this.form.push({
-        id_barang: barang.id_barang,
-        harga_jual: barang.harga_jual,
-        quantity: 1,
-      });
-      this.list.push(barang);
+      this.selected = barang;
     },
   },
 };
