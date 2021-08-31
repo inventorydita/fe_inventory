@@ -54,7 +54,9 @@
                 autocomplete="Nama barang"
                 description=""
                 horizontal
+                disabled
                 label="Barang"
+                @click="onPickBarang"
                 v-model="selected.nama_barang"
                 type="text"
               />
@@ -65,6 +67,14 @@
                 v-model="quantity"
               />
               <div class="form-group form-actions">
+                <CButton
+                  color="primary"
+                  size="sm mr-4"
+                  type="button"
+                  @click="onPickBarang"
+                >
+                  Pilih Barang
+                </CButton>
                 <CButton
                   color="primary"
                   size="sm"
@@ -103,7 +113,11 @@
         </CCard>
       </CCol>
     </CRow>
-    <modal-barang @onselected="onSelected" :show="modal" />
+    <modal-barang
+      @onselected="onSelected"
+      @action="modal = false"
+      :show="modal"
+    />
   </div>
 </template>
 <script>
@@ -130,24 +144,24 @@ export default {
     };
   },
   watch: {
-    body: function(newData) {
+    body: function(newData, oldVal) {
       this.form = newData;
-      console.log("form", newData);
     },
 
-    items: function(newVal) {
+    items: function(newVal, oldVal) {
       this.list = newVal;
+      this.form.detail_penjualan = newVal;
     },
   },
 
   methods: {
-    onPickBarang() {
+    onPickBarang(val) {
       this.modal = true;
+      console.log(this.modal);
     },
     action(val) {
       this.modal = val;
     },
-    barangSelected() {},
     submit() {
       this.$emit("submit", this.form);
     },
@@ -165,9 +179,15 @@ export default {
         );
         this.form.detail_penjualan.push(data);
         this.list.push(data);
+
+        //bersihkan semua inputan detail
+        this.selected = {};
+        this.quantity = 0;
       }
+      console.log(this.list);
     },
     onSelected(barang) {
+      this.modal = false;
       this.selected = barang;
     },
   },
