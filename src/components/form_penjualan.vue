@@ -2,7 +2,7 @@
   <div>
     <CRow>
       <CCol lg="4" md="6" sm="12" xl="4">
-        <CCard >
+        <CCard>
           <CCardHeader>
             <b>Tambah Penjualan</b>
           </CCardHeader>
@@ -44,33 +44,34 @@
             </CForm>
           </CCardBody>
         </CCard>
+        <CCard>
+          <CCardHeader>
+            <b>Tambah Penjualan</b>
+          </CCardHeader>
+          <CCardBody>
+            <CForm>
+              <div class="form-group form-actions">
+                <CButton
+                  color="primary"
+                  size="sm"
+                  type="button"
+                  @click="modal = true"
+                >
+                  Submit
+                </CButton>
+              </div>
+            </CForm>
+          </CCardBody>
+        </CCard>
       </CCol>
-        <CCol lg="8" md="6" sm="12" xl="8">
-        <CCard >
+      <CCol lg="8" md="6" sm="12" xl="8">
+        <CCard>
           <CCardHeader>
             <b>Detail Penjualan</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
-              <CInput
-                  autocomplete="ID Barang"
-                  description=""
-                  horizontal
-                  label="Barang"
-                  v-model="form.id_barang"
-                  type="text"
-              />
-
-              <div class="form-group form-actions">
-                <CButton
-                    color="primary"
-                    size="sm"
-                    type="button"
-                    @click="submit"
-                >
-                  Tambah
-                </CButton>
-              </div>
+              <div class="form-group form-actions"></div>
               <div>
                 <CRow>
                   <CCol lg="12">
@@ -88,6 +89,7 @@
         </CCard>
       </CCol>
     </CRow>
+    <modal-barang @onselected="onSelected" :show="modal" />
   </div>
 </template>
 <script>
@@ -96,33 +98,32 @@ export default {
   name: "RincianPenjualan",
   data: () => {
     return {
-
-      header: [],
       header: [
         { key: "nama_barang", label: "Nama Barang" },
         { key: "quantity", label: "Quantity" },
-        {key:"nama_satuan",label: "Satuan"},
+        { key: "nama_satuan", label: "Satuan" },
         { key: "harga_jual", label: "harga" },
         { key: "actions", label: "Aksi" },
       ],
       list: [],
       modal: false,
       form: {
-        nomor_nota:0
+        nomor_nota: 0,
+        detail_penjualan: [],
       },
     };
   },
   watch: {
-    body: function (newData) {
+    body: function(newData) {
       this.form = newData;
-      console.log("form",newData)
+      console.log("form", newData);
     },
 
-    items: function (newVal) {
+    items: function(newVal) {
       this.list = newVal;
     },
-
   },
+
   methods: {
     onPickBarang() {
       this.modal = true;
@@ -133,6 +134,14 @@ export default {
     barangSelected() {},
     submit() {
       this.$emit("submit", this.form);
+    },
+    onSelected(barang) {
+      this.form.push({
+        id_barang: barang.id_barang,
+        harga_jual: barang.harga_jual,
+        quantity: 1,
+      });
+      this.list.push(barang);
     },
   },
 };

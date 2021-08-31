@@ -12,7 +12,7 @@
             </div>
           </div>
 
-          <div  :class="buttonadd ? 'col-sm-12 d-flex justify-content-end':''">
+          <div :class="buttonadd ? 'col-sm-12 d-flex justify-content-end' : ''">
             <slot name="search"> </slot>
           </div>
         </div>
@@ -30,6 +30,9 @@
         :dark="dark"
         pagination
       >
+        <template #nama_barang="{item}">
+          <td @click="$emit('selected', item)">{{ item.nama_barang }}</td>
+        </template>
         <template #status="{item}">
           <td>
             <CBadge>{{ item.status }}</CBadge>
@@ -38,20 +41,20 @@
         <template #actions="{item}">
           <td class="py-2">
             <CButton
-                color="primary"
-                variant="outline"
-                square
-                size="sm"
-                @click="$emit('edit',item)"
+              color="primary"
+              variant="outline"
+              square
+              size="sm"
+              @click="$emit('edit', item)"
             >
-            Edit
+              Edit
             </CButton>
             <CButton
-                color="primary"
-                variant="outline"
-                square
-                size="sm"
-                @click="$emit('delete',item)"
+              color="primary"
+              variant="outline"
+              square
+              size="sm"
+              @click="$emit('delete', item)"
             >
               Hapus
             </CButton>
@@ -75,21 +78,21 @@ export default {
     fixed: Boolean,
     dark: Boolean,
     title: String,
-    buttonadd:{
-      type:Boolean,
-      default:true
-    }
+    buttonadd: {
+      type: Boolean,
+      default: true,
+    },
   },
-  methods:{
-    onDetail(item){
-      this.$emit("detail",item)
+  methods: {
+    onDetail(item) {
+      this.$emit("detail", item);
     },
-    onDelete(item){
-      this.$emit("delete",item)
+    onDelete(item) {
+      this.$emit("delete", item);
     },
-    onEdit(item){
-      this.$emit("edit",item)
-    }
-  }
+    onEdit(item) {
+      this.$emit("edit", item);
+    },
+  },
 };
 </script>

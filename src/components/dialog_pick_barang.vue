@@ -1,56 +1,87 @@
 <template>
-  <CModal
-      :show.sync="modal"
-      color="warning"
-      title="Modal title"
-  >
+  <CModal :show.sync="modal" color="warning" title="Modal title">
     <CRow>
       <CCol>
-        <data-table :buttonadd="false" :headers="header" :items="options">
-          <template #search
-          >
+        <data-table
+          :buttonadd="false"
+          :headers="header"
+          :items="temp"
+          @selected="onBarangSelected"
+        >
+          <template #search>
             <CForm inline>
-              <CInput placeholder="Search" size="sm"/>
-
-              <CButton class="" color="outline-success" type="submit"
-              >Search
-              </CButton
-              >
+              <CInput
+                v-model="input"
+                placeholder="Search"
+                @keypress="search"
+                size="sm"
+              />
             </CForm>
-          </template
-          >
+          </template>
         </data-table>
       </CCol>
     </CRow>
   </CModal>
-
 </template>
 
 <script>
+import API from "../services/api.service";
 export default {
   name: "dialog_pick_barang",
-  props: ['show'],
+  props: ["show"],
   data: () => {
     return {
       modal: true,
       header: [
-        { key: "nomer", label: "Barang" },
-        { key: "action", label: "Aksi" },
+        { key: "nama_barang", label: "Nama Barang" },
+        { key: "nama_satuan", label: "Satuan" },
+        { key: "harga_modal", label: "Harga Modal" },
+        { key: "harga_jual", label: "Harga Jual" },
       ],
-      options: []
-    }
+
+      listBarang: [],
+      temp: [],
+      input: "",
+    };
   },
   watch: {
-    show: function (val) {
+    show: function(val) {
       this.modal = val;
     },
-    modal: function (val) {
-      this.$emit("action", val)
-    }
-  }
-}
+    modal: function(val) {
+      this.$emit("action", val);
+    },
+  },
+  created() {
+    this.getBarang();
+  },
+  methods: {
+    getBarang() {
+      API.get("masterbarangcontroller").then(({ status, data }) => {
+        if (status == 200 || status == 201) {
+          if (data.status) {
+            this.listBarang = data.data;
+            this.temp = data.data;
+          }
+        }
+      });
+    },
+    search() {
+      this.temp = [];
+      if (this.input.length < 1) {
+        this.temp = this.listBarang;
+      }
+      let data = this.listBarang.filter((barang) => {
+        return barang.nama_barang.includes(this.input.toLowerCase());
+      });
+      this.temp = data;
+    },
+    onBarangSelected(data) {
+      this.modal = false;
+      this.$emit("onselected", data);
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
