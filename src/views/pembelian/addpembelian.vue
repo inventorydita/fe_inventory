@@ -12,6 +12,9 @@ export default {
     return{body:{}}
   },
   methods: {
+    submit() {
+      this.$emit("submit", this.form);
+    },
 
     addPembelian(data) {
       API.post("pembeliancontroller", data).then(({status,data}) => {

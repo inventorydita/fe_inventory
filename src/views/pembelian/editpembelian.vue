@@ -3,6 +3,7 @@
     <form_pembelian
       :isEdit="false"
       :body="body"
+      :items="barang_yang_dibeli"
       @submit="OnSimpan"
     ></form_pembelian>
   </div>
@@ -13,7 +14,10 @@ import API from "../../services/api.service";
 
 export default {
   data: () => {
-    return { body: {} };
+    return { 
+      body: {},
+      barang_yang_dibeli:[] 
+      }
   },
   created() {
     if (this.$route.params.id) this.getDataPembelian(this.$route.params.id);
@@ -25,7 +29,9 @@ export default {
         .then(({status, data}) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data[0];
+              
+              this.body = data.data.pembelian;
+              this.barang_yang_dibeli = data.data.barang_yang_dibeli
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
@@ -67,7 +73,7 @@ export default {
     OnSimpan(data) {
       data.id_pembelian = this.$route.params.id;
       API.put("pembeliancontroller", data)
-        .then(({ status, data }) => {
+        .then(({status,data}) => {
           if (status === 200 || status === 201) {
             if (data.status) {
               //notifikasi ketika berhasil

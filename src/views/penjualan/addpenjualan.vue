@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form_penjualan :isEdit="false" :body="body" :items="{}" @submit="addPenjualan" ></form_penjualan>
+    <form_penjualan :isEdit="false" :body="body"  @submit="addPenjualan" ></form_penjualan>
   </div>
 </template>
 
