@@ -46,7 +46,7 @@
         </CCard>
         <CCard>
           <CCardHeader>
-            <b>Tambah Penjualan</b>
+            <b>Detail Penjualan</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
@@ -116,7 +116,7 @@ export default {
         { key: "nama_barang", label: "Nama Barang" },
         { key: "quantity", label: "Quantity" },
         { key: "nama_satuan", label: "Satuan" },
-        { key: "harga_jual", label: "harga" },
+        { key: "harga_jual", label: "Harga Jual" },
         { key: "actions", label: "Aksi" },
       ],
       list: [],
@@ -130,12 +130,12 @@ export default {
     };
   },
   watch: {
-    body: function(newData) {
+    body: function (newData) {
       this.form = newData;
       console.log("form", newData);
     },
 
-    items: function(newVal) {
+    items: function (newVal) {
       this.list = newVal;
     },
   },

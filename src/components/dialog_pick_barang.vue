@@ -1,5 +1,5 @@
 <template>
-  <CModal :show.sync="modal" color="warning" title="Modal title">
+  <CModal :show.sync="modal" color="warning" title="Daftar Barang">
     <CRow>
       <CCol>
         <data-table

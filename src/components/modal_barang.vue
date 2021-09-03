@@ -13,7 +13,7 @@
       :show.sync="modal"
       update:show="onClose"
     >
-      Tanah air ku tidak ku lupakan
+      
     </CModal>
   </div>
 </template>
