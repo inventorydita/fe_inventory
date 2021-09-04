@@ -1,5 +1,13 @@
 <template>
-  <CModal :show.sync="modal" color="warning" title="Daftar Barang">
+
+  <CModal
+    :show.sync="modal"
+    @update:show="onClose"
+    color="warning"
+    :closeOnBackdrop="false"
+    title="Modal title"
+  >
+
     <CRow>
       <CCol>
         <data-table
@@ -31,7 +39,7 @@ export default {
   props: ["show"],
   data: () => {
     return {
-      modal: true,
+      modal: false,
       header: [
         { key: "nama_barang", label: "Nama Barang" },
         { key: "nama_satuan", label: "Satuan" },
@@ -45,11 +53,9 @@ export default {
     };
   },
   watch: {
-    show: function (val) {
-      this.modal = val;
-    },
-    modal: function (val) {
-      this.$emit("action", val);
+    show: function(newval, old) {
+      console.log(newval);
+      this.modal = newval;
     },
   },
   created() {
@@ -79,6 +85,10 @@ export default {
     onBarangSelected(data) {
       this.modal = false;
       this.$emit("onselected", data);
+    },
+    onClose(event) {
+      console.log(event);
+      this.$emit("action", event);
     },
   },
 };
