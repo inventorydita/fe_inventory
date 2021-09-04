@@ -30,15 +30,22 @@
         :dark="dark"
         pagination
       >
-        <template #nama_barang="{item}">
+        <!-- perintah agar bisa meng klik data pade tabel dialog -->
+        <template #nama_barang="{ item }">
           <td @click="$emit('selected', item)">{{ item.nama_barang }}</td>
         </template>
-        <template #status="{item}">
+        <template #nama_pemasok="{ item }">
+          <td @click="$emit('selected', item)">{{ item.nama_pemasok }}</td>
+        </template>
+        <template #id_pemasok="{ item }">
+          <td @click="$emit('selected', item)">{{ item.nama_pemasok }}</td>
+        </template>
+        <template #status="{ item }">
           <td>
             <CBadge>{{ item.status }}</CBadge>
           </td>
         </template>
-        <template #actions="{item}">
+        <template #actions="{ item }">
           <td class="py-2">
             <CButton
               color="primary"

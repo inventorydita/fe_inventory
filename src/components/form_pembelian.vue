@@ -16,12 +16,21 @@
                 label="Nomor Nota"
                 type="text"
               />
+              <CButton
+                color="primary"
+                size="sm"
+                type="button"
+                @click="modalpemasok = true"
+              >
+                Pilih Pemasok
+              </CButton>
               <CInput
-                v-model="form.id_pemasok"
-                autocomplete="ID Pemasok"
+                v-model="nama_pemasok"
+                autocomplete="Nama Pemasok"
                 description=""
+                disabled
                 horizontal
-                label="ID Pemasok"
+                label="Nama Pemasok"
                 type="text"
               />
               <CInput
@@ -129,6 +138,7 @@
       </CCol>
     </CRow>
     <modal-barang @onselected="onSelected" :show="modal" />
+    <modal-pemasok @onselected="onSelectedPemasok" :show="modalpemasok" />
   </div>
 </template>
 <script>
@@ -147,6 +157,8 @@ export default {
       ],
       list: [],
       modal: false,
+      modalpemasok: false,
+      nama_pemasok: "",
       form: {
         nomor_nota: 0,
         detail_pembelian: [],
@@ -193,6 +205,10 @@ export default {
     },
     onSelected(barang) {
       this.selected = barang;
+    },
+    onSelectedPemasok(Pemasok) {
+      this.nama_pemasok = Pemasok.nama_pemasok;
+      this.form.id_pemasok = Pemasok.id_pemasok;
     },
   },
 };
