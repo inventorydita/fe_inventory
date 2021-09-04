@@ -25,6 +25,7 @@
               <CInput
                 autocomplete="Sub Total"
                 description=""
+                disabled
                 horizontal
                 label="Sub Total"
                 v-model="form.subtotal"
@@ -50,10 +51,19 @@
           </CCardHeader>
           <CCardBody>
             <CForm>
+            <CButton
+                  color="primary"
+                  size="sm"
+                  type="button"
+                  @click="modal=true"
+                >
+                  Pilih Barang
+                </CButton>
               <CInput
                 autocomplete="Nama barang"
                 description=""
                 horizontal
+                disabled
                 label="Barang"
                 v-model="selected.nama_barang"
                 type="text"

@@ -34,9 +34,10 @@
                 v-model="form.subtotal"
                 autocomplete="Sub Total"
                 description=""
+                disabled
                 horizontal
                 label="Sub Total"
-                type="number"
+                type="text"
               />
               <div class="form-group form-actions">
                 <CButton
@@ -57,10 +58,19 @@
           </CCardHeader>
           <CCardBody>
             <CForm>
+              <CButton
+                color="primary"
+                size="sm"
+                type="button"
+                @click="modal = true"
+              >
+                Pilih Barang
+              </CButton>
               <CInput
                 v-model="selected.nama_barang"
                 autocomplete="Nama Barang"
                 description=""
+                disabled
                 horizontal
                 label="Nama Barang"
                 type="text"
@@ -131,7 +141,7 @@ export default {
         { key: "nama_barang", label: "Nama Barang" },
         { key: "quantity", label: "Quantity" },
         { key: "nama_satuan", label: "Satuan" },
-        { key: "harga_beli", label: "Harga Beli" },
+        { key: "harga_modal", label: "Harga Beli" },
         { key: "harga_jual", label: "Harga Jual" },
         { key: "actions", label: "Aksi" },
       ],
@@ -148,7 +158,6 @@ export default {
   watch: {
     body: function (newData) {
       this.form = newData;
-      console.log("form", newData);
     },
     items: function (newVal) {
       this.items = newVal;
@@ -172,12 +181,11 @@ export default {
           nama_barang: this.selected.nama_barang,
           nama_satuan: this.selected.nama_satuan,
           quantity: this.quantity,
-          harga_beli: this.selected.harga_beli,
+          harga_modal: this.selected.harga_modal,
           harga_jual: this.selected.harga_jual,
         };
         this.form.subtotal = parseFloat(
-          this.quantity * this.selected.harga_beli,
-          this.quantity * this.selected.harga_jual
+          this.quantity * this.selected.harga_modal
         );
         this.form.detail_pembelian.push(data);
         this.list.push(data);

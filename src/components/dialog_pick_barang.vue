@@ -35,7 +35,7 @@ export default {
       header: [
         { key: "nama_barang", label: "Nama Barang" },
         { key: "nama_satuan", label: "Satuan" },
-        { key: "harga_modal", label: "Harga Modal" },
+        { key: "harga_modal", label: "Harga Beli" },
         { key: "harga_jual", label: "Harga Jual" },
       ],
 
@@ -45,10 +45,10 @@ export default {
     };
   },
   watch: {
-    show: function(val) {
+    show: function (val) {
       this.modal = val;
     },
-    modal: function(val) {
+    modal: function (val) {
       this.$emit("action", val);
     },
   },
