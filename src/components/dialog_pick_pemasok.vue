@@ -45,11 +45,9 @@ export default {
     };
   },
   watch: {
-    show: function (val) {
-      this.modal = val;
-    },
-    modal: function (val) {
-      this.$emit("action", val);
+    show: function(newval, old) {
+      console.log(newval);
+      this.modal = newval;
     },
   },
   created() {

@@ -1,5 +1,4 @@
 <template>
-
   <CModal
     :show.sync="modal"
     @update:show="onClose"
@@ -7,7 +6,6 @@
     :closeOnBackdrop="false"
     title="Modal title"
   >
-
     <CRow>
       <CCol>
         <data-table
@@ -53,7 +51,7 @@ export default {
     };
   },
   watch: {
-    show: function(newval, old) {
+    show: function (newval, old) {
       console.log(newval);
       this.modal = newval;
     },
