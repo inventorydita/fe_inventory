@@ -25,6 +25,7 @@
               <CInput
                 autocomplete="Sub Total"
                 description=""
+                disabled
                 horizontal
                 label="Sub Total"
                 v-model="form.subtotal"
@@ -46,10 +47,18 @@
         </CCard>
         <CCard>
           <CCardHeader>
-            <b>Tambah Penjualan</b>
+            <b>Detail Penjualan</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
+            <CButton
+                  color="primary"
+                  size="sm"
+                  type="button"
+                  @click="modal=true"
+                >
+                  Pilih Barang
+                </CButton>
               <CInput
                 autocomplete="Nama barang"
                 description=""
@@ -130,7 +139,7 @@ export default {
         { key: "nama_barang", label: "Nama Barang" },
         { key: "quantity", label: "Quantity" },
         { key: "nama_satuan", label: "Satuan" },
-        { key: "harga_jual", label: "harga" },
+        { key: "harga_jual", label: "Harga Jual" },
         { key: "actions", label: "Aksi" },
       ],
       list: [],
@@ -147,7 +156,6 @@ export default {
     body: function(newData, oldVal) {
       this.form = newData;
     },
-
     items: function(newVal, oldVal) {
       this.list = newVal;
       this.form.detail_penjualan = newVal;
