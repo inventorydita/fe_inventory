@@ -1,5 +1,10 @@
 <template>
-  <CModal :show.sync="modal" color="warning" title="Daftar Pemasok">
+  <CModal 
+   :show.sync="modal"
+    @update:show="onClose"
+    color="warning"
+    :closeOnBackdrop="false"
+  title="Daftar Pemasok">
     <CRow>
       <CCol>
         <data-table
@@ -77,6 +82,10 @@ export default {
     onBarangSelected(data) {
       this.modal = false;
       this.$emit("onselected", data);
+    },
+    onClose(event) {
+      console.log(event);
+      this.$emit("action", event);
     },
   },
 };

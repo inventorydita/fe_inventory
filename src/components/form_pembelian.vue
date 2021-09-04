@@ -137,8 +137,14 @@
         </CCard>
       </CCol>
     </CRow>
-    <modal-barang @onselected="onSelected" :show="modal" />
-    <modal-pemasok @onselected="onSelectedPemasok" :show="modalpemasok" />
+    <modal-barang 
+    @onselected="onSelected" 
+     @action="modal = false"
+    :show="modal" />
+    <modal-pemasok 
+    @onselected="onSelectedPemasok"
+    @action="modalpemasok = false"
+     :show="modalpemasok" />
   </div>
 </template>
 <script>
