@@ -31,7 +31,7 @@ export default {
   props: ["show"],
   data: () => {
     return {
-      modal: true,
+      modal: false,
       header: [
         { key: "nama_pemasok", label: "Nama Pemasok" },
         { key: "alamat", label: "Alamat" },
@@ -71,7 +71,7 @@ export default {
       if (this.input.length < 1) {
         this.temp = this.listPemasok;
       }
-      let data = this.listPemasok.filter((Pemasok) => {
+      let data = this.listPemasok.filter((pemasok) => {
         return barang.nama_pemasok.includes(this.input.toLowerCase());
       });
       this.temp = data;

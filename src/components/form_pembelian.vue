@@ -20,16 +20,17 @@
                 color="primary"
                 size="sm"
                 type="button"
-                @click="modalPemasok = true"
+                @click="modalpemasok = true"
               >
                 Pilih Pemasok
               </CButton>
               <CInput
                 v-model="nama_pemasok"
-                autocomplete="ID Pemasok"
+                autocomplete="Nama Pemasok"
                 description=""
+                disabled
                 horizontal
-                label="ID Pemasok"
+                label="Nama Pemasok"
                 type="text"
               />
               <CInput
