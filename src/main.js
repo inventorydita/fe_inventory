@@ -17,6 +17,7 @@ import form_stok from "@/components/form_stok";
 import table from "@/components/table";
 import dialog_pick_barang from "@/components/dialog_pick_barang";
 import dialog_pick_pemasok from "@/components/dialog_pick_pemasok";
+import dialog_pick_satuan from "@/components/dialog_pick_satuan";
 
 import { getUser } from "@/services/jwt.service";
 
@@ -29,6 +30,7 @@ Vue.component("form_stok", form_stok);
 Vue.component("data-table", table);
 Vue.component("modal-barang", dialog_pick_barang);
 Vue.component("modal-pemasok", dialog_pick_pemasok);
+Vue.component("modal-satuan", dialog_pick_satuan);
 
 Vue.config.performance = true;
 Vue.use(CoreuiVue);

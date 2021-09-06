@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div>
-      <CCol sm="14">
+    <CRow>
+      <CCol lg="6" md="8" sm="16" xl="8">
         <CCard>
           <CCardHeader>
             <b>Tambah Barang</b>
@@ -16,13 +16,21 @@
                 horizontal
                 autocomplete="Nama Barang"
               />
+              <CButton
+                color="primary"
+                size="sm"
+                type="button"
+                @click="modalsatuan = true"
+              >
+                Pilih Satuan
+              </CButton>
               <CInput
                 description=""
-                label="ID Satuan"
+                label="Nama Satuan"
                 type="text"
-                v-model="form.id_satuan"
+                v-model="nama_satuan"
                 horizontal
-                autocomplete="ID Satuan"
+                autocomplete="Nama Satuan"
               />
               <CInput
                 description=""
@@ -54,17 +62,26 @@
           </CCardBody>
         </CCard>
       </CCol>
-    </div>
+      <modal-satuan
+        @onselected="onSelectedSatuan"
+        @action="modalsatuan = false"
+        :show="modalsatuan"
+      />
+    </CRow>
   </div>
 </template>
 
 <script>
 export default {
   //props yang diisi oleh parent component
-  props: ["body", "isEdit"],
+  props: ["body", "items", "isEdit"],
   data: () => {
     return {
       form: {},
+      list: [],
+      modal: false,
+      modalsatuan: false,
+      nama_satuan: "",
     };
   },
   watch: {
@@ -72,10 +89,25 @@ export default {
     body: function (newData) {
       this.form = newData;
     },
+    items: function (newVal) {
+      this.items = newVal;
+    },
   },
   methods: {
+    onPickBarang() {
+      this.modal = true;
+    },
+    action(val) {
+      this.modal = val;
+    },
+    barangSelected() {},
     submit() {
       this.$emit("submit", this.form);
+    },
+    onSelectedSatuan(Satuan) {
+      this.nama_satuan = Satuan.nama_satuan;
+      this.form.id_satuan = Satuan.id_satuan;
+      this.list.push(data);
     },
   },
 };
