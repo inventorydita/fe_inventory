@@ -8,6 +8,8 @@
           </CCardHeader>
           <CCardBody>
             <CForm>
+            <div class="form-group form-actions">
+            <div>
               <CInput
                 description=""
                 label="Nama Barang"
@@ -28,6 +30,7 @@
                 description=""
                 label="Nama Satuan"
                 type="text"
+                disabled
                 v-model="nama_satuan"
                 horizontal
                 autocomplete="Nama Satuan"
@@ -48,7 +51,7 @@
                 horizontal
                 autocomplete="Harga Jual"
               />
-              <div class="form-group form-actions">
+              
                 <CButton
                   type="button"
                   @click="submit"
@@ -58,6 +61,7 @@
                   Submit
                 </CButton>
               </div>
+            </div>
             </CForm>
           </CCardBody>
         </CCard>
@@ -77,23 +81,31 @@ export default {
   props: ["body", "items", "isEdit"],
   data: () => {
     return {
-      form: {},
+      form: {
+        tambah_satuan: [],
+      },
       list: [],
       modal: false,
       modalsatuan: false,
       nama_satuan: "",
+      selected: {},
     };
   },
   watch: {
     //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body: function (newData) {
+    body: function (newData, oldVal) {
       this.form = newData;
     },
-    items: function (newVal) {
-      this.items = newVal;
+    items: function (newVal, oldVal) {
+      this.list = newVal;
+      this.form.tambah_satuan = newVal;
     },
   },
+  
   methods: {
+    submit() {
+      this.$emit("submit", this.form);
+    },
     onPickBarang() {
       this.modal = true;
     },
@@ -101,13 +113,10 @@ export default {
       this.modal = val;
     },
     barangSelected() {},
-    submit() {
-      this.$emit("submit", this.form);
-    },
+    
     onSelectedSatuan(Satuan) {
       this.nama_satuan = Satuan.nama_satuan;
       this.form.id_satuan = Satuan.id_satuan;
-      this.list.push(data);
     },
   },
 };

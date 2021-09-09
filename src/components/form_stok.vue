@@ -1,20 +1,31 @@
 <template>
   <div>
+  <CRow>
     <div>
-      <CCol sm="14">
+      <CCol sm="16">
         <CCard>
           <CCardHeader>
             <b>Tambah Stok Barang</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
+            <CButton
+                color="primary"
+                size="sm"
+                type="button"
+                @click="modal = true"
+              >
+                Pilih Barang
+              </CButton>
               <CInput
                 description=""
-                label="ID Barang"
+                label="Nama Barang"
                 type="text"
-                v-model="form.id_barang"
+                disabled
+                v-model="selected.nama_barang"
+                @click="onPickBarang"
                 horizontal
-                autocomplete="ID Barang"
+                autocomplete="Nama Barang"
               />
               <CInput
                 description=""
@@ -55,28 +66,53 @@
         </CCard>
       </CCol>
     </div>
+    </CRow>
+    <modal-barang
+      @onselected="onSelected"
+      @action="modal = false"
+      :show="modal"
+    />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["body", "isEdit"],
+  props: ["body", "items", "isEdit"],
   data: () => {
     return {
-      form: {},
+      form: {
+        tambah_barang: [],
+      },
+      list: [],
+      modal: false,
     };
   },
 
   watch: {
     //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body: function (newData) {
+    body: function (newData, oldVal) {
       this.form = newData;
     },
+    items: function (newVal, oldVal) {
+      this.list = newVal;
+      this.form.tambah_barang = newVal;
+    },
   },
-
+  
   methods: {
+    onPickBarang(val) {
+      this.modal = true;
+      console.log(this.modal);
+    },
+    action(val) {
+      this.modal = val;
+    },
     submit() {
       this.$emit("submit", this.form);
+    },
+    onSelected(barang) {
+      this.modal = false;
+      this.selected = barang;
     },
   },
 };
