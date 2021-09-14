@@ -170,6 +170,7 @@ export default {
       form: {
         nomor_nota: 0,
         detail_pembelian: [],
+        subtotal: 0,
       },
       selected: {},
       quantity: 0,
@@ -204,17 +205,21 @@ export default {
           harga_modal: this.selected.harga_modal,
           harga_jual: this.selected.harga_jual,
         };
-        this.form.subtotal = parseFloat(
-          this.quantity * this.selected.harga_modal
-        );
+        var total = parseFloat(this.quantity * this.selected.harga_modal);
+
+        this.form.subtotal = parseFloat(this.form.subtotal + total);
+        console.log(this.form);
+        console.log(total);
         this.form.detail_pembelian.push(data);
         this.list.push(data);
       }
     },
+
     onSelected(barang) {
-      this.selected = barang;
+      (this.modal = false), (this.selected = barang);
     },
     onSelectedPemasok(Pemasok) {
+      this.modalpemasok = false;
       this.nama_pemasok = Pemasok.nama_pemasok;
       this.form.id_pemasok = Pemasok.id_pemasok;
     },

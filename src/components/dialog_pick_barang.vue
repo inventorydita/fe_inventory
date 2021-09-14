@@ -81,7 +81,6 @@ export default {
       this.temp = data;
     },
     onBarangSelected(data) {
-      this.modal = false;
       this.$emit("onselected", data);
     },
     onClose(event) {

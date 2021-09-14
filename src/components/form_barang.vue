@@ -112,9 +112,12 @@ export default {
     action(val) {
       this.modal = val;
     },
-    barangSelected() {},
+    barangSelected() {
+      this.modalsatuan = false;
+    },
     
     onSelectedSatuan(Satuan) {
+      this.modalsatuan = false;
       this.nama_satuan = Satuan.nama_satuan;
       this.form.id_satuan = Satuan.id_satuan;
     },
