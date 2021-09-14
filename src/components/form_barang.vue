@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div>
-      <CCol sm="14">
+    <CRow>
+      <CCol lg="6" md="8" sm="16" xl="8">
         <CCard>
           <CCardHeader>
             <b>Tambah Barang</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
+            <div class="form-group form-actions">
+            <div>
               <CInput
                 description=""
                 label="Nama Barang"
@@ -16,13 +18,22 @@
                 horizontal
                 autocomplete="Nama Barang"
               />
+              <CButton
+                color="primary"
+                size="sm"
+                type="button"
+                @click="modalsatuan = true"
+              >
+                Pilih Satuan
+              </CButton>
               <CInput
                 description=""
-                label="ID Satuan"
+                label="Nama Satuan"
                 type="text"
-                v-model="form.id_satuan"
+                disabled
+                v-model="nama_satuan"
                 horizontal
-                autocomplete="ID Satuan"
+                autocomplete="Nama Satuan"
               />
               <CInput
                 description=""
@@ -40,7 +51,7 @@
                 horizontal
                 autocomplete="Harga Jual"
               />
-              <div class="form-group form-actions">
+              
                 <CButton
                   type="button"
                   @click="submit"
@@ -50,32 +61,62 @@
                   Submit
                 </CButton>
               </div>
+            </div>
             </CForm>
           </CCardBody>
         </CCard>
       </CCol>
-    </div>
+      <modal-satuan
+        @onselected="onSelectedSatuan"
+        @action="modalsatuan = false"
+        :show="modalsatuan"
+      />
+    </CRow>
   </div>
 </template>
 
 <script>
 export default {
   //props yang diisi oleh parent component
-  props: ["body", "isEdit"],
+  props: ["body", "items", "isEdit"],
   data: () => {
     return {
-      form: {},
+      form: {
+        tambah_satuan: [],
+      },
+      list: [],
+      modal: false,
+      modalsatuan: false,
+      nama_satuan: "",
+      selected: {},
     };
   },
   watch: {
     //pada props:['body'] di awasi disini setiap ada perubahan akan di masukkan ke form
-    body: function (newData) {
+    body: function (newData, oldVal) {
       this.form = newData;
     },
+    items: function (newVal, oldVal) {
+      this.list = newVal;
+      this.form.tambah_satuan = newVal;
+    },
   },
+  
   methods: {
     submit() {
       this.$emit("submit", this.form);
+    },
+    onPickBarang() {
+      this.modal = true;
+    },
+    action(val) {
+      this.modal = val;
+    },
+    barangSelected() {},
+    
+    onSelectedSatuan(Satuan) {
+      this.nama_satuan = Satuan.nama_satuan;
+      this.form.id_satuan = Satuan.id_satuan;
     },
   },
 };

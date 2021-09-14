@@ -51,14 +51,14 @@
           </CCardHeader>
           <CCardBody>
             <CForm>
-            <CButton
-                  color="primary"
-                  size="sm"
-                  type="button"
-                  @click="modal=true"
-                >
-                  Pilih Barang
-                </CButton>
+              <CButton
+                color="primary"
+                size="sm"
+                type="button"
+                @click="modal = true"
+              >
+                Pilih Barang
+              </CButton>
               <CInput
                 autocomplete="Nama barang"
                 description=""
@@ -76,14 +76,6 @@
                 v-model="quantity"
               />
               <div class="form-group form-actions">
-                <CButton
-                  color="primary"
-                  size="sm mr-4"
-                  type="button"
-                  @click="onPickBarang"
-                >
-                  Pilih Barang
-                </CButton>
                 <CButton
                   color="primary"
                   size="sm"
@@ -153,10 +145,10 @@ export default {
     };
   },
   watch: {
-    body: function(newData, oldVal) {
+    body: function (newData, oldVal) {
       this.form = newData;
     },
-    items: function(newVal, oldVal) {
+    items: function (newVal, oldVal) {
       this.list = newVal;
       this.form.detail_penjualan = newVal;
     },
