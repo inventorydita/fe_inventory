@@ -139,6 +139,7 @@ export default {
       form: {
         nomor_nota: 0,
         detail_penjualan: [],
+        subtotal: 0,
       },
       selected: {},
       quantity: 0,
@@ -174,18 +175,16 @@ export default {
           nama_satuan: this.selected.nama_satuan,
           quantity: this.quantity,
         };
-        this.form.subtotal = parseFloat(
-          this.quantity * this.selected.harga_jual
-        );
+        var total = parseFloat(this.quantity * this.selected.harga_jual);
+
+        this.form.subtotal = parseFloat(this.form.subtotal + total);
+        console.log(this.form);
+        console.log(total);
         this.form.detail_penjualan.push(data);
         this.list.push(data);
-
-        //bersihkan semua inputan detail
-        this.selected = {};
-        this.quantity = 0;
       }
-      console.log(this.list);
     },
+
     onSelected(barang) {
       this.modal = false;
       this.selected = barang;

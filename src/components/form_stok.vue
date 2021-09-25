@@ -1,71 +1,72 @@
 <template>
   <div>
-  <CRow>
-    <div>
-      <CCol sm="16">
-        <CCard>
-          <CCardHeader>
-            <b>Tambah Stok Barang</b>
-          </CCardHeader>
-          <CCardBody>
-            <CForm>
-            <CButton
-                color="primary"
-                size="sm"
-                type="button"
-                @click="modal = true"
-              >
-                Pilih Barang
-              </CButton>
-              <CInput
-                description=""
-                label="Nama Barang"
-                type="text"
-                disabled
-                v-model="selected.nama_barang"
-                @click="onPickBarang"
-                horizontal
-                autocomplete="Nama Barang"
-              />
-              <CInput
-                description=""
-                label="Harga Modal"
-                type="number"
-                v-model="form.harga_modal"
-                horizontal
-                autocomplete="Harga Modal"
-              />
-              <CInput
-                description=""
-                label="Harga Jual"
-                type="number"
-                v-model="form.harga_jual"
-                horizontal
-                autocomplete="Harga Jual"
-              />
-              <CInput
-                description=""
-                label="Stok"
-                type="number"
-                v-model="form.stok"
-                horizontal
-                autocomplete="Stok"
-              />
-              <div class="form-group form-actions">
+    <CRow>
+      <div>
+        <CCol lg="8" md="8" sm="16" xl="8">
+          <CCard>
+            <CCardHeader>
+              <b>Tambah Stok Barang</b>
+            </CCardHeader>
+            <CCardBody>
+              <CForm>
                 <CButton
-                  type="button"
-                  @click="submit"
-                  size="sm"
                   color="primary"
+                  size="sm"
+                  type="button"
+                  @click="modal = true"
                 >
-                  Submit
+                  Pilih Barang
                 </CButton>
-              </div>
-            </CForm>
-          </CCardBody>
-        </CCard>
-      </CCol>
-    </div>
+                <CInput
+                  description=""
+                  label="Nama Barang"
+                  type="text"
+                  disabled
+                  v-model="nama_barang"
+                  horizontal
+                  autocomplete="Nama Barang"
+                />
+                <CInput
+                  description=""
+                  label="Harga Modal"
+                  type="number"
+                  disabled
+                  v-model="form.harga_modal"
+                  horizontal
+                  autocomplete="Harga Modal"
+                />
+                <CInput
+                  description=""
+                  label="Harga Jual"
+                  type="number"
+                  disabled
+                  v-model="form.harga_jual"
+                  horizontal
+                  autocomplete="Harga Jual"
+                />
+                <CInput
+                  description=""
+                  label="Stok"
+                  type="number"
+                  v-model="form.stok"
+                  horizontal
+                  autocomplete="Stok"
+                />
+                <div class="form-group form-actions">
+                  <CButton
+                    type="button"
+                    @click="submit"
+                    size="sm"
+                    color="primary"
+                  >
+                    Submit
+                  </CButton>
+                </div>
+              </CForm>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </div>
     </CRow>
     <modal-barang
       @onselected="onSelected"
@@ -85,6 +86,7 @@ export default {
       },
       list: [],
       modal: false,
+      nama_barang: "",
     };
   },
 
@@ -98,7 +100,7 @@ export default {
       this.form.tambah_barang = newVal;
     },
   },
-  
+
   methods: {
     onPickBarang(val) {
       this.modal = true;
@@ -112,7 +114,10 @@ export default {
     },
     onSelected(barang) {
       this.modal = false;
-      this.selected = barang;
+      this.nama_barang = barang.nama_barang;
+      this.form.id_barang = barang.id_barang;
+      this.form.harga_modal = barang.harga_modal;
+      this.form.harga_jual = barang.harga_jual;
     },
   },
 };

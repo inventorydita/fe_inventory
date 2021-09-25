@@ -40,33 +40,36 @@
         <template #id_pemasok="{ item }">
           <td @click="$emit('selected', item)">{{ item.nama_pemasok }}</td>
         </template>
+        <template #nama_satuan="{ item }">
+          <td @click="$emit('selected', item)">{{ item.nama_satuan }}</td>
+        </template>
         <template #status="{ item }">
-          <td>
-            <CBadge>{{ item.status }}</CBadge>
-          </td>
-        </template>
+  <td>
+    <CBadge>{{ item.status }}</CBadge>
+  </td>
+</template>
         <template #actions="{ item }">
-          <td class="py-2">
-            <CButton
-              color="primary"
-              variant="outline"
-              square
-              size="sm"
-              @click="$emit('edit', item)"
-            >
-              Edit
-            </CButton>
-            <CButton
-              color="primary"
-              variant="outline"
-              square
-              size="sm"
-              @click="$emit('delete', item)"
-            >
-              Hapus
-            </CButton>
-          </td>
-        </template>
+  <td class="py-2">
+    <CButton
+      color="primary"
+      variant="outline"
+      square
+      size="sm"
+      @click="$emit('edit', item)"
+    >
+      Edit
+    </CButton>
+    <CButton
+      color="primary"
+      variant="outline"
+      square
+      size="sm"
+      @click="$emit('delete', item)"
+    >
+      Hapus
+    </CButton>
+  </td>
+</template>
       </CDataTable>
     </CCardBody>
   </CCard>

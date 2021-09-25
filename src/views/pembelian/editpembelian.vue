@@ -1,9 +1,9 @@
 <template>
   <div>
     <form_pembelian
-      :isEdit="false"
+      :isEdit="true"
       :body="body"
-      :items="barang_yang_dibeli"
+      :items="barang_yang_dijual"
       @submit="OnSimpan"
     ></form_pembelian>
   </div>
@@ -16,7 +16,7 @@ export default {
   data: () => {
     return {
       body: {},
-      barang_yang_dibeli: [],
+      barang_yang_dijual: [],
     };
   },
   created() {
@@ -29,8 +29,9 @@ export default {
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data.pembelian;
-              this.barang_yang_dibeli = data.data.barang_yang_dibeli;
+              this.body = data.data.pembelian[0];
+              this.barang_yang_dijual = data.data.barang_yang_dijual;
+
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
