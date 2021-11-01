@@ -53,7 +53,13 @@ export default {
       todos:[]
     };
   },
+  created() {
+    this.getTodo()
+  },
   methods:{
+    getTodo(){
+
+    },
     onAddTodo(){
       //bikin todo ke back end
 
