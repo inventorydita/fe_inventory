@@ -181,7 +181,7 @@ export default {
       this.form = newData;
     },
     items: function (newVal) {
-      this.items = newVal;
+      this.list = newVal;
     },
   },
   methods: {
