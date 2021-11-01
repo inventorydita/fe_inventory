@@ -30,7 +30,6 @@ export default {
             if (data.status) {
               this.body = data.data;
               this.barang_yang_dijual = data.barang_yang_dijual;
-
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
