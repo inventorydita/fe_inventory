@@ -38,16 +38,16 @@ Vue.prototype.$log = console.log.bind(console);
 API.init();
 router.beforeEach((to, from, next) => {
   const user = getUser();
-  if (to.meta.requiresAuth) {
-    if (user) {
-      next();
-    } else {
-      next({ path: "/auth/login" });
-    }
-  } else {
-    next();
-  }
-  //next()
+  // if (to.meta.requiresAuth) {
+  //   if (user) {
+  //     next();
+  //   } else {
+  //     next({ path: "/auth/login" });
+  //   }
+  // } else {
+  //   next();
+  // }
+  next()
 });
 /*
 or for SSR:
