@@ -178,9 +178,11 @@ export default {
   },
   watch: {
     body: function (newData) {
+      console.log("body form",newData)
       this.form = newData;
     },
     items: function (newVal) {
+      console.log("body ;ist",newVal)
       this.list = newVal;
     },
   },
