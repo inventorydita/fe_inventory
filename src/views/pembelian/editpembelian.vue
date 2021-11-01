@@ -3,7 +3,7 @@
     <form_pembelian
       :isEdit="true"
       :body="body"
-      :items="barang_yang_dijual"
+      :items="barang_yang_dibeli"
       @submit="OnSimpan"
     ></form_pembelian>
   </div>
@@ -15,7 +15,7 @@ export default {
   data: () => {
     return {
       body: {},
-      barang_yang_dijual: [],
+      barang_yang_dibeli: [],
     };
   },
   created() {
@@ -28,10 +28,10 @@ export default {
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data;
-              this.barang_yang_dijual = data.barang_yang_dijual;
+              this.body = data.data[0];
+              this.barang_yang_dibeli = data.barang_yang_dibeli;
               console.log("data",this.body)
-              console.log("data",this.barang_yang_dijual)
+              console.log("data",this.barang_yang_dibeli)
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
