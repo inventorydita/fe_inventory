@@ -13,7 +13,8 @@
 import API from "../../services/api.service";
 export default {
   data: () => {
-    return { body: {},
+    return {
+      body: {},
       barang_yang_dijual: [],
     };
   },
@@ -27,8 +28,8 @@ export default {
         .then(({ status, data }) => {
           if (status === 200 || status === 201) {
             if (data.status) {
-              this.body = data.data.pembelian[0];
-              this.barang_yang_dijual = data.data.barang_yang_dijual;
+              this.body = data.data;
+              this.barang_yang_dijual = data.barang_yang_dijual;
 
               //notifikasi ketika berhasil
               this.$notify({
