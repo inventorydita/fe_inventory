@@ -8,17 +8,24 @@
               horizontal
               label="Dari Tanggal"
               type="date"
-              v-model="form.tanggal"
+              v-model="form.daritanggal"
             />
             <CInput
               horizontal
               label="Sampai Tanggal"
               type="date"
-              v-model="form.tanggal"
+              v-model="form.sampaitanggal"
             />
+            <CRow>
             <CButton type="button" @click="submit" size="sm" color="primary">
-              Submit
-            </CButton> </template
+              Submit 
+            </CButton>
+            <div class="m-3"> 
+            </div>
+            <CButton type="button"  @click="cetak" size="sm" color="primary" >
+              Cetak
+            </CButton>
+            </CRow> </template
           ><template #search><CForm inline> </CForm></template>
         </data-table>
       </CCol>
@@ -31,6 +38,7 @@ import API from "../../services/api.service";
 
 export default {
   name: "Penjualan",
+  //data
   data: () => {
     return {
       header: [
@@ -44,8 +52,28 @@ export default {
       ],
       hidden: false,
       items: [],
-      form: {},
+      form: {daritanggal:"",sampaitanggal:""},
+
     };
   },
+  //method
+  methods: {
+    submit(){
+  API.get("laporancontroller?daritanggal="+this.form.daritanggal+"&sampaitanggal="+this.form.sampaitanggal)
+        .then(({ status, data }) => {
+          if (status == 200 || status == 201) {
+            if (data.status) {
+              this.items = data.data;
+            }
+          }
+        })
+        .catch(() => {});
+    },
+    cetak(){
+       window.location.href=`http://localhost/be_inventory/index.php/pdfview?daritanggal=${this.form.daritanggal}&sampaitanggal=${this.form.sampaitanggal}`
+      }
+    
+  }
+
 };
 </script>

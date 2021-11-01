@@ -1,8 +1,7 @@
 <template>
   <div>
-    <CRow>
       <div>
-        <CCol lg="8" md="8" sm="16" xl="8">
+        <CCol sm="14" >
           <CCard>
             <CCardHeader>
               <b>Tambah Stok Barang</b>
@@ -67,7 +66,6 @@
           </CCard>
         </CCol>
       </div>
-    </CRow>
     <modal-barang
       @onselected="onSelected"
       @action="modal = false"

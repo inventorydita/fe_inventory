@@ -18,9 +18,9 @@
             </CButton> </template
           ><template #search
             ><CForm inline>
-              <CInput class="ml-12 sm-6" placeholder="Search" size="sm" />
+              <CInput class="ml-12 sm-6" placeholder="Search" size="sm" v-model="katakunci" />
 
-              <CButton color="outline-success" class="" type="submit"
+              <CButton color="outline-success" class="" type="button" @click="cariDataPemasok"
                 >Search</CButton
               >
             </CForm></template
@@ -47,6 +47,7 @@ export default {
         { key: "actions", label: "Aksi" },
       ],
       hidden:false,
+      katakunci:'',
       items: [],
     };
   },
@@ -58,6 +59,17 @@ export default {
       API.get("pemasokcontroller").then(({status,data}) => {
         if(status == 200 || status == 201){
           if(data.status){
+            this.items = data.data
+          }
+        }
+      })
+      .catch(() => {});
+    },
+    cariDataPemasok() {
+      API.get("pemasokcontroller/search?nama_pemasok="+this.katakunci).then(({status,data}) => {
+        if(status == 200 || status ==201){
+          if(data.status){
+            //console.log(data);
             this.items = data.data
           }
         }

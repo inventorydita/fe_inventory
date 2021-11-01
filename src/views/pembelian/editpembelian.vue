@@ -11,11 +11,9 @@
 
 <script>
 import API from "../../services/api.service";
-
 export default {
   data: () => {
-    return {
-      body: {},
+    return { body: {},
       barang_yang_dijual: [],
     };
   },

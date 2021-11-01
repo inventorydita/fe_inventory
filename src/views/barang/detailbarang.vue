@@ -18,9 +18,9 @@
             </CButton> </template
           ><template #search
             ><CForm inline>
-              <CInput class="ml-12 sm-6" placeholder="Search" size="sm" />
+              <CInput class="ml-12 sm-6" placeholder="Search" size="sm" v-model="katakunci"/>
 
-              <CButton color="outline-success" class="" type="submit"
+              <CButton color="outline-success" class="" type="button" @click="cariDataBarang"
                 >Search</CButton
               >
             </CForm></template
@@ -47,6 +47,7 @@ export default {
         { key: "actions", label: "Aksi" },
       ],
       hidden: false,
+      katakunci:'',
       items: [],
     };
   },
@@ -63,6 +64,17 @@ export default {
         }
       });
     },
+
+  cariDataBarang(){
+    API.get("masterbarangcontroller/search?nama_barang="+this.katakunci).then(({status,data}) => {
+      if(status == 200 || status == 201){
+        if(data.status){
+          this.items = data.data
+        }
+      }
+    })
+    .catch(() => {});
+  },
     editDetailBarang(data) {
       this.$router.push({ path: "/master/editdetailbarang/"+data.id_barang })
     },
