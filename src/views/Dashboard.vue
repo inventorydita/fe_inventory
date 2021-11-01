@@ -85,7 +85,7 @@ export default {
             title: "informasi",
             text: "data telah berhasil",
           });
-
+        this.getTodo();
         } else {
           //gagal
           this.$notify({
@@ -118,7 +118,7 @@ export default {
 
     onSelesai(id){
     //status todo selesai
-    API.put("todolistcontroller", {
+    API.put("todolistcontroller/selesai", {
       id_todolist:id,
     })
       .then(({ status, data}) => {
@@ -130,7 +130,7 @@ export default {
             title: "informasi",
             text: "data telah berhasil",
           });
-
+        this.getTodo();
         } else {
           //gagal
           this.$notify({
@@ -175,7 +175,8 @@ export default {
                 title: "Informasi",
                 text: "Data telah berhasil dihapus",
               });
-              this.getDatatodolist();
+            
+              this.getTodo();
             } else {
               // ketika data gagal dihapus maka muncul notif
               this.$notify({
