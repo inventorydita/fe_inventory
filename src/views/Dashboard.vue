@@ -53,14 +53,136 @@ export default {
     };
   },
   methods:{
-    onAddTodo(){
+    onAddTodo(data){
       //bikin todo ke back end
+      API.post("todolistcontroller", data)
+      .then(({ status, data}) => {
+        if (status === 200 || status === 201) {
+        if (data.status) {
+          this.$notify({
+            group: "notif",
+            type: "success",
+            title: "informasi",
+            text: "data telah berhasil",
+          });
+
+        } else {
+          //gagal
+          this.$notify({
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Gagal menambah data",
+          });
+        }
+        } else {
+          //gagal
+                this.$notify({
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Gagal menambah data",
+           });
+        }
+      })
+      .catch(() => {
+          //error
+          this.$notify({
+            group: "notif",
+            type: "error",
+            title: "Perhatian",
+            text: "Gagal menambah data",
+          });
+        });
     },
-    onSelesai(){
-//status todo selesai
+
+    onSelesai(id){
+    //status todo selesai
+    API.post("todolistcontroller", id)
+      .then(({ status, data}) => {
+        if (status === 200 || status === 201) {
+        if (data.status) {
+          this.$notify({
+            group: "notif",
+            type: "success",
+            title: "informasi",
+            text: "data telah berhasil",
+          });
+
+        } else {
+          //gagal
+          this.$notify({
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Gagal menambah data",
+          });
+        }
+        } else {
+          //gagal
+                this.$notify({
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Gagal menambah data",
+           });
+        }
+      })
+      .catch(() => {
+          //error
+          this.$notify({
+            group: "notif",
+            type: "error",
+            title: "Perhatian",
+            text: "Gagal menambah data",
+          });
+        });
+
     },
+
     onHapus(){
-//bikin hapus todo
+    //bikin hapus todo
+ API.delete(`todolistcontroller/${datatodolist.id_todolist}`)
+        .then(({ status, data }) => {
+          if (status == 200 || status == 201) {
+            if (data.status) {
+              this.$notify({
+                // ketika data berhasil dihapus maka muncul notif
+                group: "notif",
+                type: "success",
+                title: "Informasi",
+                text: "Data telah berhasil dihapus",
+              });
+              this.getDatatodolist();
+            } else {
+              // ketika data gagal dihapus maka muncul notif
+              this.$notify({
+                group: "notif",
+                type: "error",
+                title: "Perhatian",
+                text: "Data gagal untuk dihapus",
+              });
+            }
+          } else {
+            // ketika data gagal dihapus maka muncul notif
+            this.$notify({
+              group: "notif",
+              type: "error",
+              title: "Perhatian",
+              text: "Data gagal untuk dihapus",
+            });
+          }
+
+          //tambahin ini buat notif ketika error 500 dll dari back end
+        })
+        .catch(() => {
+          this.$notify({
+            group: "notif",
+            type: "error",
+            title: "Perhatian",
+            text: "Data gagal untuk dihapus",
+          });
+        });
     }
   }
 };
