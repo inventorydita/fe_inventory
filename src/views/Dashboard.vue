@@ -6,13 +6,13 @@
       <CCardBody>
         <CListGroup>
 
-            <CAlert color="primary" class="d-flex align-items-center">
+            <CAlert v-for="(item,index) in todos" :key="index" :color="getColor(item.selesai)" class="d-flex align-items-center">
                <div>
-                An example alert with an icon
+                {{item.nama}}
               </div>
               <CButtonGroup class="me-2" role="group" aria-label="Second group">
-                <CButton color="secondary">5</CButton>
-                <CButton color="secondary">6</CButton>
+                <CButton @click="onSelesai(item.id_todolist)" color="secondary">Selesai</CButton>
+                <CButton @click="onHapus(item.id_todolist)" color="secondary">Hapus</CButton>
               </CButtonGroup>
             </CAlert>
 
@@ -57,18 +57,22 @@ export default {
     this.getTodo()
   },
   methods:{
+    getColor(status){
+      if(status == 0) return 'primary'
+      return 'success'
+    },
     getTodo(){
-      API.get("todolistcontroller".then(({ status, data}) => {
-        if (status == 200 || status == 201) {
-          if (data.status) {
-            this.items = data.data;
-          }
-        }
-      }));
+      API.get("todolistcontroller")
+          .then(({ status, data}) => {
+            if (status == 200 || status == 201) {
+              if (data.status) {
+                this.todos = data.data;
+              }
+            }
+          });
     },
     onAddTodo(){
       //bikin todo ke back end
-
       API.post("todolistcontroller", {
         nama:this.todo
       })
