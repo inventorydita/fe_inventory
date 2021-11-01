@@ -58,7 +58,13 @@ export default {
   },
   methods:{
     getTodo(){
-
+      API.get("todolistcontroller".then(({ status, data}) => {
+        if (status == 200 || status == 201) {
+          if (data.status) {
+            this.items = data.data;
+          }
+        }
+      }));
     },
     onAddTodo(){
       //bikin todo ke back end
