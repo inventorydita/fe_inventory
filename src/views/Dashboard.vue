@@ -37,7 +37,7 @@
 
 <script>
 import {CAlert,CInput} from '@coreui/vue'
-
+import API from "../services/api.service"
 import WidgetsDropdown from "./widgets/WidgetsDropdown";
 
 export default {
@@ -49,13 +49,17 @@ export default {
   },
   data() {
     return {
-      todo:""
+      todo:"",
+      todos:[]
     };
   },
   methods:{
-    onAddTodo(data){
+    onAddTodo(){
       //bikin todo ke back end
-      API.post("todolistcontroller", data)
+
+      API.post("todolistcontroller", {
+        nama:this.todo
+      })
       .then(({ status, data}) => {
         if (status === 200 || status === 201) {
         if (data.status) {
@@ -98,7 +102,9 @@ export default {
 
     onSelesai(id){
     //status todo selesai
-    API.post("todolistcontroller", id)
+    API.put("todolistcontroller", {
+      id_todolist:id,
+    })
       .then(({ status, data}) => {
         if (status === 200 || status === 201) {
         if (data.status) {
@@ -140,9 +146,9 @@ export default {
 
     },
 
-    onHapus(){
+    onHapus(id){
     //bikin hapus todo
- API.delete(`todolistcontroller/${datatodolist.id_todolist}`)
+ API.delete(`todolistcontroller/${id}`)
         .then(({ status, data }) => {
           if (status == 200 || status == 201) {
             if (data.status) {
