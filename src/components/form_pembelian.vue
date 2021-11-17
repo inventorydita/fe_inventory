@@ -243,6 +243,9 @@ export default {
           const index = this.list
                 .map((item) => item.id_barang)
                 .indexOf(this.selected.id_barang);
+                console.log("selected",this.selected)
+                console.log("selectedIndex",index)
+                 console.log("selecteddata",data)
                 if(index){
                     Object.assign(this.list[index], data);
                 }
@@ -260,6 +263,8 @@ export default {
         })
         this.form.subtotal = parseFloat(total);
         
+      }else{
+        console.log("qty",this.quantity)
       }
     },
 
