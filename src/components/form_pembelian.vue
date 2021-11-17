@@ -116,6 +116,8 @@
                                 <data-table
                                   :headers="header"
                                   :items="list"
+                                  @edit="editDetailBarang"
+                                  @delete="deleteDetailBarang"
                                   title=""
                                 >
                                   <template></template>
@@ -182,7 +184,6 @@ export default {
   },
   watch: {
     body: function (newData) {
-      console.log("body form",newData)
       if(newData.nama_pemasok){
           this.nama_pemasok = newData.nama_pemasok;
       }
@@ -190,7 +191,6 @@ export default {
       this.form = newData;
     },
     items: function (newVal) {
-      console.log("body ;ist",newVal)
       this.form.detail_pembelian = newVal;
       this.list = newVal;
     },
@@ -203,10 +203,26 @@ export default {
       this.modal = val;
     },
     submit() {
+      this.form.detail_pembelian = this.list
       this.$emit("submit", this.form);
     },
+    editDetailBarang(barang){
+      //set barang yang mau di edit ke form
+      this.selected = barang
+    },
+    deleteDetailBarang(barang){
+      //sebelum menghapus cek dulu ada di index berapa
+       const index = this.list
+                .map((item) => item.id_barang)
+                .indexOf(barang.id_barang);
+                //proses hapus
+           this.list.splice(index, 1);
+    },
     onTambah() {
+      //diasumsikan kalau kuantitas lebih dari 0 maka membeli barang 
       if (this.quantity > 0) {
+
+//persiapan data
         let data = {
           id_barang: this.selected.id_barang,
           nama_barang: this.selected.nama_barang,
@@ -215,13 +231,35 @@ export default {
           harga_modal: this.selected.harga_modal,
           harga_jual: this.selected.harga_jual,
         };
-        var total = parseFloat(this.quantity * this.selected.harga_modal);
-        let subtotalConvert = parseFloat(this.form.subtotal)
 
-        this.form.subtotal = parseFloat(subtotalConvert + total);
+//cek barangnya sudah ada di list atau belum
+        const existAtList = this
+              .list
+              .some((item) => item.id_barang === this.selected.id_barang);
 
-        this.form.detail_pembelian.push(data);
+
+      if(existAtList){
+        //ada di array maka data yang sudah ada di gantikan dengan data baru
+          const index = this.list
+                .map((item) => item.id_barang)
+                .indexOf(barang.id_barang);
+                if(index){
+                    Object.assign(this.list[index], data);
+                }
+       
+      }else{
+        //tidak ada  maka data akan langsung dimasukkan
         this.list.push(data);
+      }
+      //hitung sub total
+        let total = 0;
+        this.list.forEach((element )=>{
+          let harga = parseFloat(element.harga_modal)
+          let qty = parseFloat(element.quantity)
+          total = parseFloat(total+(harga*qty))
+        })
+        this.form.subtotal = parseFloat(total);
+        
       }
     },
 

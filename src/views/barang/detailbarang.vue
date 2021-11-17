@@ -23,7 +23,8 @@
               <CButton color="outline-success" class="" type="button" @click="cariDataBarang"
                 >Search</CButton
               >
-            </CForm></template
+            </CForm>
+            </template
           >
         </data-table>
         <CPagination align="center" :pages="10" />
