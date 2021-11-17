@@ -178,8 +178,7 @@ export default {
     };
   },
   created(){
-    this.getPemasok();
-
+  
   },
   watch: {
     body: function (newData) {
@@ -197,25 +196,6 @@ export default {
     },
   },
   methods: {
-    getPemasok(data) {
-      //proses simpan ke back end
-      API.get("pemasokcontroller", data)
-        .then(({ status, data }) => {
-          if (status === 200 || status === 201) {
-            if (data.status) {
-              //notifikasi ketika berhasil
-              this.nama_pemasok = data.data[0];
-            
-            } else {
-              
-            }
-          } else {
-          
-            
-          }
-        });
-     
-    },
     onPickBarang() {
       this.modal = true;
     },
