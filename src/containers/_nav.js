@@ -4,12 +4,12 @@ export default [
     _children: [
       {
         _name: "CSidebarNavItem",
-        name: "Tentang Kami",
+        name: "Beranda",
         to: "/dashboard",
         icon: "cil-heart",
         badge: {
           color: "primary",
-          text: "NEW"
+          //text: "NEW"
         }
       },
       {

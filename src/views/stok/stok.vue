@@ -9,14 +9,7 @@
           @edit="editStok"
           @delete="deleteStok"
         >
-          <template #tambah>
-            <CButton
-              @click="$router.push({ path: '/master/addstok' })"
-              color="primary"
-            >
-              Tambah Data
-            </CButton> </template
-          ><template #search
+        <template #search
             ><CForm inline>
               <CInput class="ml-12 sm-6" placeholder="Search" size="sm" v-model="katakunci"/>
 

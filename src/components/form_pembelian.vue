@@ -150,6 +150,7 @@
   </div>
 </template>
 <script>
+import API from "@/services/api.service";
 export default {
   props: ["body", "items", "isEdit"],
   name: "RincianPembelian",
@@ -176,17 +177,42 @@ export default {
       quantity: 0,
     };
   },
+  created(){
+    this.getPemasok();
+
+  },
   watch: {
     body: function (newData) {
       console.log("body form",newData)
+      this.nama_pemasok = newData.nama_pemasok;
       this.form = newData;
     },
     items: function (newVal) {
       console.log("body ;ist",newVal)
+      this.form.detail_pembelian = newVal;
       this.list = newVal;
     },
   },
   methods: {
+    getPemasok(data) {
+      //proses simpan ke back end
+      API.get("pemasokcontroller", data)
+        .then(({ status, data }) => {
+          if (status === 200 || status === 201) {
+            if (data.status) {
+              //notifikasi ketika berhasil
+              this.nama_pemasok = data.data[0];
+            
+            } else {
+              
+            }
+          } else {
+          
+            
+          }
+        });
+     
+    },
     onPickBarang() {
       this.modal = true;
     },

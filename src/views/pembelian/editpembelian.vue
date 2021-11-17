@@ -31,7 +31,7 @@ export default {
               this.body = data.data[0];
               this.barang_yang_dibeli = data.barang_yang_dibeli;
               console.log("data",this.body)
-              console.log("data",this.barang_yang_dibeli)
+              console.log("data2",this.barang_yang_dibeli)
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif

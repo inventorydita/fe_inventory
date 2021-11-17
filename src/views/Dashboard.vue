@@ -1,8 +1,9 @@
+
 <template>
   <div>
     <WidgetsDropdown />
     <CCard>
-      <CCardHeader>Todo</CCardHeader>
+      <CCardHeader>Barang Kosong</CCardHeader>
       <CCardBody>
         <CListGroup>
 
@@ -21,7 +22,7 @@
       <CCardFooter class="text-muted">
         <CForm class="row g-3">
           <div class="col-auto">
-            <CInput v-model="todo" type="text" id="inputPassword2" placeholder="Todo baru"/>
+            <CInput v-model="todo" type="text" id="inputPassword2" placeholder="Nama Barang"/>
           </div>
           <div class="col-auto">
             <CButton @click="onAddTodo" type="button" class="mb-3">Simpan</CButton>
