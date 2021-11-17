@@ -237,10 +237,10 @@ export default {
           harga_jual: this.selected.harga_jual,
         };
         var total = parseFloat(this.quantity * this.selected.harga_modal);
+        let subtotalConvert = parseFloat(this.form.subtotal)
 
-        this.form.subtotal = parseFloat(this.form.subtotal + total);
-        console.log(this.form);
-        console.log(total);
+        this.form.subtotal = parseFloat(subtotal + total);
+
         this.form.detail_pembelian.push(data);
         this.list.push(data);
       }
