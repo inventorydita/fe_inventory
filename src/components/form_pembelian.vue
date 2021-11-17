@@ -245,10 +245,10 @@ export default {
                 .indexOf(this.selected.id_barang);
                 console.log("selected",this.selected)
                 console.log("selectedIndex",index)
-                 console.log("selecteddata",data)
-                if(index){
-                    Object.assign(this.list[index], data);
-                }
+                console.log("selecteddata",data)
+               
+                Object.assign(this.list[index], data);
+                
        
       }else{
         //tidak ada  maka data akan langsung dimasukkan
