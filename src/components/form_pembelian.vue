@@ -242,7 +242,7 @@ export default {
         //ada di array maka data yang sudah ada di gantikan dengan data baru
           const index = this.list
                 .map((item) => item.id_barang)
-                .indexOf(barang.id_barang);
+                .indexOf(this.selected.id_barang);
                 if(index){
                     Object.assign(this.list[index], data);
                 }
