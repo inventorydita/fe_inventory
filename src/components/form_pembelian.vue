@@ -239,7 +239,7 @@ export default {
         var total = parseFloat(this.quantity * this.selected.harga_modal);
         let subtotalConvert = parseFloat(this.form.subtotal)
 
-        this.form.subtotal = parseFloat(subtotal + total);
+        this.form.subtotal = parseFloat(subtotalConvert + total);
 
         this.form.detail_pembelian.push(data);
         this.list.push(data);
