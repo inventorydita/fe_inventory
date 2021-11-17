@@ -184,7 +184,10 @@ export default {
   watch: {
     body: function (newData) {
       console.log("body form",newData)
-      this.nama_pemasok = newData.nama_pemasok;
+      if(newData.nama_pemasok){
+          this.nama_pemasok = newData.nama_pemasok;
+      }
+      
       this.form = newData;
     },
     items: function (newVal) {
