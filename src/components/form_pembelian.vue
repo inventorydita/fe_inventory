@@ -202,7 +202,6 @@ export default {
     action(val) {
       this.modal = val;
     },
-    barangSelected() {},
     submit() {
       this.$emit("submit", this.form);
     },
@@ -227,7 +226,8 @@ export default {
     },
 
     onSelected(barang) {
-      (this.modal = false), (this.selected = barang);
+      this.modal = false;
+      this.selected = barang;
     },
     onSelectedPemasok(Pemasok) {
       this.modalpemasok = false;
