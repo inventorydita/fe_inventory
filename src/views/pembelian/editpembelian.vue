@@ -30,8 +30,7 @@ export default {
             if (data.status) {
               this.body = data.data[0];
               this.barang_yang_dibeli = data.barang_yang_dibeli;
-              console.log("data",this.body)
-              console.log("data2",this.barang_yang_dibeli)
+            
               //notifikasi ketika berhasil
               this.$notify({
                 // ketika data berhasil dihapus maka muncul notif
