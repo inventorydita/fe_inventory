@@ -9,11 +9,11 @@
           <CCardBody>
             <CForm>
               <CInput
+                v-model="form.nomor_nota"
                 autocomplete="Nomor Nota"
                 description=""
                 horizontal
                 label="Nomor Nota"
-                v-model="form.nomor_nota"
                 type="text"
               />
               <CInput
@@ -100,7 +100,11 @@
               <div>
                 <CRow>
                   <CCol lg="12">
-                    <data-table :headers="header" :items="list" title="">
+                    <data-table 
+                    :headers="header" 
+                    :items="list" title=""
+                    @edit="editDetailBarang"
+                    @delete="deleteDetailBarang">
                       <template></template>
                       <template #search>
                         <CForm inline></CForm>
@@ -145,29 +149,45 @@ export default {
       quantity: 0,
     };
   },
+  created(){ 
+
+  },
   watch: {
-    body: function (newData, oldVal) {
+    body: function (newData) {
       this.form = newData;
     },
-    items: function (newVal, oldVal) {
+    items: function (newVal) {
       this.list = newVal;
       this.form.detail_penjualan = newVal;
     },
   },
-
   methods: {
     onPickBarang(val) {
       this.modal = true;
-      console.log(this.modal);
+      //console.log(this.modal);
     },
     action(val) {
       this.modal = val;
     },
     submit() {
+      this.form.detail_penjualan = this.list
       this.$emit("submit", this.form);
     },
+    editDetailBarang(barang){
+      this.selected = barang
+    },
+    deleteDetailBarang(barang){
+      const index = this.list
+        .map((item) => item.id_barang)
+        .indexOf(barang.id_barang);
+        //proses hapus
+        this.list.splice(index, 1);
+    },
     onTambah() {
+      //diasumsikan kalau kuantitas lebih dari 0 maka menjual barang
       if (this.quantity > 0) {
+
+        //persiapan data
         let data = {
           id_barang: this.selected.id_barang,
           nama_barang: this.selected.nama_barang,
@@ -175,14 +195,38 @@ export default {
           nama_satuan: this.selected.nama_satuan,
           quantity: this.quantity,
         };
-        var total = parseFloat(this.quantity * this.selected.harga_jual);
 
-        this.form.subtotal = parseFloat(this.form.subtotal + total);
-        console.log(this.form);
-        console.log(total);
-        this.form.detail_penjualan.push(data);
-        this.list.push(data);
-      }
+        //cek barangnya sudah ada di list atau belum 
+        const existAtList = this 
+        .list
+        .some((item) => item.id_barang === this.selected.id_barang);
+        //var total = parseFloat(this.quantity * this.selected.harga_jual);
+
+        if(existAtList){
+          const index = this.list
+          .map((item) => item.id_barang)
+          .indexOf(this.selected.id_barang);
+
+          Object.assign(this.list[index], data);
+
+        } else {
+          this.list.push(data);
+        }
+        //hitung subtotal
+        let total = 0;
+        this.list.forEach((element )=>{
+          let harga = parseFloat(element.harga_jual)
+          let qty = parseFloat(element.quantity)
+          total = parseFloat(total+(harga*qty))
+        })
+        this.form.subtotal = parseFloat(total);
+        }
+        //this.form.subtotal = parseFloat(this.form.subtotal + total);
+        //console.log(this.form);
+        //console.log(total);
+        //this.form.detail_penjualan.push(data);
+        //this.list.push(data);
+      
     },
 
     onSelected(barang) {
