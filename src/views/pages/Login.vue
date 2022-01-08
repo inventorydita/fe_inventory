@@ -36,14 +36,14 @@
                         >Login</CButton
                       >
                     </CCol>
-                    <CCol col="6" class="text-right">
+                    <!-- <CCol col="6" class="text-right">
                       <CButton color="link" class="px-0"
                         >Forgot password?</CButton
                       >
                       <CButton color="link" class="d-lg-none"
                         >Register now!</CButton
                       >
-                    </CCol>
+                    </CCol> -->
                   </CRow>
                 </CForm>
               </CCardBody>
@@ -56,7 +56,7 @@
             >
               <CCardBody>
                 <h2>Welcome !</h2>
-                <p>Selamat Datang di website manajemen barang di Toko Dita.</p>
+                <p>Selamat Datang di Website Persediaan Barang Toko Dita</p>
                 <!--                <CButton color="light" variant="outline" size="lg">-->
                 <!--                  Register Now!-->
                 <!--                </CButton>-->

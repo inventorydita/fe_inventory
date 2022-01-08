@@ -4,7 +4,7 @@
       <CCol lg="4" md="6" sm="12" xl="4">
         <CCard>
           <CCardHeader>
-            <b>Tambah Penjualan</b>
+            <b>Tambah Barang Keluar</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
@@ -14,13 +14,14 @@
                 description=""
                 horizontal
                 label="Nomor Nota"
-                type="text"
+                type="number"
               />
               <CInput
                 horizontal
                 label="Tanggal"
                 type="date"
                 v-model="form.tanggal"
+                :max= "maxtanggalpenjualan"
               />
               <CInput
                 autocomplete="Sub Total"
@@ -31,23 +32,12 @@
                 v-model="form.subtotal"
                 type="text"
               />
-
-              <div class="form-group form-actions">
-                <CButton
-                  color="primary"
-                  size="sm"
-                  type="button"
-                  @click="submit"
-                >
-                  Submit
-                </CButton>
-              </div>
             </CForm>
           </CCardBody>
         </CCard>
         <CCard>
           <CCardHeader>
-            <b>Detail Penjualan</b>
+            <b>Detail Barang Keluar</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
@@ -85,6 +75,16 @@
                   Tambahkan barang
                 </CButton>
               </div>
+              <div class="form-group form-actions">
+                <CButton
+                  color="primary"
+                  size="sm"
+                  type="button"
+                  @click="submit"
+                >
+                  Submit
+                </CButton>
+              </div>
             </CForm>
           </CCardBody>
         </CCard>
@@ -92,7 +92,7 @@
       <CCol lg="8" md="6" sm="12" xl="8">
         <CCard>
           <CCardHeader>
-            <b>Detail Penjualan</b>
+            <b>Detail Barang Keluar</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
@@ -131,6 +131,7 @@ export default {
   name: "RincianPenjualan",
   data: () => {
     return {
+      maxtanggalpenjualan: "",
       header: [
         { key: "nama_barang", label: "Nama Barang" },
         { key: "quantity", label: "Quantity" },
@@ -141,16 +142,31 @@ export default {
       list: [],
       modal: false,
       form: {
-        nomor_nota: 0,
+        nomor_nota: [],
         detail_penjualan: [],
         subtotal: 0,
       },
       selected: {},
-      quantity: 0,
+      quantity: [],
     };
   },
   created(){ 
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
 
+  if (dd < 10) {
+    dd = '0' + dd;
+}
+
+if (mm < 10) {
+    mm = '0' + mm;
+}
+
+today = yyyy + '-' + mm + '-' + dd;
+
+this.maxtanggalpenjualan = today
   },
   watch: {
     body: function (newData) {
@@ -170,18 +186,17 @@ export default {
       this.modal = val;
     },
     submit() {
-      this.form.detail_penjualan = this.list
-      this.$emit("submit", this.form);
-    },
-    editDetailBarang(barang){
-      this.selected = barang
-    },
-    deleteDetailBarang(barang){
-      const index = this.list
-        .map((item) => item.id_barang)
-        .indexOf(barang.id_barang);
-        //proses hapus
-        this.list.splice(index, 1);
+       if(this.form.nomor_nota < 3){
+    this.$notify({
+        group: "notif",
+        type: "error",
+        title: "Perhatian",
+        text: "Nomor nota harus disi",
+    });
+  }else {
+    this.form.detail_penjualan = this.list
+    this.$emit("submit", this.form);
+}
     },
     onTambah() {
       //diasumsikan kalau kuantitas lebih dari 0 maka menjual barang

@@ -1,138 +1,132 @@
 <template>
   <CRow>
     <CCol sm="6" lg="3">
-      <CWidgetDropdown color="primary" header="9.823" text="Barang">
-        <template #default>
-          <CDropdown
-            color="transparent p-0"
-            placement="bottom-end"
-          >
-            <template #toggler-content>
-              <CIcon name="cil-settings"/>
-            </template>
-            <CDropdownItem>Action</CDropdownItem>
-            <CDropdownItem>Another action</CDropdownItem>
-            <CDropdownItem>Something else here...</CDropdownItem>
-            <CDropdownItem disabled>Disabled action</CDropdownItem>
-          </CDropdown>
-        </template>
+      <router-link :to="{ name: 'detailbarang' }">
+      <CWidgetDropdown color="primary" :header="total_barang" text="Barang">
         <template #footer>
-          <CChartLineSimple
+          <c-chart-line-example
             pointed
             class="mt-3 mx-3"
             style="height:70px"
-            :data-points="[65, 59, 84, 84, 51, 55, 40]"
-            point-hover-background-color="primary"
-            label="Members"
-            labels="months"
           />
         </template>
       </CWidgetDropdown>
+       </router-link>
     </CCol>
+
     <CCol sm="6" lg="3">
-      <CWidgetDropdown color="info" header="9.823" text="Penjualan">
-        <template #default>
-          <CDropdown
-            color="transparent p-0"
-            placement="bottom-end"
-            :caret="false"
-          >
-            <template #toggler-content>
-              <CIcon name="cil-location-pin"/>
-            </template>
-            <CDropdownItem>Action</CDropdownItem>
-            <CDropdownItem>Another action</CDropdownItem>
-            <CDropdownItem>Something else here...</CDropdownItem>
-            <CDropdownItem disabled>Disabled action</CDropdownItem>
-          </CDropdown>
-        </template>
+    <router-link :to="{ name: 'pembelian' }">
+      <CWidgetDropdown color="info" :header="total_penjualan" text="Barang Masuk">
         <template #footer>
-          <CChartLineSimple
+          <c-chart-line-example
             pointed
             class="mt-3 mx-3"
-            style="height:70px"
-            :data-points="[1, 18, 9, 17, 34, 22, 11]"
-            point-hover-background-color="info"
-            :options="{ elements: { line: { tension: 0.00001 }}}"
-            label="Members"
-            labels="months"
+            style="height:70px "
           />
         </template>
       </CWidgetDropdown>
+  </router-link>
     </CCol>
+
     <CCol sm="6" lg="3">
-      <CWidgetDropdown
-        color="warning"
-        header="9.823"
-        text="Pemasok"
-      >
-        <template #default>
-          <CDropdown
-            color="transparent p-0"
-            placement="bottom-end"
-          >
-            <template #toggler-content>
-              <CIcon name="cil-settings"/>
-            </template>
-            <CDropdownItem>Action</CDropdownItem>
-            <CDropdownItem>Another action</CDropdownItem>
-            <CDropdownItem>Something else here...</CDropdownItem>
-            <CDropdownItem disabled>Disabled action</CDropdownItem>
-          </CDropdown>
-        </template>
+      <router-link :to="{ name: 'pemasok' }">
+      <CWidgetDropdown color="warning" :header="total_pemasok" text="Pemasok" >
         <template #footer>
-          <CChartLineSimple
+          <c-chart-line-example
             class="mt-3"
             style="height:70px"
-            background-color="rgba(255,255,255,.2)"
-            :data-points="[78, 81, 80, 45, 34, 12, 40]"
-            :options="{ elements: { line: { borderWidth: 2.5 }}}"
-            point-hover-background-color="warning"
-            label="Members"
-            labels="months"
           />
         </template>
       </CWidgetDropdown>
+      </router-link>
     </CCol>
-    <CCol sm="6" lg="3">
+
+  <CCol sm="6" lg="3">
+    <router-link :to="{ name: 'penjualan' }">
       <CWidgetDropdown
-        color="danger"
-        header="9.823"
-        text="Pemasok"
-      >
-        <template #default>
-          <CDropdown
-            color="transparent p-0"
-            placement="bottom-end"
-          >
-            <template #toggler-content>
-             <CIcon name="cil-settings"/>
-            </template>
-            <CDropdownItem>Action</CDropdownItem>
-            <CDropdownItem>Another action</CDropdownItem>
-            <CDropdownItem>Something else here...</CDropdownItem>
-            <CDropdownItem disabled>Disabled action</CDropdownItem>
-          </CDropdown>
-        </template>
+        color="danger" :header="total_pembelian" text="Barang Keluar" >
         <template #footer>
-          <CChartBarSimple
+          <Cc-chart-line-example
             class="mt-3 mx-3"
             style="height:70px"
-            background-color="rgb(250, 152, 152)"
-            label="Members"
-            labels="months"
           />
         </template>
       </CWidgetDropdown>
+      </router-link>
     </CCol>
   </CRow>
 </template>
-
 <script>
 import { CChartLineSimple, CChartBarSimple } from '../charts/index.js'
+import API from "../../services/api.service";
 
 export default {
   name: 'WidgetsDropdown',
-  components: { CChartLineSimple, CChartBarSimple }
+  data: () => {
+    return {
+      total_barang: 0,
+      total_penjualan: 0,
+      total_pembelian: 0,
+      hidden: false,
+      katakunci: '',
+      items: "",
+    };
+  },
+  components: { CChartLineSimple, CChartBarSimple },
+  items: [],
+ created(){
+   this.getmasterbarang();
+   this.getpenjualan();
+   this.getBarang();
+   this.getpemasok();
+   this.getpembelian();
+ },
+ methods: {
+    getmasterbarang() {
+      API.get("masterbarangcontroller/count").then(({status,data}) => {
+        if (status == 200 || status ==201) {
+          if (data.status) {
+            this.items = data.data;
+          }
+        }
+      });
+    },
+      getBarang() {
+      API.get("masterbarangcontroller/count").then(({status,data}) => {
+        if (status == 200 || status ==201) {
+          if (data.status) {
+            this.total_barang = data.data;
+          }
+        }
+      });
+    },
+     getpenjualan() {
+      API.get("penjualancontroller/count").then(({status,data}) => {
+        if (status == 200 || status ==201) {
+          if (data.status) {
+            this.total_penjualan = data.data;
+          }
+        }
+      });
+    },
+    getpemasok() {
+      API.get("pemasokcontroller/count").then(({status,data}) => {
+        if (status == 200 || status ==201) {
+          if (data.status) {
+            this.total_pemasok = data.data;
+          }
+        }
+      });
+    },
+     getpembelian() {
+      API.get("pembeliancontroller/count").then(({status,data}) => {
+        if (status == 200 || status ==201) {
+          if (data.status) {
+            this.total_pembelian = data.data;
+          }
+        }
+      });
+    },
+  }
 }
 </script>

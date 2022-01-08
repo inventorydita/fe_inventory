@@ -2,7 +2,7 @@
   <div>
     <CRow>
       <CCol lg="12">
-        <data-table :items="items" :headers="header" title="Penjualan">
+        <data-table :items="items" :headers="header" title="Barang Keluar">
           <template #tambah>
             <CInput
               horizontal
@@ -44,11 +44,13 @@ export default {
       header: [
         { key: "tanggal", label: "Tanggal" },
         { key: "nomor_nota", label: "Nomor Nota" },
+        { key: "kode_barang", label: "Kode Barang" },
         { key: "nama_barang", label: "Nama Barang" },
+        { key: "quantity", label: "Quantity" },
         { key: "nama_satuan", label: "Nama Satuan" },
         { key: "harga_jual", label: "Harga Jual" },
         { key: "subtotal", label: "Sub Total" },
-        { key: "actions", label: "Aksi" },
+        //{ key: "actions", label: "Aksi" },
       ],
       hidden: false,
       items: [],

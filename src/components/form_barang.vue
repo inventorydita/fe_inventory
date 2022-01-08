@@ -121,6 +121,13 @@ export default {
       this.nama_satuan = Satuan.nama_satuan;
       this.form.id_satuan = Satuan.id_satuan;
     },
+
+    methods: {
+    formatHarga_modal(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
+}
   },
 };
 </script>

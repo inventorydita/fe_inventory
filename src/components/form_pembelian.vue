@@ -1,10 +1,10 @@
 <template>
   <div>
     <CRow>
-      <CCol lg="6" md="8" sm="16" xl="8">
+      <CCol lg="4" md="6" sm="12" xl="4">
         <CCard>
           <CCardHeader>
-            <b>Tambah Pembelian</b>
+            <b>Tambah Barang Masuk</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
@@ -14,7 +14,7 @@
                 description=""
                 horizontal
                 label="Nomor Nota"
-                type="text"
+                type="number"
               />
               <CButton
                 color="primary"
@@ -38,6 +38,7 @@
                 label="Tanggal"
                 type="date"
                 v-model="form.tanggal"
+                :max="maxtanggalpembelian"
               />
               <CInput
                 v-model="form.subtotal"
@@ -48,22 +49,12 @@
                 label="Sub Total"
                 type="text"
               />
-              <div class="form-group form-actions">
-                <CButton
-                  color="primary"
-                  size="sm"
-                  type="button"
-                  @click="submit"
-                >
-                  Submit
-                </CButton>
-              </div>
             </CForm>
           </CCardBody>
         </CCard>
         <CCard>
           <CCardHeader>
-            <b>Detail Pembelian</b>
+            <b>Detail Barang Masuk</b>
           </CCardHeader>
           <CCardBody>
             <CForm>
@@ -90,6 +81,7 @@
                 label="Kuantitas"
                 type="number"
               />
+
               <div class="form-group form-actions">
                 <CButton
                   color="primary"
@@ -100,12 +92,24 @@
                   Tambahkan Barang
                 </CButton>
               </div>
-              <div>
-                <CRow>
-                  <CCol lg="10" md="8" sm="14" xl="10">
+                 <div class="form-group form-actions">
+                <CButton
+                  color="primary"
+                  size="sm"
+                  type="button"
+                  @click="submit"
+                >
+                  Submit
+                </CButton>
+              </div>
+              </CForm>
+              </CCardBody>
+                </CCard>
+                  </CCol>
+                  <CCol lg="8" md="6" sm="12" xl="8">
                     <CCard>
                       <CCardHeader>
-                        <b>Detail Pembelian</b>
+                        <b>Detail Barang Masuk</b>
                       </CCardHeader>
                       <CCardBody>
                         <CForm>
@@ -118,8 +122,7 @@
                                   :items="list"
                                   @edit="editDetailBarang"
                                   @delete="deleteDetailBarang"
-                                  title=""
-                                >
+                                  title="">
                                   <template></template>
                                   <template #search>
                                     <CForm inline></CForm>
@@ -132,13 +135,7 @@
                       </CCardBody>
                     </CCard>
                   </CCol>
-                </CRow>
-              </div>
-            </CForm>
-          </CCardBody>
-        </CCard>
-      </CCol>
-    </CRow>
+              </CRow>
     <modal-barang
       @onselected="onSelected"
       @action="modal = false"
@@ -158,6 +155,7 @@ export default {
   name: "RincianPembelian",
   data: () => {
     return {
+      maxtanggalpembelian: "",
       header: [
         { key: "nama_barang", label: "Nama Barang" },
         { key: "quantity", label: "Quantity" },
@@ -171,16 +169,32 @@ export default {
       modalpemasok: false,
       nama_pemasok: "",
       form: {
-        nomor_nota: 0,
+        nomor_nota: [],
         detail_pembelian: [],
         subtotal: 0,
       },
       selected: {},
-      quantity: 0,
+      quantity: [],
     };
   },
   created(){
-  
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = '0' + dd;
+}
+
+if (mm < 10) {
+    mm = '0' + mm;
+}
+
+today = yyyy + '-' + mm + '-' + dd;
+
+this.maxtanggalpembelian = today
+
   },
   watch: {
     body: function (newData) {
@@ -203,8 +217,18 @@ export default {
       this.modal = val;
     },
     submit() {
-      this.form.detail_pembelian = this.list
-      this.$emit("submit", this.form);
+      
+       if(this.form.nomor_nota < 3){
+    this.$notify({
+        group: "notif",
+        type: "error",
+        title: "Perhatian",
+        text: "Nomor nota harus disi",
+    });
+  }else {
+    this.form.detail_pembelian = this.list
+    this.$emit("submit", this.form);
+}
     },
     editDetailBarang(barang){
       //set barang yang mau di edit ke form
@@ -243,8 +267,6 @@ export default {
           const index = this.list
                 .map((item) => item.id_barang)
                 .indexOf(this.selected.id_barang);
-              
-               
                 Object.assign(this.list[index], data);
                 
        

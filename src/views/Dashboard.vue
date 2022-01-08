@@ -3,7 +3,7 @@
   <div>
     <WidgetsDropdown />
     <CCard>
-      <CCardHeader>Barang Kosong</CCardHeader>
+      <CCardHeader>To Do List</CCardHeader>
       <CCardBody>
         <CListGroup>
 
@@ -11,12 +11,11 @@
                <div>
                 {{item.nama}}
               </div>
-              <CButtonGroup class="me-2" role="group" aria-label="Second group">
+              <CButtonGroup class="me-2 ml-3"  role="group" aria-label="Second group">
                 <CButton @click="onSelesai(item.id_todolist)" color="secondary">Selesai</CButton>
-                <CButton @click="onHapus(item.id_todolist)" color="secondary">Hapus</CButton>
+                <CButton class="ml-3" @click="onHapus(item.id_todolist)" color="secondary">Hapus</CButton>
               </CButtonGroup>
             </CAlert>
-
         </CListGroup>
         </CCardBody>
       <CCardFooter class="text-muted">
@@ -25,7 +24,7 @@
             <CInput v-model="todo" type="text" id="inputPassword2" placeholder="Nama Barang"/>
           </div>
           <div class="col-auto">
-            <CButton @click="onAddTodo" type="button" class="mb-3">Simpan</CButton>
+            <CButton @click="onAddTodo" type="button" class="mb-3" color="secondary">Simpan</CButton>
           </div>
         </CForm>
       </CCardFooter>

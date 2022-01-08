@@ -2,9 +2,9 @@
   <CModal
     :show.sync="modal"
     @update:show="onClose"
-    color="warning"
+    color="primary"
     :closeOnBackdrop="false"
-    title="Modal title"
+    title="Daftar Barang"
   >
     <CRow>
       <CCol>
@@ -14,7 +14,7 @@
           :items="temp"
           @selected="onBarangSelected"
         >
-          <template #search>
+          <template #search>  
             <CForm inline>
               <CInput
                 v-model="input"
@@ -76,7 +76,7 @@ export default {
         this.temp = this.listBarang;
       }
       let data = this.listBarang.filter((barang) => {
-        return barang.nama_barang.includes(this.input.toLowerCase());
+        return barang.nama_barang.toLowerCase().includes(this.input.toLowerCase());
       });
       this.temp = data;
     },

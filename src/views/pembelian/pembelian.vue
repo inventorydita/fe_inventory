@@ -5,7 +5,7 @@
         <data-table
           :items="items"
           :headers="header"
-          title="Pembelian"
+          title="Barang Masuk"
           @edit="editPembelian"
           @delete="deletePembelian"
         >
@@ -16,7 +16,7 @@
             >
               Tambah Data
             </CButton> </template
-          ><template #search
+          ><template #search 
             ><CForm inline>
               <CInput class="ml-12 sm-6" placeholder="Search" size="sm" v-model="katakunci" />
 

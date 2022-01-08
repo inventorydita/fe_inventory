@@ -2,7 +2,7 @@
   <CModal 
    :show.sync="modal"
     @update:show="onClose"
-    color="warning"
+    color="primary"
     :closeOnBackdrop="false"
   title="Daftar Pemasok">
     <CRow>
@@ -75,7 +75,8 @@ export default {
         this.temp = this.listPemasok;
       }
       let data = this.listPemasok.filter((pemasok) => {
-        return barang.nama_pemasok.includes(this.input.toLowerCase());
+        // console.log(pemasok);
+        return pemasok.nama_pemasok.toLowerCase().includes(this.input.toLowerCase());
       });
       this.temp = data;
     },

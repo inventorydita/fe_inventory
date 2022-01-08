@@ -34,10 +34,11 @@
             <CInput
               description=""
               label="Nomor Telepon"
-              type="text"
+              type="number"
               v-model="form.telepon"
               horizontal
               autocomplete="Nomor"
+              maxlength="13"
             />
             <div class="form-group form-actions">
               <CButton type="button" @click="submit" size="sm" color="primary">
@@ -69,8 +70,17 @@ export default {
 
   methods: {
     submit() {
-      this.$emit("submit", this.form);
-    },
+      if(this.form.telepon > 13 || this.form.telepon < 11 ){
+    this.$notify({
+        group: "notif",
+        type: "error",
+        title: "Perhatian",
+        text: "No telepon harus 13 digit",
+    });
+  }else {
+    this.$emit("submit",this.form)
+}
+   },
   },
 };
 </script>

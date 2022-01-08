@@ -2,7 +2,7 @@
   <CModal 
    :show.sync="modal"
     @update:show="onClose"
-    color="warning"
+    color="primary"
     :closeOnBackdrop="false"
   title="Daftar Satuan">
     <CRow>

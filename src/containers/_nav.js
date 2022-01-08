@@ -6,7 +6,7 @@ export default [
         _name: "CSidebarNavItem",
         name: "Beranda",
         to: "/dashboard",
-        icon: "cil-heart",
+        icon: "cilGrid",
         badge: {
           color: "primary",
           //text: "NEW"
@@ -20,7 +20,7 @@ export default [
         _name: "CSidebarNavDropdown",
         name: "Master",
         route: "/master",
-        icon: "cid-home",
+        icon: "cilLayers",
         items: [
           {
             name: "Pemasok",
@@ -37,30 +37,36 @@ export default [
 
         ]
       },
+      // {
+      //   _name: "CSidebarNavDropdown",
+      //   name: "Barang Masuk",
+      //   route: "/master/pembelian",
+      //   icon: "cilArrowRight",
+      //   items: [
+      //     {
+      //       name: "Barang Masuk",
+      //       to: "/master/pembelian"
+      //     },
+      //   ]
+      // },
       {
-        _name: "CSidebarNavDropdown",
-        name: "Pembelian Barang",
-        route: "/master/pembelian",
-        icon: "cib-cashapp",
-        items: [
-          {
-            name: "Pembelian",
-            to: "/master/pembelian"
-          },
-        ]
+        _name: "CSidebarNavItem",
+        name: "Barang Masuk",
+        to: "/master/pembelian",
+        icon: "cilChevronBottom",
       },
       {
         _name: "CSidebarNavDropdown",
-        name: "Penjualan Barang",
+        name: "Barang Keluar",
         route: "/master/penjualan",
-        icon: "cib-cashapp",
+        icon: "cilChevronTop",
         items: [
           {
-            name: "Penjualan",
+            name: "Barang Keluar",
             to: "/master/penjualan"
           },
           {
-            name: "Laporan Penjualan",
+            name: "Laporan Barang Keluar",
             to: "/master/laporanpenjualan"
           },
           
@@ -73,6 +79,14 @@ export default [
         name: "Stok Barang",
         to: "/master/stok",
         icon: "cil-basket",
+      },
+
+      {
+        _name: "CSidebarNavItem",
+        name: "Tambahan",
+        to: "",
+        icon: "",
+
       },
     ]
   }

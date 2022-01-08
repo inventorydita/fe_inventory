@@ -5,7 +5,7 @@
         <data-table
           :items="items"
           :headers="header"
-          title="Penjualan"
+          title="Barang Keluar"
           @edit="editPenjualan"
           @delete="deletePenjualan"
         >

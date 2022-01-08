@@ -33,10 +33,11 @@ export default {
   data: () => {
     return {
       header: [
+        { key: "kode_barang", label: "Kode Barang" },
         { key: "nama_barang", label: "Nama Barang" },
         { key: "nama_satuan", label: "Satuan" },
         { key: "stok", label: "Kuantitas" },
-        { key: "actions", label: "Aksi" },
+        //{ key: "actions", label: "Aksi" },
       ],
       hidden: false,
       katakunci: '',
